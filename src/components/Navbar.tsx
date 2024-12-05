@@ -2,6 +2,13 @@ import { NavLink } from "react-router";
 import { BsInfoCircleFill, BsList, BsPersonLinesFill } from "react-icons/bs";
 
 function Navbar() {
+  function handleScrollDown() {
+    window.scrollTo({
+      top: 10000,
+      behavior: "smooth",
+    });
+  }
+
   return (
     <nav className="pb-4">
       <div className="flex items-center gap-6">
@@ -20,17 +27,10 @@ function Navbar() {
           <BsInfoCircleFill className="ml-1" />
           درباره ما
         </NavLink>
-        <NavLink
-          to="/contact"
-          className={({ isActive }) =>
-            `${
-              isActive ? "text-red-500" : "text-black"
-            } flex items-center transition`
-          }
-        >
+        <button onClick={handleScrollDown} className="flex items-center">
           <BsPersonLinesFill className="ml-1" />
           تماس با ما
-        </NavLink>
+        </button>
       </div>
     </nav>
   );

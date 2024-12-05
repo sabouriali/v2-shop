@@ -1,13 +1,24 @@
 import { NavLink } from "react-router";
-import { BsMoonFill, BsSearch } from "react-icons/bs";
+import { BsMoonFill, BsSearch, BsSunFill } from "react-icons/bs";
 import { FaCartShopping } from "react-icons/fa6";
 import { HiOutlineLogin } from "react-icons/hi";
+
+import { useStoreDispatch, useStoreSelector } from "../hooks/useStore";
+import { switchTheme } from "../redux/slices/themeSlice";
 
 import Navbar from "./Navbar";
 
 function Header() {
+  const theme = useStoreSelector((state) => state.theme.value);
+
+  const dispatch = useStoreDispatch();
+
+  function handleSwitchTheme() {
+    dispatch(switchTheme());
+  }
+
   return (
-    <header dir="rtl" className="shadow-md px-4 mb-6 rounded-b-2xl">
+    <header dir="rtl" className="shadow-md px-4 rounded-b-2xl w-full bg-white">
       <div className="flex items-center justify-between py-4">
         <div className="flex items-center gap-6 w-2/3">
           <NavLink
@@ -36,8 +47,15 @@ function Header() {
             </span>
           </button>
           <span className="text-3xl text-gray-300">|</span>
-          <button className="p-2 rounded-lg border hover:bg-slate-500 hover:text-white transition">
-            <BsMoonFill size={20} />
+          <button
+            onClick={handleSwitchTheme}
+            className="p-2 rounded-lg border hover:bg-slate-500 hover:text-white transition"
+          >
+            {theme === "dark" ? (
+              <BsSunFill size={20} />
+            ) : (
+              <BsMoonFill size={20} />
+            )}
           </button>
         </div>
       </div>
