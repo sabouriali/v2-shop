@@ -1,10 +1,9 @@
 import { NavLink } from "react-router";
 import { BsInfoCircleFill, BsList, BsPersonLinesFill } from "react-icons/bs";
-import { HiOutlineLogin } from "react-icons/hi";
 
 function Navbar() {
   return (
-    <nav className="flex items-center justify-between pb-4">
+    <nav className="pb-4">
       <div className="flex items-center gap-6">
         <button className="flex items-center">
           <BsList className="ml-1" />
@@ -32,12 +31,6 @@ function Navbar() {
           <BsPersonLinesFill className="ml-1" />
           تماس با ما
         </NavLink>
-      </div>
-      <div>
-        <button className="flex items-center px-3 py-2 rounded-lg border text-sm hover:bg-slate-500 hover:text-white transition">
-          <HiOutlineLogin className="ml-1" />
-          ورود | ثبت نام
-        </button>
       </div>
     </nav>
   );
