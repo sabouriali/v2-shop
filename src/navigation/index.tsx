@@ -22,7 +22,7 @@ function Navigation() {
   return (
     <BrowserRouter>
       <Header />
-      <main dir="rtl" className="container mx-auto min-h-screen mt-6">
+      <main className="container mx-auto min-h-screen mt-6">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />

@@ -18,7 +18,7 @@ function Footer() {
   }
 
   return (
-    <footer dir="rtl" className="p-4 border-t rounded-t-2xl">
+    <footer className="p-4 rounded-t-2xl shadow-inner dark:bg-slate-700 dark:text-slate-50 transition">
       <div className="flex items-center justify-between mb-6">
         <p className="text-3xl text-red-500">مارکت‌لند</p>
         <button
@@ -29,31 +29,31 @@ function Footer() {
           <FaCaretUp className="mr-1" />
         </button>
       </div>
-      <div className="flex items-center">
-        <div className="w-1/2">
+      <div className="grid items-center md:grid-cols-2">
+        <div className="mb-6">
           <div className="relative border p-4 w-fit rounded-lg">
-            <p className="absolute text-xs bg-white -top-2 right-2 px-1.5">
+            <p className="absolute text-xs bg-white dark:bg-slate-700 -top-2 right-2 px-1.5">
               تماس با ما
             </p>
-            <div className="flex items-center flex-wrap gap-4 text-gray-400">
-              <p className="flex items-center hover:text-black transition">
+            <div className="flex items-center flex-wrap gap-5 text-gray-400">
+              <p className="flex items-center hover:text-black dark:hover:text-slate-50 transition">
                 <BsPhoneFill className="ml-1" />
                 ۰۹۱۷۱۱۴۰۹۶۵
               </p>
               <span className="text-2xl text-gray-300">|</span>
-              <p className="flex items-center hover:text-black transition">
+              <p className="flex items-center hover:text-black dark:hover:text-slate-50 transition">
                 <BsEnvelopeAtFill className="ml-1" />
                 sabouri.ali@outlook.com
               </p>
             </div>
           </div>
         </div>
-        <div className="w-1/2">
+        <div className="mb-6">
           <div className="relative border p-4 w-fit rounded-lg">
-            <p className="absolute text-xs bg-white -top-2 right-2 px-1.5">
+            <p className="absolute text-xs bg-white dark:bg-slate-700 -top-2 right-2 px-1.5">
               شبکه‌های اجتماعی
             </p>
-            <div className="flex items-center gap-4 text-gray-400">
+            <div className="flex items-center gap-5 text-gray-400">
               <a className="hover:text-[#E1306C] transition">
                 <BsInstagram size={32} />
               </a>
