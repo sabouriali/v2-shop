@@ -37,13 +37,21 @@ function Navbar() {
             دسته‌بندی محصولات
           </button>
           <div
-            className="absolute -right-4 w-screen h-10 shadow-md bg-white dark:bg-slate-700 rounded-b-2xl transition"
-            style={{
-              opacity: hover ? 1 : 0,
-              visibility: hover ? "visible" : "hidden",
-              transform: hover ? "translateY(0)" : "translateY(-1vh)",
-            }}
-          />
+            className={`absolute -right-4 w-screen p-4 shadow-md bg-white dark:bg-slate-700 rounded-b-2xl transition ${
+              hover
+                ? "opacity-100 visible translate-y-0"
+                : "opacity-0 invisible -translate-y-4"
+            }`}
+          >
+            <NavLink
+              to="/products"
+              className={({ isActive }) =>
+                `${isActive && "text-red-500"} transition`
+              }
+            >
+              همه محصولات
+            </NavLink>
+          </div>
         </div>
         <NavLink
           to="/about"

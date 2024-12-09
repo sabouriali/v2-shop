@@ -7,6 +7,7 @@ import About from "../pages/about";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import ProductsPage from "../pages/products";
 
 function Navigation() {
   const theme = useStoreSelector((state) => state.theme.value);
@@ -26,6 +27,7 @@ function Navigation() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/products" element={<ProductsPage />} />
         </Routes>
       </main>
       <Footer />

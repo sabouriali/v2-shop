@@ -11,7 +11,7 @@ import Navbar from "./Navbar";
 import Search from "./Search";
 
 function Header() {
-  const [openSearch, setOpenSearch] = useState(true);
+  const [openSearch, setOpenSearch] = useState(false);
 
   const theme = useStoreSelector((state) => state.theme.value);
 
@@ -31,10 +31,8 @@ function Header() {
 
   return (
     <>
-      {openSearch && (
-        <Search showSearch={openSearch} hideSearch={handleCloseSearch} />
-      )}
-      <header className="shadow-md px-4 rounded-b-2xl w-full bg-white dark:bg-slate-700 dark:text-slate-50 transition">
+      <Search showSearch={openSearch} hideSearch={handleCloseSearch} />
+      <header className="shadow-md px-4 w-full bg-white dark:bg-slate-700 dark:text-slate-50 transition">
         <div className="flex items-center justify-between py-4">
           <div className="flex items-center gap-6 w-2/3">
             <NavLink
@@ -45,15 +43,17 @@ function Header() {
             >
               مارکت‌لند
             </NavLink>
-            {!openSearch && (
-              <div
-                onClick={handleOpenSearch}
-                className="flex items-center gap-4 px-4 py-2 rounded-lg bg-slate-100 text-slate-500 w-full dark:bg-slate-800 transition"
-              >
-                <BsSearch />
-                <span>جستجو</span>
-              </div>
-            )}
+            <div
+              onClick={handleOpenSearch}
+              className={`flex items-center gap-4 px-4 py-2 rounded-lg bg-slate-100 text-slate-500 w-full dark:bg-slate-800 transition ${
+                openSearch
+                  ? "-translate-y-10 opacity-0 invisible"
+                  : "opacity-100 visible"
+              }`}
+            >
+              <BsSearch />
+              <span>جستجو</span>
+            </div>
           </div>
           <div className="flex items-center gap-2 mr-6">
             <button className="flex items-center px-3 py-2 rounded-lg border text-sm hover:bg-slate-500 hover:text-white transition">
