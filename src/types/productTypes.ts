@@ -12,3 +12,9 @@ export type TProduct = {
   popular?: boolean;
   onSale?: boolean;
 };
+
+export type TCartItem = {
+  id: number;
+  qty: number;
+  price: number;
+};

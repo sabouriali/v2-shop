@@ -1,13 +1,21 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
 import { TiArrowBack } from "react-icons/ti";
+import { FaCartPlus, FaMinus, FaPlus, FaTrashCan } from "react-icons/fa6";
 
-import Loading from "../../components/UI/Loading";
+import { useStoreDispatch, useStoreSelector } from "../../hooks/useStore";
+
+import {
+  addToCart,
+  getProductQty,
+  removeFromCart,
+} from "../../redux/slices/cartSlice";
 
 import { getSingleProduct } from "../../utility/api";
 
+import Loading from "../../components/UI/Loading";
+
 import { type TProduct } from "../../types/productTypes";
-import { FaCartPlus } from "react-icons/fa6";
 
 function ProductPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -15,6 +23,11 @@ function ProductPage() {
 
   const { id } = useParams();
   const navigate = useNavigate();
+
+  const cart = useStoreSelector((state) => state.cart.items);
+  const dispatch = useStoreDispatch();
+
+  const productQty = getProductQty(cart, JSON.parse(id!));
 
   useEffect(() => {
     handleLoadOnTop();
@@ -25,11 +38,33 @@ function ProductPage() {
     });
   }, [id]);
 
+  function computePrice() {
+    let price: number;
+
+    if (product!.discount) {
+      price = Math.floor(
+        product!.price - (product!.discount / 100) * product!.price
+      );
+    } else {
+      price = product!.price;
+    }
+
+    return price;
+  }
+
   function handleLoadOnTop() {
     window.scrollTo({
       top: 0,
       behavior: "instant",
     });
+  }
+
+  function handleAddToCart() {
+    dispatch(addToCart({ id: product!.id, price: computePrice() }));
+  }
+
+  function handleRemoveFromCart() {
+    dispatch(removeFromCart(product!.id));
   }
 
   return (
@@ -98,17 +133,41 @@ function ProductPage() {
                 </div>
                 {product?.discount && (
                   <p className="font-extrabold">
-                    {Math.floor(product?.price - product?.discount / 100)}$
+                    {Math.floor(
+                      product.price - (product.discount / 100) * product.price
+                    )}
+                    $
                   </p>
                 )}
               </div>
               <p className="text-justify">{product?.description}</p>
             </div>
             <div className="my-4 p-4 md:col-span-5 lg:col-span-4 md:row-span-1">
-              <button className="flex items-center justify-center w-full px-4 py-2 border rounded-lg text-green-500 border-green-500 hover:bg-green-500 hover:text-white transition">
-                <FaCartPlus className="mr-1" />
-                افزودن به سبد خرید
-              </button>
+              {productQty > 0 ? (
+                <div className="flex items-center justify-between">
+                  <button
+                    onClick={handleRemoveFromCart}
+                    className="p-2 border rounded-lg hover:bg-slate-500 hover:text-white transition"
+                  >
+                    {productQty === 1 ? <FaTrashCan /> : <FaMinus />}
+                  </button>
+                  <span>{productQty}</span>
+                  <button
+                    onClick={handleAddToCart}
+                    className="p-2 border rounded-lg hover:bg-slate-500 hover:text-white transition"
+                  >
+                    <FaPlus />
+                  </button>
+                </div>
+              ) : (
+                <button
+                  onClick={handleAddToCart}
+                  className="flex items-center justify-center w-full px-4 py-2 border rounded-lg text-green-500 border-green-500 hover:bg-green-500 hover:text-white transition"
+                >
+                  <FaCartPlus className="mr-1" />
+                  افزودن به سبد خرید
+                </button>
+              )}
             </div>
           </div>
         </>

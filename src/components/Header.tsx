@@ -5,7 +5,9 @@ import { FaCartShopping } from "react-icons/fa6";
 import { HiOutlineLogin } from "react-icons/hi";
 
 import { useStoreDispatch, useStoreSelector } from "../hooks/useStore";
+
 import { switchTheme } from "../redux/slices/themeSlice";
+import { getCartQty } from "../redux/slices/cartSlice";
 
 import Navbar from "./Navbar";
 import Search from "./Search";
@@ -14,8 +16,10 @@ function Header() {
   const [openSearch, setOpenSearch] = useState(false);
 
   const theme = useStoreSelector((state) => state.theme.value);
-
+  const cart = useStoreSelector((state) => state.cart.items);
   const dispatch = useStoreDispatch();
+
+  const cartQty = getCartQty(cart);
 
   function handleSwitchTheme() {
     dispatch(switchTheme());
@@ -63,9 +67,11 @@ function Header() {
             <span className="text-3xl text-gray-300">|</span>
             <button className="relative p-2 rounded-lg border hover:bg-slate-500 hover:text-white transition">
               <FaCartShopping size={20} />
-              <span className="absolute -right-1 -bottom-1 text-white text-sm w-5 h-5 rounded-full bg-red-500">
-                1
-              </span>
+              {cartQty > 0 && (
+                <span className="absolute -right-1 -bottom-1 text-white text-sm w-5 h-5 rounded-full bg-red-500">
+                  {cartQty}
+                </span>
+              )}
             </button>
             <span className="text-3xl text-gray-300">|</span>
             <button

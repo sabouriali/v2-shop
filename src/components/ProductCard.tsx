@@ -27,7 +27,10 @@ function ProductCard({ product }: ProductCardProps) {
         </div>
         {product.discount && (
           <p className="font-extrabold">
-            {Math.floor(product.price - product.discount / 100)}$
+            {Math.floor(
+              product.price - (product.discount / 100) * product.price
+            )}
+            $
           </p>
         )}
         <p className="line-clamp-2 text-justify text-gray-600 dark:text-gray-300">

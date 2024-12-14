@@ -1,0 +1,86 @@
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import Cookies from "js-cookie";
+
+import { type TCartItem } from "../../types/productTypes";
+
+type CartState = {
+  items: TCartItem[];
+};
+
+const cookieCart = Cookies.get("cart");
+
+const initialState: CartState = {
+  items: cookieCart ? JSON.parse(cookieCart) : [],
+};
+
+export function getProductQty(cart: TCartItem[], id: number) {
+  const qty = cart.find((item) => item.id === id)?.qty;
+
+  if (qty === undefined) {
+    return 0;
+  } else {
+    return qty;
+  }
+}
+
+export function getCartQty(cart: TCartItem[]) {
+  const cartQty = cart.reduce((acc, cur) => acc + cur.qty, 0);
+  return cartQty;
+}
+
+export function getTotalPrice(cart: TCartItem[]) {
+  const totalPrice = cart.reduce((acc, cur) => acc + cur.price * cur.qty, 0);
+  return totalPrice;
+}
+
+export const cartSlice = createSlice({
+  name: "cart",
+  initialState,
+  reducers: {
+    addToCart(state, action: PayloadAction<{ id: number; price: number }>) {
+      const itemIndex = state.items.findIndex(
+        (item) => item.id === action.payload.id
+      );
+
+      if (itemIndex >= 0) {
+        state.items[itemIndex].qty++;
+        Cookies.set("cart", JSON.stringify(state.items), { expires: 7 });
+      } else {
+        state.items.push({
+          id: action.payload.id,
+          price: action.payload.price,
+          qty: 1,
+        });
+        Cookies.set("cart", JSON.stringify(state.items), { expires: 7 });
+      }
+    },
+    removeFromCart(state, action: PayloadAction<number>) {
+      const itemIndex = state.items.findIndex(
+        (item) => item.id === action.payload
+      );
+
+      if (itemIndex === 1) {
+        state.items.splice(itemIndex, 1);
+        Cookies.set("cart", JSON.stringify(state.items), { expires: 7 });
+      } else {
+        state.items[itemIndex].qty--;
+        Cookies.set("cart", JSON.stringify(state.items), { expires: 7 });
+      }
+    },
+    deleteFromCart(state, action: PayloadAction<number>) {
+      const itemIndex = state.items.findIndex(
+        (item) => item.id === action.payload
+      );
+
+      state.items.splice(itemIndex, 1);
+      Cookies.set("cart", JSON.stringify(state.items), { expires: 7 });
+    },
+    clearCart(state) {
+      state.items = [];
+      Cookies.set("cart", JSON.stringify(state.items), { expires: 7 });
+    },
+  },
+});
+
+export const { addToCart, clearCart, deleteFromCart, removeFromCart } =
+  cartSlice.actions;
