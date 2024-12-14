@@ -13,3 +13,7 @@ export type SearchProps = {
 export type ProductCardProps = {
   product: TProduct;
 };
+
+export type CategoriesMenuProps = {
+  categoriesMenuHover: boolean;
+};

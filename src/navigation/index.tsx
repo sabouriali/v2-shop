@@ -8,6 +8,7 @@ import About from "../pages/about";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ProductsPage from "../pages/products";
+import ProductPage from "../pages/product";
 
 function Navigation() {
   const theme = useStoreSelector((state) => state.theme.value);
@@ -23,11 +24,14 @@ function Navigation() {
   return (
     <BrowserRouter>
       <Header />
-      <main className="container mx-auto min-h-screen mt-6">
+      <main className="container mx-auto min-h-screen my-12">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/products" element={<ProductsPage />} />
+          <Route path="/products">
+            <Route index element={<ProductsPage />} />
+            <Route path=":id" element={<ProductPage />} />
+          </Route>
         </Routes>
       </main>
       <Footer />

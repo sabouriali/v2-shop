@@ -1,18 +1,14 @@
 export type TProduct = {
   id: number;
   title: string;
+  image: string;
   price: number;
   description: string;
-  images: string[];
-  creationAt: string;
-  updatedAt: string;
-  category: ProductCategory;
-};
-
-export type ProductCategory = {
-  id: number;
-  name: string;
-  image: string;
-  creationAt: string;
-  updatedAt: string;
+  brand: string;
+  model: string;
+  color?: string;
+  category: string;
+  discount?: number;
+  popular?: boolean;
+  onSale?: boolean;
 };
