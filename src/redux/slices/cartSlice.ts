@@ -33,11 +33,25 @@ export function getTotalPrice(cart: TCartItem[]) {
   return totalPrice;
 }
 
+export function getTotalDiscount(cart: TCartItem[]) {
+  const totalDiscount = cart.reduce((acc, cur) => {
+    if (cur.discount) {
+      return acc + cur.discount * cur.qty;
+    } else {
+      return acc;
+    }
+  }, 0);
+  return totalDiscount;
+}
+
 export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addToCart(state, action: PayloadAction<{ id: number; price: number }>) {
+    addToCart(
+      state,
+      action: PayloadAction<{ id: number; price: number; discount?: number }>
+    ) {
       const itemIndex = state.items.findIndex(
         (item) => item.id === action.payload.id
       );
@@ -49,6 +63,7 @@ export const cartSlice = createSlice({
         state.items.push({
           id: action.payload.id,
           price: action.payload.price,
+          discount: action.payload.discount,
           qty: 1,
         });
         Cookies.set("cart", JSON.stringify(state.items), { expires: 7 });
@@ -59,21 +74,13 @@ export const cartSlice = createSlice({
         (item) => item.id === action.payload
       );
 
-      if (itemIndex === 1) {
+      if (state.items[itemIndex].qty === 1) {
         state.items.splice(itemIndex, 1);
         Cookies.set("cart", JSON.stringify(state.items), { expires: 7 });
       } else {
         state.items[itemIndex].qty--;
         Cookies.set("cart", JSON.stringify(state.items), { expires: 7 });
       }
-    },
-    deleteFromCart(state, action: PayloadAction<number>) {
-      const itemIndex = state.items.findIndex(
-        (item) => item.id === action.payload
-      );
-
-      state.items.splice(itemIndex, 1);
-      Cookies.set("cart", JSON.stringify(state.items), { expires: 7 });
     },
     clearCart(state) {
       state.items = [];
@@ -82,5 +89,4 @@ export const cartSlice = createSlice({
   },
 });
 
-export const { addToCart, clearCart, deleteFromCart, removeFromCart } =
-  cartSlice.actions;
+export const { addToCart, clearCart, removeFromCart } = cartSlice.actions;

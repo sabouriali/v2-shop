@@ -15,11 +15,3 @@ export type ProductData = {
     product: TProduct;
   };
 };
-
-export type CategoryData = {
-  data: {
-    status: string;
-    message: string;
-    categories: string[];
-  };
-};

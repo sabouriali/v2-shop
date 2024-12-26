@@ -17,4 +17,5 @@ export type TCartItem = {
   id: number;
   qty: number;
   price: number;
+  discount?: number;
 };

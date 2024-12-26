@@ -1,10 +1,6 @@
 import axios from "axios";
 
-import {
-  type CategoryData,
-  type ProductData,
-  type ProductsData,
-} from "../types/dataTypes";
+import { type ProductData, type ProductsData } from "../types/dataTypes";
 
 const Axios = axios.create({
   baseURL: "https://fakestoreapi.in/api",
@@ -15,12 +11,7 @@ export async function getProducts() {
   return data;
 }
 
-export async function getSingleProduct(id: string) {
+export async function getSingleProduct(id: number | string) {
   const { data }: ProductData = await Axios.get(`/products/${id}`);
-  return data;
-}
-
-export async function getAllCategories() {
-  const { data }: CategoryData = await Axios.get("/products/category");
   return data;
 }

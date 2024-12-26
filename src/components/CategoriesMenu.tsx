@@ -4,6 +4,7 @@ import { FaCouch, FaHeadphonesSimple, FaMobile } from "react-icons/fa6";
 import { IoGameController, IoLaptop, IoTv } from "react-icons/io5";
 
 import { type CategoriesMenuProps } from "../types/componentTypes";
+import { IoIosArrowBack } from "react-icons/io";
 
 function CategoriesMenu({ categoriesMenuHover }: CategoriesMenuProps) {
   const [mobileHover, setMobileHover] = useState(false);
@@ -39,7 +40,7 @@ function CategoriesMenu({ categoriesMenuHover }: CategoriesMenuProps) {
           : "opacity-0 invisible -translate-y-4"
       }`}
     >
-      <div className="hover:bg-white dark:hover:bg-slate-800 pr-4 py-2 transition">
+      <div className="hover:bg-white dark:hover:bg-slate-900 pr-4 py-2 transition">
         <NavLink
           to="/products"
           className={({ isActive }) =>
@@ -51,16 +52,19 @@ function CategoriesMenu({ categoriesMenuHover }: CategoriesMenuProps) {
         </NavLink>
       </div>
       <div
-        className="relative hover:bg-white dark:hover:bg-slate-800 pr-4 py-2 transition"
+        className="relative hover:bg-white dark:hover:bg-slate-900 pr-4 py-2 transition"
         onMouseEnter={handleMobileMouseEnter}
         onMouseLeave={handleMobileMouseLeave}
       >
-        <button className="flex items-center transition">
-          <FaMobile className="ml-1" />
-          موبایل
-        </button>
+        <div className="flex items-center justify-between">
+          <button className="flex items-center transition">
+            <FaMobile className="ml-1" />
+            موبایل
+          </button>
+          <IoIosArrowBack />
+        </div>
         <div
-          className={`absolute right-[11.5rem] -top-10 h-40 w-60 shadow-md bg-white dark:bg-slate-800 transition ${
+          className={`absolute right-[11.5rem] -top-10 h-40 w-60 shadow-md bg-white dark:bg-slate-900 transition ${
             mobileHover
               ? "opacity-100 visible translate-x-0"
               : "opacity-0 invisible translate-x-1"
@@ -71,7 +75,7 @@ function CategoriesMenu({ categoriesMenuHover }: CategoriesMenuProps) {
             className={({ isActive }) =>
               `${
                 isActive && "text-red-500"
-              } flex items-center pr-4 py-2 border-l-2 border-white dark:border-slate-800 hover:border-red-500 transition`
+              } flex items-center pr-4 py-2 border-l-2 border-white dark:border-slate-900 hover:border-red-500 transition`
             }
           >
             <FaMobile className="ml-1" />
@@ -82,7 +86,7 @@ function CategoriesMenu({ categoriesMenuHover }: CategoriesMenuProps) {
             className={({ isActive }) =>
               `${
                 isActive && "text-red-500"
-              } flex items-center pr-4 py-2 border-l-2 border-white dark:border-slate-800 hover:border-red-500 transition`
+              } flex items-center pr-4 py-2 border-l-2 border-white dark:border-slate-900 hover:border-red-500 transition`
             }
           >
             <FaHeadphonesSimple className="ml-1" />
@@ -91,16 +95,19 @@ function CategoriesMenu({ categoriesMenuHover }: CategoriesMenuProps) {
         </div>
       </div>
       <div
-        className="relative hover:bg-white dark:hover:bg-slate-800 pr-4 py-2 transition"
+        className="relative hover:bg-white dark:hover:bg-slate-900 pr-4 py-2 transition"
         onMouseEnter={handleLaptopMouseEnter}
         onMouseLeave={handleLaptopMouseLeave}
       >
-        <button className="flex items-center transition">
-          <IoLaptop className="ml-1" />
-          لپ تاپ
-        </button>
+        <div className="flex items-center justify-between">
+          <button className="flex items-center transition">
+            <IoLaptop className="ml-1" />
+            لپ تاپ
+          </button>
+          <IoIosArrowBack />
+        </div>
         <div
-          className={`absolute right-[11.5rem] -top-20 h-40 w-60 shadow-md bg-white dark:bg-slate-800 transition ${
+          className={`absolute right-[11.5rem] -top-20 h-40 w-60 shadow-md bg-white dark:bg-slate-900 transition ${
             laptopHOver
               ? "opacity-100 visible translate-x-0"
               : "opacity-0 invisible translate-x-1"
@@ -111,7 +118,7 @@ function CategoriesMenu({ categoriesMenuHover }: CategoriesMenuProps) {
             className={({ isActive }) =>
               `${
                 isActive && "text-red-500"
-              } flex items-center pr-4 py-2 border-l-2 border-white dark:border-slate-800 hover:border-red-500 transition`
+              } flex items-center pr-4 py-2 border-l-2 border-white dark:border-slate-900 hover:border-red-500 transition`
             }
           >
             <IoLaptop className="ml-1" />
@@ -122,7 +129,7 @@ function CategoriesMenu({ categoriesMenuHover }: CategoriesMenuProps) {
             className={({ isActive }) =>
               `${
                 isActive && "text-red-500"
-              } flex items-center pr-4 py-2 border-l-2 border-white dark:border-slate-800 hover:border-red-500 transition`
+              } flex items-center pr-4 py-2 border-l-2 border-white dark:border-slate-900 hover:border-red-500 transition`
             }
           >
             <IoGameController className="ml-1" />
@@ -131,16 +138,19 @@ function CategoriesMenu({ categoriesMenuHover }: CategoriesMenuProps) {
         </div>
       </div>
       <div
-        className="relative hover:bg-white dark:hover:bg-slate-800 pr-4 py-2 transition"
+        className="relative hover:bg-white dark:hover:bg-slate-900 pr-4 py-2 transition"
         onMouseEnter={handleAppliancesMouseEnter}
         onMouseLeave={handleAppliancesMouseLeave}
       >
-        <button className="flex items-center transition">
-          <IoTv className="ml-1" />
-          لوازم خانگی
-        </button>
+        <div className="flex items-center justify-between">
+          <button className="flex items-center transition">
+            <IoTv className="ml-1" />
+            لوازم خانگی
+          </button>
+          <IoIosArrowBack />
+        </div>
         <div
-          className={`absolute right-[11.5rem] top-[-7.5rem] h-40 w-60 shadow-md bg-white dark:bg-slate-800 transition ${
+          className={`absolute right-[11.5rem] top-[-7.5rem] h-40 w-60 shadow-md bg-white dark:bg-slate-900 transition ${
             appliancesHover
               ? "opacity-100 visible translate-x-0"
               : "opacity-0 invisible translate-x-1"
@@ -151,7 +161,7 @@ function CategoriesMenu({ categoriesMenuHover }: CategoriesMenuProps) {
             className={({ isActive }) =>
               `${
                 isActive && "text-red-500"
-              } flex items-center pr-4 py-2 border-l-2 border-white dark:border-slate-800 hover:border-red-500 transition`
+              } flex items-center pr-4 py-2 border-l-2 border-white dark:border-slate-900 hover:border-red-500 transition`
             }
           >
             <IoTv className="ml-1" />
@@ -162,7 +172,7 @@ function CategoriesMenu({ categoriesMenuHover }: CategoriesMenuProps) {
             className={({ isActive }) =>
               `${
                 isActive && "text-red-500"
-              } flex items-center pr-4 py-2 border-l-2 border-white dark:border-slate-800 hover:border-red-500 transition`
+              } flex items-center pr-4 py-2 border-l-2 border-white dark:border-slate-900 hover:border-red-500 transition`
             }
           >
             <FaCouch className="ml-1" />

@@ -3,19 +3,19 @@ import { Link, useNavigate, useParams } from "react-router";
 import { TiArrowBack } from "react-icons/ti";
 import { FaCartPlus, FaMinus, FaPlus, FaTrashCan } from "react-icons/fa6";
 
-import { useStoreDispatch, useStoreSelector } from "../../hooks/useStore";
+import { useStoreDispatch, useStoreSelector } from "../../../hooks/useStore";
 
 import {
   addToCart,
   getProductQty,
   removeFromCart,
-} from "../../redux/slices/cartSlice";
+} from "../../../redux/slices/cartSlice";
 
-import { getSingleProduct } from "../../utility/api";
+import { getSingleProduct } from "../../../utility/api";
 
-import Loading from "../../components/UI/Loading";
+import Loading from "../../../components/UI/Loading";
 
-import { type TProduct } from "../../types/productTypes";
+import { type TProduct } from "../../../types/productTypes";
 
 function ProductPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -60,7 +60,15 @@ function ProductPage() {
   }
 
   function handleAddToCart() {
-    dispatch(addToCart({ id: product!.id, price: computePrice() }));
+    dispatch(
+      addToCart({
+        id: product!.id,
+        price: computePrice(),
+        discount: product!.discount
+          ? product!.price - computePrice()
+          : undefined,
+      })
+    );
   }
 
   function handleRemoveFromCart() {

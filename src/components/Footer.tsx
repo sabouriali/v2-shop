@@ -18,7 +18,7 @@ function Footer() {
   }
 
   return (
-    <footer className="p-4 rounded-t-2xl shadow-inner dark:bg-slate-700 dark:text-slate-50 transition">
+    <footer className="p-4 rounded-t-2xl shadow-inner bg-white dark:bg-slate-700 dark:text-slate-50 transition">
       <div className="flex items-center justify-between mb-6">
         <p className="text-3xl text-red-500">مارکت‌لند</p>
         <button

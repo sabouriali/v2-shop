@@ -4,11 +4,12 @@ import { useStoreSelector } from "../hooks/useStore";
 
 import Home from "../pages/home";
 import About from "../pages/about";
+import ProductsPage from "../pages/products";
+import ProductPage from "../pages/products/product";
+import CartPage from "../pages/cart";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import ProductsPage from "../pages/products";
-import ProductPage from "../pages/product";
 
 function Navigation() {
   const theme = useStoreSelector((state) => state.theme.value);
@@ -32,6 +33,7 @@ function Navigation() {
             <Route index element={<ProductsPage />} />
             <Route path=":id" element={<ProductPage />} />
           </Route>
+          <Route path="/cart" element={<CartPage />} />
         </Routes>
       </main>
       <Footer />

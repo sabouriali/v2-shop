@@ -1,4 +1,4 @@
-import { type TProduct } from "./productTypes";
+import { type TCartItem, type TProduct } from "./productTypes";
 
 export type BackdropProps = {
   showBackdrop: boolean;
@@ -16,4 +16,23 @@ export type ProductCardProps = {
 
 export type CategoriesMenuProps = {
   categoriesMenuHover: boolean;
+};
+
+export type CartHoverItemProps = {
+  id: number;
+  qty: number;
+  price: number;
+  discount?: number;
+};
+
+export type CartHoverProps = {
+  cartHover: boolean;
+  cart: TCartItem[];
+};
+
+export type CartItemProps = {
+  id: number;
+  qty: number;
+  price: number;
+  discount?: number;
 };
