@@ -42,7 +42,7 @@ function CategoriesMenu({ categoriesMenuHover }: CategoriesMenuProps) {
     >
       <div className="hover:bg-white dark:hover:bg-slate-900 pr-4 py-2 transition">
         <NavLink
-          to="/products"
+          to="/products/1"
           className={({ isActive }) =>
             `${isActive && "text-red-500"} transition`
           }

@@ -1,10 +1,11 @@
 import { Link } from "react-router";
+
 import { type ProductCardProps } from "../types/componentTypes";
 
 function ProductCard({ product }: ProductCardProps) {
   return (
     <Link
-      to={`${product.id}`}
+      to={`/products/category/${product.category}/${product.id}`}
       className="grid grid-rows-4 rounded-2xl pb-4 bg-white shadow-md hover:shadow-xl dark:bg-slate-700 dark:hover:bg-slate-900 transition"
     >
       <div className="row-span-3 bg-white rounded-t-2xl mb-2 content-center">

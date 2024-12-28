@@ -5,8 +5,10 @@ import { useStoreSelector } from "../hooks/useStore";
 import Home from "../pages/home";
 import About from "../pages/about";
 import ProductsPage from "../pages/products";
+import LimitedProductsPage from "../pages/products/limited";
 import ProductPage from "../pages/products/product";
 import CartPage from "../pages/cart";
+import SingleCatPage from "../pages/products/singleCat";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -31,7 +33,9 @@ function Navigation() {
           <Route path="/about" element={<About />} />
           <Route path="/products">
             <Route index element={<ProductsPage />} />
-            <Route path=":id" element={<ProductPage />} />
+            <Route path=":page" element={<LimitedProductsPage />} />
+            <Route path="category/:cat" element={<SingleCatPage />} />
+            <Route path="category/:cat/:id" element={<ProductPage />} />
           </Route>
           <Route path="/cart" element={<CartPage />} />
         </Routes>

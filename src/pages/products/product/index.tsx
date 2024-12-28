@@ -78,12 +78,12 @@ function ProductPage() {
   return (
     <>
       {isLoading ? (
-        <div className="absolute content-center top-1/2 right-1/2 -translate-y-1/2 translate-x-1/2 w-1/4 h-24">
+        <div className="absolute content-center top-1/2 right-1/2 -translate-y-1/2 translate-x-1/2 w-full h-full cursor-wait">
           <Loading />
         </div>
       ) : (
         <>
-          <div className="flex items-center justify-between text-sm mb-8">
+          <div className="flex items-center justify-between text-sm mb-6">
             <div className="flex items-center gap-4 text-gray-400 dark:text-gray-500 transition">
               <Link
                 to="/"

@@ -1,25 +1,48 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router";
 
-import { getAllProducts } from "../../utility/api";
+import { getSingleCatProducts } from "../../../utility/api";
 
-import Loading from "../../components/UI/Loading";
-import ProductCard from "../../components/ProductCard";
+import Loading from "../../../components/UI/Loading";
+import ProductCard from "../../../components/ProductCard";
 
-import { type TProduct } from "../../types/productTypes";
+import { type TProduct } from "../../../types/productTypes";
 
-function ProductsPage() {
+function SingleCatPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [products, setProducts] = useState<TProduct[]>([]);
   const [sort, setSort] = useState("def");
 
+  const { cat } = useParams();
+
   useEffect(() => {
     setIsLoading(true);
     setSort("def");
-    getAllProducts().then((res) => {
+    getSingleCatProducts(cat!).then((res) => {
       setProducts(res.products);
       setIsLoading(false);
     });
-  }, []);
+  }, [cat]);
+
+  function handleCat() {
+    let category: string = "";
+
+    if (cat === "tv") {
+      category = "تلویزیون";
+    } else if (cat === "audio") {
+      category = "هدفون، هندزفری، اسپیکر";
+    } else if (cat === "laptop") {
+      category = "لپ تاپ";
+    } else if (cat === "mobile") {
+      category = "گوشی موبایل";
+    } else if (cat === "gaming") {
+      category = "تجهیزات گیمینگ";
+    } else if (cat === "appliances") {
+      category = "لوازم خانگی";
+    }
+
+    return category;
+  }
 
   function handleSortDef() {
     setProducts([]);
@@ -64,7 +87,7 @@ function ProductsPage() {
       ) : (
         <>
           <div className="mb-6">
-            <h2 className="text-lg font-bold">همه محصولات</h2>
+            <h2 className="text-lg font-bold">{handleCat()}</h2>
             <div className="flex items-center gap-2 text-sm">
               <p>مرتب‌سازی:</p>
               <div className="flex flex-wrap items-center gap-4">
@@ -114,4 +137,4 @@ function ProductsPage() {
   );
 }
 
-export default ProductsPage;
+export default SingleCatPage;

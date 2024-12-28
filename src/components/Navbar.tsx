@@ -90,8 +90,8 @@ function Navbar() {
           to="/login"
           className={({ isActive }) =>
             `${
-              isActive && "bg-slate-500 text-white"
-            } flex items-center px-3 py-2 rounded-lg border text-sm hover:bg-slate-500 hover:text-white transition`
+              isActive && "bg-red-500 text-white"
+            } flex items-center px-3 py-2 rounded-lg border text-sm hover:bg-red-500 hover:text-white transition`
           }
         >
           <HiOutlineLogin className="ml-1" />
@@ -104,13 +104,13 @@ function Navbar() {
           onMouseLeave={handleCartMouseLeave}
           className={({ isActive }) =>
             `${
-              isActive && "bg-slate-500 text-white"
-            } relative p-2 rounded-lg border hover:bg-slate-500 hover:text-white transition`
+              isActive && "bg-red-500 text-white"
+            } relative p-2 rounded-lg border hover:bg-red-500 hover:text-white transition`
           }
         >
           <FaCartShopping size={20} />
           {cartQty > 0 && (
-            <span className="absolute -right-1 -bottom-1 text-white text-sm text-center w-5 h-5 rounded-full bg-red-500">
+            <span className="absolute -right-1 -bottom-1 text-white text-sm text-center w-5 h-5 rounded-full bg-amber-500">
               {cartQty}
             </span>
           )}
