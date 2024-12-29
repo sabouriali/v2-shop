@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import { MdSort } from "react-icons/md";
 
 import { getSingleCatProducts } from "../../../utility/api";
 
@@ -89,7 +90,10 @@ function SingleCatPage() {
           <div className="mb-6">
             <h2 className="text-lg font-bold">{handleCat()}</h2>
             <div className="flex items-center gap-2 text-sm">
-              <p>مرتب‌سازی:</p>
+              <p className="flex items-center gap-1">
+                <MdSort />
+                مرتب‌سازی:
+              </p>
               <div className="flex flex-wrap items-center gap-4">
                 <button
                   onClick={handleSortDef}

@@ -36,3 +36,16 @@ export type CartItemProps = {
   price: number;
   discount?: number;
 };
+
+export type ToggleSwitchProps = {
+  changeCheck: () => void;
+  checked: boolean;
+  checkId: string;
+};
+
+export type FilterMenuProps = {
+  brands: string[];
+  sendOnSale: (data: boolean) => void;
+  onFilterBrands: (brands: string[]) => void;
+  onClearFilters: () => void;
+};
