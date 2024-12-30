@@ -9,7 +9,7 @@ function ProductCard({ product }: ProductCardProps) {
       className="grid grid-rows-4 rounded-2xl pb-4 h-96 bg-white shadow-md hover:shadow-xl dark:bg-slate-700 dark:hover:bg-slate-900 transition"
     >
       <div className="row-span-3 bg-white rounded-t-2xl mb-2 content-center">
-        <img src={product.image} alt={product.title} className="p-4" />
+        <img src={product.image} alt={product.title} className="p-4 max-h-full mx-auto" />
       </div>
       <div className="row-span-1 text-sm px-4">
         <div className="flex items-center justify-between">

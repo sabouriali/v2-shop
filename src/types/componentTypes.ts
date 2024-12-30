@@ -45,7 +45,20 @@ export type ToggleSwitchProps = {
 
 export type FilterMenuProps = {
   brands: string[];
-  sendOnSale: (data: boolean) => void;
+  onSale: (data: boolean) => void;
   onFilterBrands: (brands: string[]) => void;
   onClearFilters: () => void;
+};
+
+export type UserAgreementProps = {
+  showAgreement: boolean;
+  hideAgreement: () => void;
+  onAgree: () => void;
+};
+
+export type DeleteAlertProps = {
+  showAlert: boolean;
+  closeAlert: () => void;
+  deleteProduct: () => void;
+  product: TProduct | undefined;
 };

@@ -87,7 +87,7 @@ function Navbar() {
       </div>
       <div className="flex items-center gap-2">
         <NavLink
-          to="/login"
+          to="/auth/login"
           className={({ isActive }) =>
             `${
               isActive && "bg-red-500 text-white"

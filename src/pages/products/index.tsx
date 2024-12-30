@@ -193,7 +193,7 @@
 // export default ProductsPage;
 
 // ***بهینه سازی chatgpt***
-import { useEffect, useState, useMemo, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { MdFilterAltOff, MdSort } from "react-icons/md";
 
 import { getAllProducts } from "../../utility/api";
@@ -224,12 +224,6 @@ function ProductsPage() {
     });
   }, []);
 
-  // محاسبه برندهای یکتا و مرتب‌شده
-  const sortedBrands = useMemo(() => {
-    const brands = products.map((item) => item.brand);
-    return Array.from(new Set(brands)).sort();
-  }, [products]);
-
   // اعمال فیلترها و مرتب‌سازی
   useEffect(() => {
     let updatedProducts = [...productsRef.current];
@@ -237,7 +231,7 @@ function ProductsPage() {
     // فیلتر برند
     if (filterBrands.length > 0) {
       updatedProducts = updatedProducts.filter((product) =>
-        filterBrands.includes(product.brand)
+        filterBrands.includes(product.brand.toLocaleLowerCase())
       );
     }
 
@@ -280,7 +274,7 @@ function ProductsPage() {
   // بازنشانی تمام فیلترها
   const handleClearFilters = () => {
     setFilterBrands([]);
-    setOnSale(false);
+    setOnSale(true);
     setSort("def");
   };
 
@@ -342,15 +336,17 @@ function ProductsPage() {
             </div>
           </div>
           <div className="flex gap-6">
-            <aside className="sticky top-6 w-1/4 lg:w-1/5 h-fit p-4 text-sm bg-white dark:bg-slate-700 shadow rounded-2xl transition">
+            <aside className="sticky top-6 w-1/3 md:w-1/4 lg:w-1/5 h-fit p-4 text-sm bg-white dark:bg-slate-700 shadow rounded-2xl transition">
               <FilterMenu
-                brands={sortedBrands}
-                sendOnSale={handleOnSale}
+                brands={products.map((product) =>
+                  product.brand.toLocaleLowerCase()
+                )}
+                onSale={handleOnSale}
                 onFilterBrands={handleFilterBrands}
                 onClearFilters={handleClearFilters}
               />
             </aside>
-            <div className="w-full grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6">
+            <div className="w-full grid gap-4 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6">
               {displayedProducts.length > 0 ? (
                 displayedProducts.map((product) => (
                   <ProductCard key={product.id} product={product} />

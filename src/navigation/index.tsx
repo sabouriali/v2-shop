@@ -9,6 +9,8 @@ import LimitedProductsPage from "../pages/products/limited";
 import ProductPage from "../pages/products/product";
 import CartPage from "../pages/cart";
 import SingleCatPage from "../pages/products/singleCat";
+import LoginPage from "../pages/auth/login";
+import RegisterPage from "../pages/auth/register";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -36,6 +38,10 @@ function Navigation() {
             <Route path=":page" element={<LimitedProductsPage />} />
             <Route path="category/:cat" element={<SingleCatPage />} />
             <Route path="category/:cat/:id" element={<ProductPage />} />
+          </Route>
+          <Route path="/auth">
+            <Route path="login" element={<LoginPage />} />
+            <Route path="register" element={<RegisterPage />} />
           </Route>
           <Route path="/cart" element={<CartPage />} />
         </Routes>

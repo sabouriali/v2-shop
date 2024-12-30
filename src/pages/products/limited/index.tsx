@@ -59,7 +59,7 @@ function LimitedProductsPage() {
       ) : (
         <>
           <h2 className="text-lg font-bold mb-6">محصولات | صفحه {page}</h2>
-          <div className="grid gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 mb-6">
+          <div className="grid gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 mb-6">
             {products.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}

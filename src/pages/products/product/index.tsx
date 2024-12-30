@@ -100,7 +100,7 @@ function ProductPage() {
               </Link>
             </div>
             <button
-              onClick={() => navigate("..")}
+              onClick={() => navigate(-1)}
               className="flex items-center px-2 py-2 border rounded-lg hover:bg-slate-500 hover:text-white transition"
             >
               بازگشت

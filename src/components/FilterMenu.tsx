@@ -1,4 +1,4 @@
-import { type ChangeEvent, useState } from "react";
+import { type ChangeEvent, useMemo, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { FaFilter } from "react-icons/fa";
 import { MdFilterAltOff } from "react-icons/md";
@@ -9,7 +9,7 @@ import { type FilterMenuProps } from "../types/componentTypes";
 
 function FilterMenu({
   brands,
-  sendOnSale,
+  onSale,
   onFilterBrands,
   onClearFilters,
 }: FilterMenuProps) {
@@ -17,9 +17,14 @@ function FilterMenu({
   const [showBrand, setShowBrand] = useState(false);
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
 
+  // محاسبه برندهای یکتا و مرتب‌شده
+  const sortedBrands = useMemo(() => {
+    return Array.from(new Set(brands)).sort();
+  }, [brands]);
+
   function handleOnSaleCheck() {
     setOnSaleCheck(!onSaleCheck);
-    sendOnSale(onSaleCheck);
+    onSale(onSaleCheck);
   }
 
   function handleShowBrand() {
@@ -36,7 +41,7 @@ function FilterMenu({
   }
 
   return (
-    <>
+    <div className="max-h-[90vh]">
       <h3 className="flex items-center gap-1 text-lg font-bold mb-4">
         <FaFilter />
         فیلتر
@@ -64,11 +69,11 @@ function FilterMenu({
         <div
           className={`transition ${
             showBrand
-              ? "visible opacity-100 translate-y-0 max-h-[72vh] overflow-scroll"
+              ? "visible opacity-100 translate-y-0 max-h-[73vh] overflow-scroll"
               : "invisible opacity-0 -translate-y-4 h-0"
           }`}
         >
-          {brands.map((item) => (
+          {sortedBrands.map((item) => (
             <div key={item} className="flex items-center justify-between">
               <input type="checkbox" id={item} onChange={handleFilterBrands} />
               <label htmlFor={item}>{item}</label>
@@ -85,7 +90,7 @@ function FilterMenu({
           <MdFilterAltOff />
         </button>
       </div>
-    </>
+    </div>
   );
 }
 
