@@ -6,6 +6,7 @@ function UserAgreement({
   showAgreement,
   hideAgreement,
   onAgree,
+  agree,
 }: UserAgreementProps) {
   return (
     <>
@@ -61,8 +62,17 @@ function UserAgreement({
         </div>
         <div>
           <button
-            onClick={onAgree}
-            className="px-3 py-2 rounded-lg border border-[#3498db] text-[#3498db] hover:text-white hover:bg-[#3498db] transition"
+            onClick={agree ? () => null : onAgree}
+            title={
+              agree
+                ? "شما شرایط و قوانین را پذیرفته‌اید"
+                : "پذیرش شرایط و قوانین"
+            }
+            className={`px-3 py-2 rounded-lg border transition ${
+              agree
+                ? "cursor-not-allowed border-gray-300 bg-gray-300 text-white dark:border-gray-400 dark:bg-gray-400"
+                : "border-[#3498db] text-[#3498db] hover:text-white hover:bg-[#3498db]"
+            }`}
           >
             می‌پذیرم
           </button>

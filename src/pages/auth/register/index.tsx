@@ -39,6 +39,7 @@ function RegisterPage() {
         showAgreement={showAgreement}
         hideAgreement={handleCloseAgreement}
         onAgree={handleAgree}
+        agree={agree}
       />
       <h2 className="flex items-center gap-1 text-lg font-bold mb-6">
         <IoPersonAdd />
@@ -157,6 +158,7 @@ function RegisterPage() {
         </div>
         <div className="mb-4">
           <button
+            type="submit"
             className={`px-3 py-2 rounded-lg border transition ${
               agree
                 ? "border-[#3498db] text-[#3498db] hover:text-white hover:bg-[#3498db]"

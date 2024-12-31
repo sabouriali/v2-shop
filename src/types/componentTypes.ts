@@ -54,6 +54,7 @@ export type UserAgreementProps = {
   showAgreement: boolean;
   hideAgreement: () => void;
   onAgree: () => void;
+  agree: boolean;
 };
 
 export type DeleteAlertProps = {

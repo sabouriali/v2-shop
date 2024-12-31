@@ -11,6 +11,8 @@ import CartPage from "../pages/cart";
 import SingleCatPage from "../pages/products/singleCat";
 import LoginPage from "../pages/auth/login";
 import RegisterPage from "../pages/auth/register";
+import OnSalePage from "../pages/products/onSale";
+import PopularPage from "../pages/products/popular";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -35,6 +37,8 @@ function Navigation() {
           <Route path="/about" element={<About />} />
           <Route path="/products">
             <Route index element={<ProductsPage />} />
+            <Route path="onsale" element={<OnSalePage />} />
+            <Route path="popular" element={<PopularPage />} />
             <Route path=":page" element={<LimitedProductsPage />} />
             <Route path="category/:cat" element={<SingleCatPage />} />
             <Route path="category/:cat/:id" element={<ProductPage />} />
