@@ -12,6 +12,7 @@ export type SearchProps = {
 
 export type ProductCardProps = {
   product: TProduct;
+  onCloseSearch?: () => void;
 };
 
 export type CategoriesMenuProps = {

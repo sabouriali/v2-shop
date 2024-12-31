@@ -33,18 +33,18 @@ function Home() {
 
   return (
     <>
-      {isLoading ? (
-        <div className="absolute content-center top-1/2 right-1/2 -translate-y-1/2 translate-x-1/2 w-full h-full cursor-wait">
-          <Loading />
-        </div>
-      ) : (
-        <>
-          <section>
-            <h2 className="font-bold mb-4">پیشنهاد شگفت‌انگیز</h2>
-            <div className="pb-10 flex items-center gap-2 overflow-scroll">
+      <section>
+        <h2 className="font-bold mb-4">پیشنهاد شگفت‌انگیز</h2>
+        <div className="relative pb-10 flex items-center gap-2 overflow-x-scroll overflow-y-clip">
+          {isLoading ? (
+            <div className="h-96 top-1/2 mx-auto translate-y-1/2">
+              <Loading />
+            </div>
+          ) : (
+            <>
               {products
                 .filter((product) => product.onSale)
-                .splice(0, 5)
+                .splice(0, 6)
                 .map((product) => (
                   <div key={product.id}>
                     <ProductCard product={product} />
@@ -59,14 +59,22 @@ function Home() {
                   <IoIosArrowBack />
                 </button>
               </div>
+            </>
+          )}
+        </div>
+      </section>
+      <section>
+        <h2 className="font-bold mb-4">محصولات پرطرفدار</h2>
+        <div className="pb-10 flex items-center gap-2 overflow-x-scroll overflow-y-clip">
+          {isLoading ? (
+            <div className="h-96 top-1/2 mx-auto translate-y-1/2">
+              <Loading />
             </div>
-          </section>
-          <section>
-            <h2 className="font-bold mb-4">محصولات پرطرفدار</h2>
-            <div className="pb-10 flex items-center gap-2 overflow-scroll">
+          ) : (
+            <>
               {products
                 .filter((product) => product.popular)
-                .splice(0, 5)
+                .splice(0, 6)
                 .map((product) => (
                   <div key={product.id}>
                     <ProductCard product={product} />
@@ -81,10 +89,10 @@ function Home() {
                   <IoIosArrowBack />
                 </button>
               </div>
-            </div>
-          </section>
-        </>
-      )}
+            </>
+          )}
+        </div>
+      </section>
     </>
   );
 }
