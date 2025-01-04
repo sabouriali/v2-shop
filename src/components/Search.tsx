@@ -40,38 +40,40 @@ function Search({ showSearch, hideSearch }: SearchProps) {
     <>
       <Backdrop showBackdrop={showSearch} hideBackdrop={hideSearch} />
       <div
-        className={`fixed h-[90vh] overflow-scroll container z-20 top-0 right-1/2 translate-x-1/2 transition ${
+        className={`fixed p-4 rounded-2xl h-[90vh] container z-20 top-0 right-1/2 translate-x-1/2 bg-gray-50 dark:bg-slate-800 transition ${
           showSearch
             ? "opacity-100 translate-y-10 visible"
             : "opacity-0 invisible"
         }`}
       >
-        <input
-          autoFocus={true}
-          type="text"
-          placeholder="جستجو"
-          value={search}
-          onChange={handleSearch}
-          className={`sticky top-0 w-full mx-auto mb-4 shadow-lg bg-slate-100 dark:bg-slate-800 dark:text-slate-200 px-4 py-2 rounded-lg outline-none transition ${
-            showSearch
-              ? "opacity-100 visible"
-              : "opacity-0 -translate-y-10 invisible"
-          }`}
-        />
+        <div className="sticky top-0 mb-4">
+          <input
+            autoFocus={true}
+            type="text"
+            placeholder="جستجو"
+            value={search}
+            onChange={handleSearch}
+            className={`w-full mx-auto shadow-lg bg-slate-100 dark:bg-slate-700 dark:text-slate-200 px-4 py-2 rounded-lg outline-none transition ${
+              showSearch
+                ? "opacity-100 visible"
+                : "opacity-0 -translate-y-10 invisible"
+            }`}
+          />
+        </div>
         {search.length < 3 ? (
-          <div className="absolute right-1/2 translate-x-1/2 top-1/4 text-center p-12 w-96 shadow-lg rounded-2xl text-gray-400 bg-white dark:bg-slate-700 transition-colors">
+          <div className="absolute right-1/2 translate-x-1/2 top-1/2 -translate-y-1/2 text-center p-12 w-96 shadow-lg rounded-2xl text-gray-400 bg-white dark:bg-slate-700 transition-colors">
             <p className="text-xl mb-2">دنبال جی می‌گردی؟</p>
             <BsSearch size={46} className="mx-auto" />
           </div>
         ) : (
           <>
             {searchResult.length === 0 ? (
-              <div className="absolute right-1/2 translate-x-1/2 top-1/4 text-center p-12 w-96 shadow-lg rounded-2xl text-gray-400 bg-white dark:bg-slate-700 transition-colors">
+              <div className="absolute right-1/2 translate-x-1/2 top-1/2 -translate-y-1/2 text-center p-12 w-96 shadow-lg rounded-2xl text-gray-400 bg-white dark:bg-slate-700 transition-colors">
                 <p className="text-xl mb-2">محصول موردنظر یافت نشد</p>
                 <BsEmojiFrownFill size={46} className="mx-auto" />
               </div>
             ) : (
-              <div className="grid gap-4 md:gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 mb-6">
+              <div className="overflow-scroll h-[91.5%] grid gap-4 md:gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 pb-6">
                 {searchResult.map((product) => (
                   <ProductCard
                     key={product.id}

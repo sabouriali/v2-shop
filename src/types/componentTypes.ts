@@ -1,4 +1,5 @@
 import { type TCartItem, type TProduct } from "./productTypes";
+import { type User } from "./userTypes";
 
 export type BackdropProps = {
   showBackdrop: boolean;
@@ -58,9 +59,26 @@ export type UserAgreementProps = {
   agree: boolean;
 };
 
-export type DeleteAlertProps = {
+export type DeleteItemAlertProps = {
   showAlert: boolean;
   closeAlert: () => void;
   deleteProduct: () => void;
   product: TProduct | undefined;
+};
+
+export type UserHoverMenuProps = {
+  showMenu: boolean;
+};
+
+export type EditUserProps = {
+  user: User;
+  onLoading: () => void;
+  onLoaded: () => void;
+  closeEdit: () => void;
+};
+
+export type DeleteUserAlertProps = {
+  showDeleteMessage: boolean;
+  hideDeleteMessage: () => void;
+  onDeleteUser: () => void;
 };

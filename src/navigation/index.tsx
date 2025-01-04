@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 
 import { useStoreSelector } from "../hooks/useStore";
 
@@ -9,16 +9,20 @@ import LimitedProductsPage from "../pages/products/limited";
 import ProductPage from "../pages/products/product";
 import CartPage from "../pages/cart";
 import SingleCatPage from "../pages/products/singleCat";
-import LoginPage from "../pages/auth/login";
-import RegisterPage from "../pages/auth/register";
+import LoginPage from "../pages/user/login";
+import RegisterPage from "../pages/user/register";
 import OnSalePage from "../pages/products/onSale";
 import PopularPage from "../pages/products/popular";
+import UserPage from "../pages/user/user";
+import CheckoutPage from "../pages/cart/checkout";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import PrivateRoute from "../components/PrivateRoute";
 
 function Navigation() {
   const theme = useStoreSelector((state) => state.theme.value);
+  const isLogin = useStoreSelector((state) => state.login.isLogin);
 
   const htmlEl = document.querySelector("html");
 
@@ -43,11 +47,25 @@ function Navigation() {
             <Route path="category/:cat" element={<SingleCatPage />} />
             <Route path="category/:cat/:id" element={<ProductPage />} />
           </Route>
-          <Route path="/auth">
-            <Route path="login" element={<LoginPage />} />
+          <Route path="/user">
+            <Route
+              path="login"
+              element={isLogin ? <Navigate to="/" /> : <LoginPage />}
+            />
             <Route path="register" element={<RegisterPage />} />
+            <Route element={<PrivateRoute />}>
+              <Route path=":id" element={<UserPage />} />
+            </Route>
           </Route>
-          <Route path="/cart" element={<CartPage />} />
+          <Route path="/cart">
+            <Route index element={<CartPage />} />
+            <Route
+              path="checkout"
+              element={
+                isLogin ? <CheckoutPage /> : <Navigate to="/user/login" />
+              }
+            />
+          </Route>
         </Routes>
       </main>
       <Footer />

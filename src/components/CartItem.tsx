@@ -8,10 +8,10 @@ import { addToCart, removeFromCart } from "../redux/slices/cartSlice";
 import { getSingleProduct } from "../utility/api";
 
 import Loading from "./UI/Loading";
+import DeleteItemAlert from "./DeleteItemAlert";
 
 import { type CartItemProps } from "../types/componentTypes";
 import { type TProduct } from "../types/productTypes";
-import DeleteAlert from "./DeleteAlert";
 
 function CartItem({ id, price, qty, discount }: CartItemProps) {
   const [isLoading, setIsLoading] = useState(false);
@@ -57,7 +57,7 @@ function CartItem({ id, price, qty, discount }: CartItemProps) {
 
   return (
     <>
-      <DeleteAlert
+      <DeleteItemAlert
         showAlert={alert}
         closeAlert={handleCloseAlert}
         deleteProduct={handleDeleteFromCart}
@@ -71,7 +71,10 @@ function CartItem({ id, price, qty, discount }: CartItemProps) {
         ) : (
           <>
             <td className="text-left p-2">
-              <Link to={`/products/${id}`} className="flex items-center gap-1">
+              <Link
+                to={`/products/category/${product?.category}/${id}`}
+                className="flex items-center gap-1"
+              >
                 <img src={product?.image} width={40} />
                 <p className="line-clamp-2 text-justify">{product?.title}</p>
               </Link>

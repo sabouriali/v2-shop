@@ -1,4 +1,5 @@
 import { type TProduct } from "./productTypes";
+import { type User } from "./userTypes";
 
 export type ProductsData = {
   data: {
@@ -13,5 +14,21 @@ export type ProductData = {
     status: string;
     message: string;
     product: TProduct;
+  };
+};
+
+export type UsersData = {
+  data: {
+    status: string;
+    message: string;
+    users: User[];
+  };
+};
+
+export type UserData = {
+  data: {
+    status: string;
+    message: string;
+    user: User;
   };
 };

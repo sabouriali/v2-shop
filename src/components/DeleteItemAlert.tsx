@@ -1,21 +1,21 @@
 import Backdrop from "./UI/Backdrop";
 
-import { type DeleteAlertProps } from "../types/componentTypes";
+import { type DeleteItemAlertProps } from "../types/componentTypes";
 
-function DeleteAlert({
+function DeleteItemAlert({
   showAlert,
   closeAlert,
   deleteProduct,
   product,
-}: DeleteAlertProps) {
+}: DeleteItemAlertProps) {
   return (
     <>
       <Backdrop showBackdrop={showAlert} hideBackdrop={closeAlert} />
       <div
-        className={`fixed z-20 p-4 rounded-2xl bg-white dark:bg-slate-800 shadow-lg w-1/3 bottom-1/2 right-1/2 translate-y-1/2 translate-x-1/2 text-base transition ${
+        className={`fixed z-20 p-4 rounded-2xl bg-white dark:bg-slate-800 shadow-lg w-1/2 top-1/3 right-1/2 -translate-y-1/3 translate-x-1/2 text-base transition ${
           showAlert
             ? "opacity-100 visible"
-            : "opacity-0 translate-y-10 invisible"
+            : "opacity-0 -translate-y-24 invisible"
         }`}
       >
         <p className="text-right mb-2">از حذف محصول مطمئن هستید؟</p>
@@ -42,4 +42,4 @@ function DeleteAlert({
   );
 }
 
-export default DeleteAlert;
+export default DeleteItemAlert;

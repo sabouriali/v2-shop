@@ -1,20 +1,31 @@
 import { useState } from "react";
-import { NavLink, useLocation } from "react-router";
-import { BsInfoCircleFill, BsList, BsPersonLinesFill } from "react-icons/bs";
-import { FaCartShopping } from "react-icons/fa6";
+import { Link, NavLink, useLocation } from "react-router";
+import {
+  BsInfoCircleFill,
+  BsList,
+  BsPersonFill,
+  BsPersonLinesFill,
+} from "react-icons/bs";
+import { FaCaretDown, FaCartShopping } from "react-icons/fa6";
 import { HiOutlineLogin } from "react-icons/hi";
+import { IoIosArrowDown } from "react-icons/io";
 
 import { getCartQty } from "../redux/slices/cartSlice";
 import { useStoreSelector } from "../hooks/useStore";
 
 import CategoriesMenu from "./CategoriesMenu";
 import CartHover from "./CartHover";
+import UserHoverMenu from "./UserHoverMenu";
 
 function Navbar() {
   const [allCatsHover, setAllCatsHover] = useState(false);
   const [cartHover, setCartHover] = useState(false);
+  const [userHover, setUserHover] = useState(false);
 
   const cart = useStoreSelector((state) => state.cart.items);
+  const isLogin = useStoreSelector((state) => state.login.isLogin);
+
+  const user = sessionStorage.getItem("user");
 
   const cartQty = getCartQty(cart);
 
@@ -45,6 +56,18 @@ function Navbar() {
 
   function handleCartMouseLeave() {
     setCartHover(false);
+  }
+
+  function handleUserMouseEnter() {
+    if (pathname === `/user/${JSON.parse(user!).id}`) {
+      setUserHover(false);
+    } else {
+      setUserHover(true);
+    }
+  }
+
+  function handleUserMouseLeave() {
+    setUserHover(false);
   }
 
   return (
@@ -79,27 +102,51 @@ function Navbar() {
         </NavLink>
         <button
           onClick={handleScrollDown}
-          className="flex items-center px-4 border-b-4 py-3 border-white dark:border-slate-700 hover:border-red-500 transition"
+          className="flex items-center gap-1 px-4 border-b-4 py-3 border-white dark:border-slate-700 hover:border-red-500 transition"
         >
-          <BsPersonLinesFill className="ml-1" />
+          <BsPersonLinesFill />
           تماس با ما
+          <FaCaretDown />
         </button>
       </div>
       <div className="flex items-center gap-2">
-        <NavLink
-          to="/auth/login"
-          className={({ isActive }) =>
-            `${
-              isActive && "bg-red-500 text-white"
-            } flex items-center px-3 py-2 rounded-lg border text-sm hover:bg-red-500 hover:text-white transition`
-          }
-        >
-          <HiOutlineLogin className="ml-1" />
-          ورود | ثبت نام
-        </NavLink>
+        {isLogin ? (
+          <div
+            className="relative"
+            onMouseEnter={handleUserMouseEnter}
+            onMouseLeave={handleUserMouseLeave}
+          >
+            <NavLink
+              to={`/user/${JSON.parse(user!).id}`}
+              className={({ isActive }) =>
+                `${
+                  isActive && "bg-red-500 text-white"
+                } flex items-center gap-1 px-3 py-2 rounded-lg border text-sm hover:bg-red-500 hover:text-white transition ${
+                  userHover ? "bg-red-500 text-white" : ""
+                }`
+              }
+            >
+              <BsPersonFill />
+              {JSON.parse(user!).name}
+              {pathname !== `/user/${JSON.parse(user!).id}` && (
+                <IoIosArrowDown />
+              )}
+            </NavLink>
+            <UserHoverMenu showMenu={userHover} />
+          </div>
+        ) : (
+          <Link
+            to="/user/login"
+            className="flex items-center gap-1 px-3 py-2 rounded-lg border text-sm hover:bg-red-500 hover:text-white transition"
+          >
+            <HiOutlineLogin />
+            ورود | ثبت نام
+          </Link>
+        )}
         <span className="text-3xl text-gray-300">|</span>
         <NavLink
           to="/cart"
+          end
           onMouseEnter={handleCartMouseEnter}
           onMouseLeave={handleCartMouseLeave}
           className={({ isActive }) =>
