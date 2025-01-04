@@ -20,10 +20,10 @@ function Footer() {
   return (
     <footer className="p-4 shadow-inner bg-white dark:bg-slate-700 dark:text-slate-50 transition">
       <div className="flex items-center justify-between mb-6">
-        <p className="text-3xl text-red-500">مارکت‌لند</p>
+        <p className="text-3xl text-red-500 dark:text-red-400">مارکت‌لند</p>
         <button
           onClick={handleScrollUp}
-          className="flex items-center text-sm border px-2 py-2 rounded-lg hover:bg-slate-500 hover:text-white transition"
+          className="flex items-center text-sm p-2 rounded-lg border hover:border-red-500 dark:hover:border-red-400 hover:bg-red-500 dark:hover:bg-red-400 hover:text-white transition"
         >
           بازگشت به بالا
           <FaCaretUp className="mr-1" />

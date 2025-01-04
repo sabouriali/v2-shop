@@ -92,13 +92,17 @@ function CartItem({ id, price, qty, discount }: CartItemProps) {
               <div className="flex items-center justify-end gap-2">
                 <button
                   onClick={handleRemoveFromCart}
-                  className="p-2 border rounded-lg hover:bg-slate-500 hover:text-white transition"
+                  className={`p-2 border rounded-lg transition ${
+                    qty === 1
+                      ? "border-transparent text-gray-300 dark:text-gray-500 hover:text-red-500 dark:hover:text-red-400"
+                      : "border-blue-500 dark:border-blue-400 text-blue-500 dark:text-blue-400 hover:text-white hover:bg-blue-500 dark:hover:bg-blue-400"
+                  }`}
                 >
                   {qty === 1 ? <FaTrashCan /> : <FaMinus />}
                 </button>
                 <button
                   onClick={handleAddToCart}
-                  className="p-2 border rounded-lg hover:bg-slate-500 hover:text-white transition"
+                  className="p-2 rounded-lg border border-blue-500 dark:border-blue-400 text-blue-500 dark:text-blue-400 hover:text-white hover:bg-blue-500 dark:hover:bg-blue-400 transition"
                 >
                   <FaPlus />
                 </button>

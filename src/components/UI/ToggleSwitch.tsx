@@ -10,7 +10,7 @@ function ToggleSwitch({ changeCheck, checked, checkId }: ToggleSwitchProps) {
         checked={checked}
         onChange={changeCheck}
       />
-      <div className="group peer bg-[#ccc] rounded-full duration-300 w-8 h-4 after:duration-300 after:bg-white peer-checked:bg-[#2196f3] after:rounded-full after:absolute after:h-2 after:w-2 after:top-1 after:left-1 after:flex after:justify-center after:items-center peer-checked:after:translate-x-4 peer-hover:after:scale-95" />
+      <div className="group peer bg-[#ccc] rounded-full duration-300 w-8 h-4 after:duration-300 after:bg-white peer-checked:bg-blue-500 dark:peer-checked:bg-blue-400 after:rounded-full after:absolute after:h-2 after:w-2 after:top-1 after:left-1 after:flex after:justify-center after:items-center peer-checked:after:translate-x-4 peer-hover:after:scale-95" />
     </label>
   );
 }

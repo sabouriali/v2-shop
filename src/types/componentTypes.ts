@@ -82,3 +82,14 @@ export type DeleteUserAlertProps = {
   hideDeleteMessage: () => void;
   onDeleteUser: () => void;
 };
+
+export type DeleteCartAlertProps = {
+  showDeleteMessage: boolean;
+  hideDeleteMessage: () => void;
+  onDeleteCart: () => void;
+};
+
+export type SortBarProps = {
+  sort: string;
+  handleSort: (sort: string) => void;
+};

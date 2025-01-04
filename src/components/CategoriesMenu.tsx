@@ -44,7 +44,7 @@ function CategoriesMenu({ categoriesMenuHover }: CategoriesMenuProps) {
         <NavLink
           to="/products/1"
           className={({ isActive }) =>
-            `${isActive && "text-red-500"} transition`
+            `${isActive && "text-red-500 dark:text-red-400"} transition`
           }
           end
         >
@@ -57,8 +57,8 @@ function CategoriesMenu({ categoriesMenuHover }: CategoriesMenuProps) {
         onMouseLeave={handleMobileMouseLeave}
       >
         <div className="flex items-center justify-between">
-          <button className="flex items-center transition">
-            <FaMobile className="ml-1" />
+          <button className="flex items-center gap-1">
+            <FaMobile />
             موبایل
           </button>
           <IoIosArrowBack />
@@ -74,19 +74,19 @@ function CategoriesMenu({ categoriesMenuHover }: CategoriesMenuProps) {
             to="/products/category/mobile"
             className={({ isActive }) =>
               `${
-                isActive && "text-red-500"
-              } flex items-center pr-4 py-2 border-l-2 border-white dark:border-slate-900 hover:border-red-500 transition`
+                isActive && "text-red-500 dark:text-red-400"
+              } flex items-center gap-1 pr-4 py-2 border-l-2 border-transparent hover:border-red-500 dark:hover:border-red-400 transition`
             }
           >
-            <FaMobile className="ml-1" />
+            <FaMobile />
             گوشی موبایل
           </NavLink>
           <NavLink
             to="/products/category/audio"
             className={({ isActive }) =>
               `${
-                isActive && "text-red-500"
-              } flex items-center pr-4 py-2 border-l-2 border-white dark:border-slate-900 hover:border-red-500 transition`
+                isActive && "text-red-500 dark:text-red-400"
+              } flex items-center gap-1 pr-4 py-2 border-l-2 border-transparent hover:border-red-500 dark:hover:border-red-400 transition`
             }
           >
             <FaHeadphonesSimple className="ml-1" />
@@ -117,8 +117,8 @@ function CategoriesMenu({ categoriesMenuHover }: CategoriesMenuProps) {
             to="/products/category/laptop"
             className={({ isActive }) =>
               `${
-                isActive && "text-red-500"
-              } flex items-center pr-4 py-2 border-l-2 border-white dark:border-slate-900 hover:border-red-500 transition`
+                isActive && "text-red-500 dark:text-red-400"
+              } flex items-center gap-1 pr-4 py-2 border-l-2 border-transparent hover:border-red-500 dark:hover:border-red-400 transition`
             }
           >
             <IoLaptop className="ml-1" />
@@ -128,8 +128,8 @@ function CategoriesMenu({ categoriesMenuHover }: CategoriesMenuProps) {
             to="/products/category/gaming"
             className={({ isActive }) =>
               `${
-                isActive && "text-red-500"
-              } flex items-center pr-4 py-2 border-l-2 border-white dark:border-slate-900 hover:border-red-500 transition`
+                isActive && "text-red-500 dark:text-red-400"
+              } flex items-center gap-1 pr-4 py-2 border-l-2 border-transparent hover:border-red-500 dark:hover:border-red-400 transition`
             }
           >
             <IoGameController className="ml-1" />
@@ -160,8 +160,8 @@ function CategoriesMenu({ categoriesMenuHover }: CategoriesMenuProps) {
             to="/products/category/tv"
             className={({ isActive }) =>
               `${
-                isActive && "text-red-500"
-              } flex items-center pr-4 py-2 border-l-2 border-white dark:border-slate-900 hover:border-red-500 transition`
+                isActive && "text-red-500 dark:text-red-400"
+              } flex items-center gap-1 pr-4 py-2 border-l-2 border-transparent hover:border-red-500 dark:hover:border-red-400 transition`
             }
           >
             <IoTv className="ml-1" />
@@ -171,8 +171,8 @@ function CategoriesMenu({ categoriesMenuHover }: CategoriesMenuProps) {
             to="/products/category/appliances"
             className={({ isActive }) =>
               `${
-                isActive && "text-red-500"
-              } flex items-center pr-4 py-2 border-l-2 border-white dark:border-slate-900 hover:border-red-500 transition`
+                isActive && "text-red-500 dark:text-red-400"
+              } flex items-center gap-1 pr-4 py-2 border-l-2 border-transparent hover:border-red-500 dark:hover:border-red-400 transition`
             }
           >
             <FaCouch className="ml-1" />

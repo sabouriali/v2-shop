@@ -1,4 +1,4 @@
-import { type ChangeEvent, useState } from "react";
+import { type ChangeEvent, type FormEvent, useState } from "react";
 import { HiPencil } from "react-icons/hi";
 import { IoMdCheckmarkCircleOutline, IoMdTrash } from "react-icons/io";
 import { IoEye, IoEyeOff } from "react-icons/io5";
@@ -121,7 +121,9 @@ function EditUser({ user, onLoading, onLoaded, closeEdit }: EditUserProps) {
     handleValidation();
   }
 
-  function handleSubmit() {
+  function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+
     const updatedUser = {
       email,
       username,
@@ -137,18 +139,20 @@ function EditUser({ user, onLoading, onLoaded, closeEdit }: EditUserProps) {
       phone,
     };
 
-    onLoading();
-    updateUser(user.id, updatedUser)
-      .then(() => {
-        handleLoadOnTop();
-        closeEdit();
-        onLoaded();
-        alert("Updated");
-      })
-      .catch(() => {
-        onLoaded();
-        alert("Didn't Update");
-      });
+    if (isValid) {
+      onLoading();
+      updateUser(user.id, updatedUser)
+        .then(() => {
+          handleLoadOnTop();
+          closeEdit();
+          onLoaded();
+          alert("Updated");
+        })
+        .catch(() => {
+          onLoaded();
+          alert("Didn't Update");
+        });
+    }
   }
 
   function handleDeleteUser() {
@@ -296,7 +300,7 @@ function EditUser({ user, onLoading, onLoaded, closeEdit }: EditUserProps) {
           <div className="flex items-center justify-between">
             <button
               type="submit"
-              className={`flex items-center gap-1 px-3 py-2 rounded-lg border transition ${
+              className={`flex items-center gap-1 px-4 py-2 rounded-lg border transition ${
                 isValid
                   ? "border-[#3498db] text-[#3498db] hover:text-white hover:bg-[#3498db]"
                   : "border-gray-300 bg-gray-300 text-white dark:border-gray-400 dark:bg-gray-400 cursor-not-allowed"
@@ -308,7 +312,7 @@ function EditUser({ user, onLoading, onLoaded, closeEdit }: EditUserProps) {
             <button
               type="button"
               onClick={handleShowDeleteMessage}
-              className="flex items-center gap-1 text-sm px-3 py-2 rounded-lg text-gray-300 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-400 transition"
+              className="flex items-center gap-1 text-sm px-4 py-2 rounded-lg text-gray-300 dark:text-gray-500 hover:text-red-500 dark:hover:text-red-400 transition"
             >
               <IoMdTrash />
               حذف حساب کاربری

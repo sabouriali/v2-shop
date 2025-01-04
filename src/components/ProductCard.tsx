@@ -26,7 +26,7 @@ function ProductCard({ product, onCloseSearch }: ProductCardProps) {
             {product.price}$
           </p>
           {product.discount && (
-            <p className="px-1.5 py-0.5 bg-red-500 text-xs text-white rounded-full">
+            <p className="px-1.5 py-0.5 bg-red-500 dark:bg-red-400 text-xs text-white rounded-full">
               {product.discount}%
             </p>
           )}

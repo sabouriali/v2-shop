@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { MdFilterAltOff, MdSort } from "react-icons/md";
+import { MdFilterAltOff } from "react-icons/md";
 
 import { getSingleCatProducts } from "../../../utility/api";
 
@@ -9,6 +9,7 @@ import ProductCard from "../../../components/ProductCard";
 import FilterMenu from "../../../components/FilterMenu";
 
 import { type TProduct } from "../../../types/productTypes";
+import SortBar from "../../../components/SortBar";
 
 function SingleCatPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -118,46 +119,7 @@ function SingleCatPage() {
         <>
           <div className="mb-6">
             <h2 className="text-lg font-bold">{handleCat()}</h2>
-            <div className="flex items-center gap-2 text-sm">
-              <p className="flex items-center gap-1">
-                <MdSort />
-                مرتب‌سازی:
-              </p>
-              <div className="flex flex-wrap items-center gap-4">
-                <button
-                  onClick={() => handleSort("def")}
-                  className={`hover:text-red-500 transition ${
-                    sort === "def" ? "text-red-500" : ""
-                  }`}
-                >
-                  پیش‌فرض
-                </button>
-                <button
-                  onClick={() => handleSort("desc")}
-                  className={`hover:text-red-500 transition ${
-                    sort === "desc" ? "text-red-500" : ""
-                  }`}
-                >
-                  گران‌ترین
-                </button>
-                <button
-                  onClick={() => handleSort("asc")}
-                  className={`hover:text-red-500 transition ${
-                    sort === "asc" ? "text-red-500" : ""
-                  }`}
-                >
-                  ارزان‌ترین
-                </button>
-                <button
-                  onClick={() => handleSort("popular")}
-                  className={`hover:text-red-500 transition ${
-                    sort === "popular" ? "text-red-500" : ""
-                  }`}
-                >
-                  پیشنهاد خریداران
-                </button>
-              </div>
-            </div>
+            <SortBar sort={sort} handleSort={handleSort} />
           </div>
           <div className="flex gap-6">
             <aside className="sticky top-6 w-1/3 md:w-1/4 lg:w-1/5 h-fit p-4 text-sm bg-white dark:bg-slate-700 shadow rounded-2xl transition">

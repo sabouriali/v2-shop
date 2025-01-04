@@ -48,10 +48,12 @@ function LoginPage() {
         user.username === username.trim() && user.password === password.trim()
     );
 
-    if (user) {
-      dispatch(setLogin({ id: user.id, name: user.name.firstname }));
-    } else {
-      alert("نام کاربری یا پسورد اشتباه است");
+    if (isValid) {
+      if (user) {
+        dispatch(setLogin({ id: user.id, name: user.name.firstname }));
+      } else {
+        alert("نام کاربری یا پسورد اشتباه است");
+      }
     }
   }
 

@@ -1,4 +1,4 @@
-import { type ChangeEvent, useState } from "react";
+import { type ChangeEvent, type FormEvent, useState } from "react";
 import { IoEye, IoEyeOff, IoPersonAdd } from "react-icons/io5";
 
 import { addUser } from "../../../utility/api";
@@ -131,7 +131,9 @@ function RegisterPage() {
     handleCloseAgreement();
   }
 
-  function handleSubmit() {
+  function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+
     const userData = {
       email,
       username,
@@ -147,32 +149,34 @@ function RegisterPage() {
       phone,
     };
 
-    setIsLoading(true);
-    addUser(userData)
-      .then((res) => {
-        handleLoadOnTop();
-        setIsLoading(false);
-        console.log(res);
-        alert("User Added");
-        setFirstname("");
-        setLastname("");
-        setUsername("");
-        setEmail("");
-        setPassword("");
-        setPassword2("");
-        setPhone("");
-        setCity("");
-        setStreet("");
-        setNumber("");
-        setZipcode("");
-        setAgree(false);
-      })
-      .catch((err) => {
-        handleLoadOnTop();
-        setIsLoading(false);
-        console.log(err);
-        alert("User Didn't Added");
-      });
+    if (isValid) {
+      setIsLoading(true);
+      addUser(userData)
+        .then((res) => {
+          handleLoadOnTop();
+          setIsLoading(false);
+          console.log(res);
+          alert("User Added");
+          setFirstname("");
+          setLastname("");
+          setUsername("");
+          setEmail("");
+          setPassword("");
+          setPassword2("");
+          setPhone("");
+          setCity("");
+          setStreet("");
+          setNumber("");
+          setZipcode("");
+          setAgree(false);
+        })
+        .catch((err) => {
+          handleLoadOnTop();
+          setIsLoading(false);
+          console.log(err);
+          alert("User Didn't Added");
+        });
+    }
   }
 
   return (

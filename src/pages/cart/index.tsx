@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { MdRemoveShoppingCart } from "react-icons/md";
-import { FaCheck, FaX } from "react-icons/fa6";
+import { FaCheck, FaTrashCan } from "react-icons/fa6";
 
 import { useStoreDispatch, useStoreSelector } from "../../hooks/useStore";
 
@@ -11,8 +12,11 @@ import {
 } from "../../redux/slices/cartSlice";
 
 import CartItem from "../../components/CartItem";
+import DeleteCartAlert from "../../components/DeleteCartAlert";
 
 function CartPage() {
+  const [showDeleteCartAlert, setShowDeleteCartAlert] = useState(false);
+
   const cart = useStoreSelector((state) => state.cart.items);
   const dispatch = useStoreDispatch();
 
@@ -20,12 +24,25 @@ function CartPage() {
   const totalPrice = getTotalPrice(cart);
   const totalDiscount = getTotalDiscount(cart);
 
+  function handleShowDeleteCartAlert() {
+    setShowDeleteCartAlert(true);
+  }
+
+  function handleHideDeleteCartAlert() {
+    setShowDeleteCartAlert(false);
+  }
+
   function handleClearCart() {
     dispatch(clearCart());
   }
 
   return (
     <>
+      <DeleteCartAlert
+        showDeleteMessage={showDeleteCartAlert}
+        hideDeleteMessage={handleHideDeleteCartAlert}
+        onDeleteCart={handleClearCart}
+      />
       <h1 className="text-xl font-bold mb-6">سبد خرید</h1>
       {cartQty === 0 ? (
         <div className="absolute right-1/2 translate-x-1/2 top-1/2 -translate-y-1/2 text-center p-12 w-96 shadow-lg rounded-2xl text-gray-400 bg-white dark:bg-slate-700 transition-colors">
@@ -55,7 +72,7 @@ function CartPage() {
               ))}
             </tbody>
           </table>
-          <div className="text-sm border-b mb-4">
+          <div dir="rtl" className="border-b mb-4">
             <div className="flex items-center gap-1 mb-2 text-green-500">
               <p>سود شما از این خرید:</p>
               <p>{totalDiscount}$</p>
@@ -65,17 +82,17 @@ function CartPage() {
               <p>{totalPrice}$</p>
             </div>
           </div>
-          <div className="flex items-center justify-between text-sm">
-            <button className="flex items-center border px-4 py-2 rounded-lg border-green-500 text-green-500 hover:bg-green-500 hover:text-white transition">
-              ثبت سفارش
-              <FaCheck className="ml-1" />
-            </button>
+          <div className="flex items-center justify-between">
             <button
-              onClick={handleClearCart}
-              className="flex items-center border px-4 py-2 rounded-lg border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition"
+              onClick={handleShowDeleteCartAlert}
+              className="flex items-center gap-1 text-sm px-4 py-2 text-gray-300 dark:text-gray-500 hover:text-red-500 dark:hover:text-red-400 transition"
             >
               حذف سفارش
-              <FaX className="ml-1" />
+              <FaTrashCan />
+            </button>
+            <button className="flex items-center border px-4 py-2 rounded-lg border-green-500 text-green-500 hover:text-white hover:bg-green-500 transition">
+              ثبت سفارش
+              <FaCheck className="ml-1" />
             </button>
           </div>
         </div>

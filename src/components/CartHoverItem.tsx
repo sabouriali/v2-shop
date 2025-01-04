@@ -27,7 +27,7 @@ function CartHoverItem({ id, price, qty }: CartHoverItemProps) {
         </div>
       ) : (
         <div dir="ltr" className="py-2 text-sm">
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1 mb-2">
             <img src={product?.image} alt={product?.title} width={40} />
             <p className="line-clamp-2 text-justify">
               x{qty} {product?.title}
@@ -39,7 +39,7 @@ function CartHoverItem({ id, price, qty }: CartHoverItemProps) {
                 <p>{price * qty}$</p>
                 <div className="flex items-center gap-1 text-xs">
                   <p>تخفیف:</p>
-                  <p className="text-red-500">
+                  <p className="text-red-500 dark:text-red-400">
                     {(product.price - price) * qty}$
                   </p>
                 </div>

@@ -80,11 +80,13 @@ function Navbar() {
         >
           <button
             id="allCategories"
-            className={`flex items-center pl-4 border-b-4 py-3 border-white dark:border-slate-700 ${
-              allCatsHover && "!border-red-500"
-            } transition`}
+            className={`flex items-center gap-1 pl-4 border-b-4 py-3 transition ${
+              allCatsHover
+                ? "border-red-500 dark:border-red-400"
+                : "border-transparent"
+            }`}
           >
-            <BsList className="ml-1" />
+            <BsList />
             دسته‌بندی محصولات
           </button>
           <CategoriesMenu categoriesMenuHover={allCatsHover} />
@@ -93,16 +95,16 @@ function Navbar() {
           to="/about"
           className={({ isActive }) =>
             `${
-              isActive && "!border-red-500"
-            } flex items-center px-4 border-b-4 py-3 border-white dark:border-slate-700 hover:border-red-500 transition`
+              isActive && "border-red-500 dark:border-red-400"
+            } flex items-center gap-1 px-4 border-b-4 py-3 border-transparent hover:border-red-500 dark:hover:border-red-400 transition`
           }
         >
-          <BsInfoCircleFill className="ml-1" />
+          <BsInfoCircleFill />
           درباره ما
         </NavLink>
         <button
           onClick={handleScrollDown}
-          className="flex items-center gap-1 px-4 border-b-4 py-3 border-white dark:border-slate-700 hover:border-red-500 transition"
+          className="flex items-center gap-1 px-4 border-b-4 py-3 border-transparent hover:border-red-500 dark:hover:border-red-400 transition"
         >
           <BsPersonLinesFill />
           تماس با ما
@@ -116,28 +118,26 @@ function Navbar() {
             onMouseEnter={handleUserMouseEnter}
             onMouseLeave={handleUserMouseLeave}
           >
-            <NavLink
+            <Link
               to={`/user/${JSON.parse(user!).id}`}
-              className={({ isActive }) =>
-                `${
-                  isActive && "bg-red-500 text-white"
-                } flex items-center gap-1 px-3 py-2 rounded-lg border text-sm hover:bg-red-500 hover:text-white transition ${
-                  userHover ? "bg-red-500 text-white" : ""
-                }`
-              }
+              className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm border transition ${
+                userHover
+                  ? "border-blue-500 dark:border-blue-400 text-white bg-blue-500 dark:bg-blue-400"
+                  : "hover:border-blue-500 dark:hover:border-blue-400 hover:bg-blue-500 dark:hover:bg-blue-400 hover:text-white"
+              }`}
             >
               <BsPersonFill />
               {JSON.parse(user!).name}
               {pathname !== `/user/${JSON.parse(user!).id}` && (
                 <IoIosArrowDown />
               )}
-            </NavLink>
+            </Link>
             <UserHoverMenu showMenu={userHover} />
           </div>
         ) : (
           <Link
             to="/user/login"
-            className="flex items-center gap-1 px-3 py-2 rounded-lg border text-sm hover:bg-red-500 hover:text-white transition"
+            className="flex items-center gap-1 px-3 py-2 rounded-lg text-sm border hover:border-blue-500 dark:hover:border-blue-400 hover:bg-blue-500 dark:hover:bg-blue-400 hover:text-white transition"
           >
             <HiOutlineLogin />
             ورود | ثبت نام
@@ -151,13 +151,14 @@ function Navbar() {
           onMouseLeave={handleCartMouseLeave}
           className={({ isActive }) =>
             `${
-              isActive && "bg-red-500 text-white"
-            } relative p-2 rounded-lg border hover:bg-red-500 hover:text-white transition`
+              isActive &&
+              "bg-blue-500 dark:bg-blue-400 border-blue-500 dark:border-blue-400 text-white"
+            } relative p-2 rounded-lg border hover:border-blue-500 dark:hover:border-blue-400 hover:bg-blue-500 dark:hover:bg-blue-400 hover:text-white transition`
           }
         >
           <FaCartShopping size={20} />
           {cartQty > 0 && (
-            <span className="absolute -right-1 -bottom-1 text-white text-sm text-center w-5 h-5 rounded-full bg-amber-500">
+            <span className="absolute -right-1 -bottom-1 text-white text-sm text-center w-5 h-5 rounded-full bg-red-500 dark:bg-red-400">
               {cartQty}
             </span>
           )}

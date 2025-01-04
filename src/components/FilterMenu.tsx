@@ -84,7 +84,7 @@ function FilterMenu({
       <div>
         <button
           onClick={onClearFilters}
-          className="flex items-center gap-1 justify-center px-3 py-2 rounded-lg w-full border border-red-500 text-red-500 hover:text-white hover:bg-red-500 transition"
+          className="flex items-center gap-1 justify-center px-3 py-2 rounded-lg w-full border border-red-500 dark:border-red-400 text-red-500 dark:text-red-400 hover:text-white hover:bg-red-500 dark:hover:bg-red-400 transition"
         >
           حذف فیلترها
           <MdFilterAltOff />

@@ -1,17 +1,17 @@
-import { IoMdTrash } from "react-icons/io";
+import { FaTrashCan } from "react-icons/fa6";
 
 import Backdrop from "./UI/Backdrop";
 
-import { type DeleteUserAlertProps } from "../types/componentTypes";
+import { type DeleteCartAlertProps } from "../types/componentTypes";
 
-function DeleteUserAlert({
+function DeleteCartAlert({
   showDeleteMessage,
   hideDeleteMessage,
-  onDeleteUser,
-}: DeleteUserAlertProps) {
+  onDeleteCart,
+}: DeleteCartAlertProps) {
   function handleClickDelete() {
     hideDeleteMessage();
-    onDeleteUser();
+    onDeleteCart();
   }
 
   return (
@@ -27,7 +27,9 @@ function DeleteUserAlert({
             : "opacity-0 -translate-y-24 invisible"
         }`}
       >
-        <p className="text-lg font-bold mb-4">از حذف حساب خود مطمئن هستید؟</p>
+        <p className="text-lg font-bold mb-4">
+          از حذف سبد خرید خود مطمئن هستید؟
+        </p>
         <div className="flex items-center justify-between">
           <button
             onClick={hideDeleteMessage}
@@ -39,7 +41,7 @@ function DeleteUserAlert({
             onClick={handleClickDelete}
             className="flex items-center gap-1 text-sm px-4 py-2 text-gray-300 dark:text-gray-500 hover:text-red-500 dark:hover:text-red-400 transition"
           >
-            <IoMdTrash />
+            <FaTrashCan />
             حذف
           </button>
         </div>
@@ -48,4 +50,4 @@ function DeleteUserAlert({
   );
 }
 
-export default DeleteUserAlert;
+export default DeleteCartAlert;

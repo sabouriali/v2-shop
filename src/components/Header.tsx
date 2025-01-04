@@ -36,7 +36,9 @@ function Header() {
             <NavLink
               to="/"
               className={({ isActive }) =>
-                `${isActive && "text-red-500"} text-3xl transition`
+                `${
+                  isActive && "text-red-500 dark:text-red-400"
+                } text-3xl transition`
               }
             >
               مارکت‌لند
@@ -56,7 +58,7 @@ function Header() {
           <div className="mr-6">
             <button
               onClick={handleSwitchTheme}
-              className="p-2 rounded-lg border hover:bg-slate-500 hover:text-white transition"
+              className="p-2 rounded-lg border hover:border-blue-500 dark:hover:border-blue-400 hover:bg-blue-500 dark:hover:bg-blue-400 hover:text-white transition"
             >
               {theme === "dark" ? (
                 <BsSunFill size={20} />
