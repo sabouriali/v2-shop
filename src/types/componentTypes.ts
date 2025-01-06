@@ -1,5 +1,5 @@
 import { type TCartItem, type TProduct } from "./productTypes";
-import { type User } from "./userTypes";
+import { type Name, type User } from "./userTypes";
 
 export type BackdropProps = {
   showBackdrop: boolean;
@@ -34,6 +34,7 @@ export type CartHoverProps = {
 
 export type CartItemProps = {
   id: number;
+  title: string;
   qty: number;
   price: number;
   discount?: number;
@@ -92,4 +93,31 @@ export type DeleteCartAlertProps = {
 export type SortBarProps = {
   sort: string;
   handleSort: (sort: string) => void;
+};
+
+export type EditAddressProps = {
+  user: User;
+  closeEdit: () => void;
+};
+
+export type CheckoutInfoProps = {
+  userName: Name | undefined;
+  userContact: {
+    phone: string;
+    address: {
+      city: string;
+      street: string;
+      number: string;
+      zipcode: string;
+    };
+  };
+  showInfo: boolean;
+  hideInfo: () => void;
+};
+
+export type CheckoutCartItemProps = {
+  title: string;
+  qty: number;
+  price: number;
+  discount?: number;
 };

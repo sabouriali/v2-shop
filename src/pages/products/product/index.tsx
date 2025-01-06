@@ -63,6 +63,7 @@ function ProductPage() {
     dispatch(
       addToCart({
         id: product!.id,
+        title: product!.title,
         price: computePrice(),
         discount: product!.discount
           ? product!.price - computePrice()
@@ -101,7 +102,7 @@ function ProductPage() {
             </div>
             <button
               onClick={() => navigate(-1)}
-              className="flex items-center px-2 py-2 border rounded-lg hover:bg-slate-500 hover:text-white transition"
+              className="flex items-center p-2 hover:text-blue-500 dark:hover:text-blue-400 transition"
             >
               بازگشت
               <TiArrowBack className="mr-1" />
@@ -134,7 +135,7 @@ function ProductPage() {
                     {product?.price}$
                   </p>
                   {product?.discount && (
-                    <p className="px-1.5 py-0.5 text-xs bg-red-500 text-white rounded-full">
+                    <p className="px-1.5 py-0.5 text-xs bg-red-500 dark:bg-red-400 text-white rounded-full">
                       {product?.discount}%
                     </p>
                   )}

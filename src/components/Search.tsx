@@ -62,14 +62,14 @@ function Search({ showSearch, hideSearch }: SearchProps) {
         </div>
         {search.length < 3 ? (
           <div className="absolute right-1/2 translate-x-1/2 top-1/2 -translate-y-1/2 text-center p-12 w-96 shadow-lg rounded-2xl text-gray-400 bg-white dark:bg-slate-700 transition-colors">
-            <p className="text-xl mb-2">دنبال جی می‌گردی؟</p>
+            <p className="text-xl mb-4">دنبال جی می‌گردی؟</p>
             <BsSearch size={46} className="mx-auto" />
           </div>
         ) : (
           <>
             {searchResult.length === 0 ? (
               <div className="absolute right-1/2 translate-x-1/2 top-1/2 -translate-y-1/2 text-center p-12 w-96 shadow-lg rounded-2xl text-gray-400 bg-white dark:bg-slate-700 transition-colors">
-                <p className="text-xl mb-2">محصول موردنظر یافت نشد</p>
+                <p className="text-xl mb-4">محصول موردنظر یافت نشد</p>
                 <BsEmojiFrownFill size={46} className="mx-auto" />
               </div>
             ) : (

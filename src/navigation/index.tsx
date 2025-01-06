@@ -19,10 +19,13 @@ import CheckoutPage from "../pages/cart/checkout";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import PrivateRoute from "../components/PrivateRoute";
+import SuccessPage from "../pages/cart/checkout/success";
 
 function Navigation() {
   const theme = useStoreSelector((state) => state.theme.value);
   const isLogin = useStoreSelector((state) => state.login.isLogin);
+  const cart = useStoreSelector((state) => state.cart.items);
+  const isPayed = useStoreSelector((state) => state.cart.isPayed);
 
   const htmlEl = document.querySelector("html");
 
@@ -62,10 +65,20 @@ function Navigation() {
             <Route
               path="checkout"
               element={
-                isLogin ? <CheckoutPage /> : <Navigate to="/user/login" />
+                cart.length === 0 ? (
+                  <Navigate to="/products" />
+                ) : isLogin ? (
+                  <CheckoutPage />
+                ) : (
+                  <Navigate to="/user/login" />
+                )
               }
             />
           </Route>
+          <Route
+            path="/success"
+            element={isPayed ? <SuccessPage /> : <Navigate to="/cart" />}
+          />
         </Routes>
       </main>
       <Footer />

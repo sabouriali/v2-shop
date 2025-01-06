@@ -5,12 +5,14 @@ import { type TCartItem } from "../../types/productTypes";
 
 type CartState = {
   items: TCartItem[];
+  isPayed: boolean;
 };
 
 const cookieCart = Cookies.get("cart");
 
 const initialState: CartState = {
   items: cookieCart ? JSON.parse(cookieCart) : [],
+  isPayed: false,
 };
 
 export function getProductQty(cart: TCartItem[], id: number) {
@@ -50,7 +52,12 @@ export const cartSlice = createSlice({
   reducers: {
     addToCart(
       state,
-      action: PayloadAction<{ id: number; price: number; discount?: number }>
+      action: PayloadAction<{
+        id: number;
+        title: string;
+        price: number;
+        discount?: number;
+      }>
     ) {
       const itemIndex = state.items.findIndex(
         (item) => item.id === action.payload.id
@@ -62,6 +69,7 @@ export const cartSlice = createSlice({
       } else {
         state.items.push({
           id: action.payload.id,
+          title: action.payload.title,
           price: action.payload.price,
           discount: action.payload.discount,
           qty: 1,
@@ -86,7 +94,11 @@ export const cartSlice = createSlice({
       state.items = [];
       Cookies.set("cart", JSON.stringify(state.items), { expires: 7 });
     },
+    setPayed(state) {
+      state.isPayed = true;
+    },
   },
 });
 
-export const { addToCart, clearCart, removeFromCart } = cartSlice.actions;
+export const { addToCart, clearCart, removeFromCart, setPayed } =
+  cartSlice.actions;

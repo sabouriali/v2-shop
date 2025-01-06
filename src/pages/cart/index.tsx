@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import { MdRemoveShoppingCart } from "react-icons/md";
 import { FaCheck, FaTrashCan } from "react-icons/fa6";
 
@@ -24,29 +25,31 @@ function CartPage() {
   const totalPrice = getTotalPrice(cart);
   const totalDiscount = getTotalDiscount(cart);
 
-  function handleShowDeleteCartAlert() {
-    setShowDeleteCartAlert(true);
-  }
+  const navigate = useNavigate();
 
-  function handleHideDeleteCartAlert() {
-    setShowDeleteCartAlert(false);
-  }
+  function handleContinue() {
+    const cartExtras = {
+      cartQty,
+      totalPrice,
+      totalDiscount,
+    };
 
-  function handleClearCart() {
-    dispatch(clearCart());
+    sessionStorage.setItem("cart", JSON.stringify(cartExtras));
+
+    navigate("checkout");
   }
 
   return (
     <>
       <DeleteCartAlert
         showDeleteMessage={showDeleteCartAlert}
-        hideDeleteMessage={handleHideDeleteCartAlert}
-        onDeleteCart={handleClearCart}
+        hideDeleteMessage={() => setShowDeleteCartAlert(false)}
+        onDeleteCart={() => dispatch(clearCart())}
       />
       <h1 className="text-xl font-bold mb-6">سبد خرید</h1>
       {cartQty === 0 ? (
         <div className="absolute right-1/2 translate-x-1/2 top-1/2 -translate-y-1/2 text-center p-12 w-96 shadow-lg rounded-2xl text-gray-400 bg-white dark:bg-slate-700 transition-colors">
-          <p className="text-xl">سبد خرید خالی است.</p>
+          <p className="text-xl mb-4">سبد خرید خالی است</p>
           <MdRemoveShoppingCart size={46} className="mx-auto" />
         </div>
       ) : (
@@ -84,13 +87,16 @@ function CartPage() {
           </div>
           <div className="flex items-center justify-between">
             <button
-              onClick={handleShowDeleteCartAlert}
+              onClick={() => setShowDeleteCartAlert(true)}
               className="flex items-center gap-1 text-sm px-4 py-2 text-gray-300 dark:text-gray-500 hover:text-red-500 dark:hover:text-red-400 transition"
             >
               حذف سفارش
               <FaTrashCan />
             </button>
-            <button className="flex items-center border px-4 py-2 rounded-lg border-green-500 text-green-500 hover:text-white hover:bg-green-500 transition">
+            <button
+              onClick={handleContinue}
+              className="flex items-center border px-4 py-2 rounded-lg border-green-500 text-green-500 hover:text-white hover:bg-green-500 transition"
+            >
               ثبت سفارش
               <FaCheck className="ml-1" />
             </button>

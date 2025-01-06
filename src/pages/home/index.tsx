@@ -53,7 +53,7 @@ function Home() {
               <div className="min-w-[7.5rem]">
                 <button
                   onClick={() => navigate("/products/onsale")}
-                  className="flex items-center"
+                  className="flex items-center hover:text-blue-500 dark:hover:text-blue-400 transition"
                 >
                   محصولات بیشتر
                   <IoIosArrowBack />
@@ -83,7 +83,7 @@ function Home() {
               <div className="min-w-[7.5rem]">
                 <button
                   onClick={() => navigate("/products/popular")}
-                  className="flex items-center"
+                  className="flex items-center hover:text-blue-500 dark:hover:text-blue-400 transition"
                 >
                   محصولات بیشتر
                   <IoIosArrowBack />

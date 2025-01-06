@@ -13,7 +13,7 @@ import DeleteItemAlert from "./DeleteItemAlert";
 import { type CartItemProps } from "../types/componentTypes";
 import { type TProduct } from "../types/productTypes";
 
-function CartItem({ id, price, qty, discount }: CartItemProps) {
+function CartItem({ id,title, price, qty, discount }: CartItemProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [product, setProduct] = useState<TProduct>();
   const [alert, setAlert] = useState(false);
@@ -32,6 +32,7 @@ function CartItem({ id, price, qty, discount }: CartItemProps) {
     dispatch(
       addToCart({
         id,
+        title,
         price,
         discount,
       })

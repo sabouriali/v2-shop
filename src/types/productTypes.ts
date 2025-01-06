@@ -15,6 +15,7 @@ export type TProduct = {
 
 export type TCartItem = {
   id: number;
+  title: string;
   qty: number;
   price: number;
   discount?: number;
