@@ -4,10 +4,10 @@ import { BsEmojiFrownFill, BsSearch } from "react-icons/bs";
 import { getAllProducts } from "../utility/api";
 
 import Backdrop from "./UI/Backdrop";
+import ProductCard from "./ProductCard";
 
 import { type SearchProps } from "../types/componentTypes";
 import { type TProduct } from "../types/productTypes";
-import ProductCard from "./ProductCard";
 
 function Search({ showSearch, hideSearch }: SearchProps) {
   const [products, setProducts] = useState<TProduct[]>([]);
@@ -16,6 +16,8 @@ function Search({ showSearch, hideSearch }: SearchProps) {
   useEffect(() => {
     getAllProducts().then((res) => setProducts(res.products));
   }, []);
+
+  const screenWidth = window.screen.width;
 
   function handleSearch(e: ChangeEvent<HTMLInputElement>) {
     setSearch(e.target.value);
@@ -61,24 +63,37 @@ function Search({ showSearch, hideSearch }: SearchProps) {
           />
         </div>
         {search.length < 3 ? (
-          <div className="absolute right-1/2 translate-x-1/2 top-1/2 -translate-y-1/2 text-center p-12 w-96 shadow-lg rounded-2xl text-gray-400 bg-white dark:bg-slate-700 transition-colors">
+          <div
+            className={`absolute right-1/2 translate-x-1/2 text-center p-12 w-96 shadow-lg rounded-2xl text-gray-400 bg-white dark:bg-slate-700 transition-colors  ${
+              screenWidth < 640
+                ? "top-1/4 -translate-y-1/4"
+                : "top-1/3 -translate-y-1/3"
+            }`}
+          >
             <p className="text-xl mb-4">دنبال جی می‌گردی؟</p>
             <BsSearch size={46} className="mx-auto" />
           </div>
         ) : (
           <>
             {searchResult.length === 0 ? (
-              <div className="absolute right-1/2 translate-x-1/2 top-1/2 -translate-y-1/2 text-center p-12 w-96 shadow-lg rounded-2xl text-gray-400 bg-white dark:bg-slate-700 transition-colors">
+              <div
+                className={`absolute right-1/2 translate-x-1/2 text-center p-12 w-96 shadow-lg rounded-2xl text-gray-400 bg-white dark:bg-slate-700 transition-colors  ${
+                  screenWidth < 640
+                    ? "top-1/4 -translate-y-1/4"
+                    : "top-1/3 -translate-y-1/3"
+                }`}
+              >
                 <p className="text-xl mb-4">محصول موردنظر یافت نشد</p>
                 <BsEmojiFrownFill size={46} className="mx-auto" />
               </div>
             ) : (
-              <div className="overflow-scroll h-[91.5%] grid gap-4 md:gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 pb-6">
+              <div className="overflow-scroll h-[91.5%] grid gap-2 md:gap-4 lg:gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 pb-6">
                 {searchResult.map((product) => (
                   <ProductCard
                     key={product.id}
                     product={product}
                     onCloseSearch={hideSearch}
+                    type={screenWidth < 640 ? "mobile" : undefined}
                   />
                 ))}
               </div>

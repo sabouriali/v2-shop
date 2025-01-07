@@ -7,7 +7,7 @@ function Backdrop({ showBackdrop, hideBackdrop }: BackdropProps) {
     <div
       className={
         showBackdrop
-          ? "fixed top-0 right-0 opacity-100 visible min-h-screen w-full z-10 bg-[#00000080] backdrop-blur-sm transition"
+          ? "fixed top-0 left-0 opacity-100 visible min-h-screen w-full z-10 bg-[#00000080] backdrop-blur-sm transition"
           : "opacity-0 invisible"
       }
       onClick={hideBackdrop}

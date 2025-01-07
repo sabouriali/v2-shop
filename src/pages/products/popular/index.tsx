@@ -1,7 +1,4 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
-import { MdSort } from "react-icons/md";
-import { TiArrowBack } from "react-icons/ti";
 
 import { getAllProducts } from "../../../utility/api";
 
@@ -9,6 +6,7 @@ import Loading from "../../../components/UI/Loading";
 import ProductCard from "../../../components/ProductCard";
 
 import { type TProduct } from "../../../types/productTypes";
+import SortBar from "../../../components/SortBar";
 
 function PopularPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -38,7 +36,7 @@ function PopularPage() {
     setProducts(sortedList);
   }, [sort]);
 
-  const navigate = useNavigate();
+  const screenWidth = window.screen.width;
 
   function handleLoadOnTop() {
     window.scrollTo({
@@ -59,55 +57,26 @@ function PopularPage() {
         </div>
       ) : (
         <>
-          <div className="flex items-center justify-between mb-6">
-            <div>
-              <h2 className="text-lg font-bold">پیشنهاد شگفت‌انگیز</h2>
-              <div className="flex items-center gap-2 text-sm">
-                <p className="flex items-center gap-1">
-                  <MdSort />
-                  مرتب‌سازی:
-                </p>
-                <div className="flex flex-wrap items-center gap-4">
-                  <button
-                    onClick={() => handleSort("def")}
-                    className={`hover:text-red-500 transition ${
-                      sort === "def" ? "text-red-500" : ""
-                    }`}
-                  >
-                    پیش‌فرض
-                  </button>
-                  <button
-                    onClick={() => handleSort("desc")}
-                    className={`hover:text-red-500 transition ${
-                      sort === "desc" ? "text-red-500" : ""
-                    }`}
-                  >
-                    گران‌ترین
-                  </button>
-                  <button
-                    onClick={() => handleSort("asc")}
-                    className={`hover:text-red-500 transition ${
-                      sort === "asc" ? "text-red-500" : ""
-                    }`}
-                  >
-                    ارزان‌ترین
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div>
-              <button
-                onClick={() => navigate(-1)}
-                className="flex items-center gap-1 px-2 py-2 border rounded-lg hover:bg-slate-500 hover:text-white transition"
-              >
-                بازگشت
-                <TiArrowBack />
-              </button>
-            </div>
+          <div
+            className={`mb-6 ${
+              screenWidth < 640 && "flex items-center justify-between"
+            }`}
+          >
+            <h2 className="text-lg font-bold">محصولات پرفروش</h2>
+            <SortBar
+              sort={sort}
+              handleSort={handleSort}
+              type={screenWidth < 640 ? "mobile" : undefined}
+              popular
+            />
           </div>
-          <div className="grid gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 mb-6">
+          <div className="grid gap-2 md:gap-4 lg:gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 mb-6">
             {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
+              <ProductCard
+                key={product.id}
+                product={product}
+                type={screenWidth < 640 ? "mobile" : undefined}
+              />
             ))}
           </div>
         </>

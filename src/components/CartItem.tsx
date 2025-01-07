@@ -13,7 +13,7 @@ import DeleteItemAlert from "./DeleteItemAlert";
 import { type CartItemProps } from "../types/componentTypes";
 import { type TProduct } from "../types/productTypes";
 
-function CartItem({ id,title, price, qty, discount }: CartItemProps) {
+function CartItem({ id, title, price, qty, discount, type }: CartItemProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [product, setProduct] = useState<TProduct>();
   const [alert, setAlert] = useState(false);
@@ -64,54 +64,97 @@ function CartItem({ id,title, price, qty, discount }: CartItemProps) {
         deleteProduct={handleDeleteFromCart}
         product={product}
       />
-      <tr>
-        {isLoading ? (
-          <div className="p-4">
-            <Loading />
-          </div>
-        ) : (
-          <>
-            <td className="text-left p-2">
-              <Link
-                to={`/products/category/${product?.category}/${id}`}
-                className="flex items-center gap-1"
-              >
-                <img src={product?.image} width={40} />
-                <p className="line-clamp-2 text-justify">{product?.title}</p>
-              </Link>
-            </td>
-            <td className="text-center p-2 w-1/12">x{qty}</td>
-            <td className="text-center p-2 w-[15%]">
+      {type === "mobile" ? (
+        <div className="p-2 mb-2 border rounded">
+          <Link
+            to={`/products/category/${product?.category}/${id}`}
+            className="flex items-center gap-1"
+          >
+            <img src={product?.image} className="w-10 h-10" />
+            <p className="line-clamp-2 text-justify">
+              x{qty} {product?.title}
+            </p>
+          </Link>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center justify-start gap-4">
               <p>{price * qty}$</p>
-              {discount ? (
-                <p className="text-green-500">{discount * qty}$</p>
-              ) : (
-                <p>---</p>
+              {discount && (
+                <>
+                  <span>/</span>
+                  <p className="text-green-500">{discount * qty}$</p>
+                </>
               )}
-            </td>
-            <td className="text-right p-2 w-[10%]">
-              <div className="flex items-center justify-end gap-2">
-                <button
-                  onClick={handleRemoveFromCart}
-                  className={`p-2 border rounded-lg transition ${
-                    qty === 1
-                      ? "border-transparent text-gray-300 dark:text-gray-500 hover:text-red-500 dark:hover:text-red-400"
-                      : "border-blue-500 dark:border-blue-400 text-blue-500 dark:text-blue-400 hover:text-white hover:bg-blue-500 dark:hover:bg-blue-400"
-                  }`}
+            </div>
+            <div className="flex items-center justify-end gap-2">
+              <button
+                onClick={handleRemoveFromCart}
+                className={`p-2 border rounded-lg transition ${
+                  qty === 1
+                    ? "border-transparent text-gray-300 dark:text-gray-500 hover:text-red-500 dark:hover:text-red-400"
+                    : "border-blue-500 dark:border-blue-400 text-blue-500 dark:text-blue-400 hover:text-white hover:bg-blue-500 dark:hover:bg-blue-400"
+                }`}
+              >
+                {qty === 1 ? <FaTrashCan /> : <FaMinus />}
+              </button>
+              <button
+                onClick={handleAddToCart}
+                className="p-2 rounded-lg border border-blue-500 dark:border-blue-400 text-blue-500 dark:text-blue-400 hover:text-white hover:bg-blue-500 dark:hover:bg-blue-400 transition"
+              >
+                <FaPlus />
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <tr>
+          {isLoading ? (
+            <div className="p-4">
+              <Loading />
+            </div>
+          ) : (
+            <>
+              <td className="text-left p-2">
+                <Link
+                  to={`/products/category/${product?.category}/${id}`}
+                  className="flex items-center gap-1"
                 >
-                  {qty === 1 ? <FaTrashCan /> : <FaMinus />}
-                </button>
-                <button
-                  onClick={handleAddToCart}
-                  className="p-2 rounded-lg border border-blue-500 dark:border-blue-400 text-blue-500 dark:text-blue-400 hover:text-white hover:bg-blue-500 dark:hover:bg-blue-400 transition"
-                >
-                  <FaPlus />
-                </button>
-              </div>
-            </td>
-          </>
-        )}
-      </tr>
+                  <img src={product?.image} width={40} />
+                  <p className="line-clamp-2 text-justify">{product?.title}</p>
+                </Link>
+              </td>
+              <td className="text-center p-2 w-1/12">x{qty}</td>
+              <td className="text-center p-2 w-[15%]">
+                <p>{price * qty}$</p>
+                {discount ? (
+                  <p className="text-green-500">{discount * qty}$</p>
+                ) : (
+                  <p>---</p>
+                )}
+              </td>
+              <td className="text-right p-2 w-[10%]">
+                <div className="flex items-center justify-end gap-2">
+                  <button
+                    onClick={handleRemoveFromCart}
+                    className={`p-2 border rounded-lg transition ${
+                      qty === 1
+                        ? "border-transparent text-gray-300 dark:text-gray-500 hover:text-red-500 dark:hover:text-red-400"
+                        : "border-blue-500 dark:border-blue-400 text-blue-500 dark:text-blue-400 hover:text-white hover:bg-blue-500 dark:hover:bg-blue-400"
+                    }`}
+                  >
+                    {qty === 1 ? <FaTrashCan /> : <FaMinus />}
+                  </button>
+                  <button
+                    onClick={handleAddToCart}
+                    className="p-2 rounded-lg border border-blue-500 dark:border-blue-400 text-blue-500 dark:text-blue-400 hover:text-white hover:bg-blue-500 dark:hover:bg-blue-400 transition"
+                  >
+                    <FaPlus />
+                  </button>
+                </div>
+              </td>
+            </>
+          )}
+        </tr>
+      )}
     </>
   );
 }

@@ -12,7 +12,7 @@ function UserAgreement({
     <>
       <Backdrop showBackdrop={showAgreement} hideBackdrop={hideAgreement} />
       <section
-        className={`fixed z-20 p-6 rounded-2xl w-1/2 h-[80vh] overflow-y-scroll bottom-1/2 right-1/2 translate-y-1/2 translate-x-1/2 bg-white dark:bg-slate-800 shadow-lg transition ${
+        className={`fixed z-20 p-4 rounded-2xl w-[90%] sm:w-4/5 md:w-[70%] lg:w-3/5 xl:w-1/2 2xl:w-2/5 h-[80vh] overflow-y-scroll bottom-1/2 right-1/2 translate-y-1/2 translate-x-1/2 bg-white dark:bg-slate-800 shadow-lg transition ${
           showAgreement
             ? "opacity-100 visible"
             : "opacity-0 translate-y-10 invisible"
@@ -68,10 +68,10 @@ function UserAgreement({
                 ? "شما شرایط و قوانین را پذیرفته‌اید"
                 : "پذیرش شرایط و قوانین"
             }
-            className={`px-3 py-2 rounded-lg border transition ${
+            className={`px-4 py-2 rounded-lg border transition ${
               agree
                 ? "cursor-not-allowed border-gray-300 bg-gray-300 text-white dark:border-gray-400 dark:bg-gray-400"
-                : "border-[#3498db] text-[#3498db] hover:text-white hover:bg-[#3498db]"
+                : "border-blue-500 dark:border-blue-400 text-blue-500 dark:text-blue-400 hover:text-white hover:bg-blue-500 dark:hover:bg-blue-400"
             }`}
           >
             می‌پذیرم

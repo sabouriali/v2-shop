@@ -13,6 +13,7 @@ export type SearchProps = {
 
 export type ProductCardProps = {
   product: TProduct;
+  type?: string;
   onCloseSearch?: () => void;
 };
 
@@ -38,6 +39,7 @@ export type CartItemProps = {
   qty: number;
   price: number;
   discount?: number;
+  type?: string;
 };
 
 export type ToggleSwitchProps = {
@@ -69,6 +71,8 @@ export type DeleteItemAlertProps = {
 
 export type UserHoverMenuProps = {
   showMenu: boolean;
+  hideMenu: () => void;
+  profileUrl: string;
 };
 
 export type EditUserProps = {
@@ -93,6 +97,8 @@ export type DeleteCartAlertProps = {
 export type SortBarProps = {
   sort: string;
   handleSort: (sort: string) => void;
+  type?: string;
+  popular?: boolean;
 };
 
 export type EditAddressProps = {
@@ -120,4 +126,31 @@ export type CheckoutCartItemProps = {
   qty: number;
   price: number;
   discount?: number;
+};
+
+export type NavbarMenuProps = {
+  showNavbarMenu: boolean;
+  hideNavbarMenu: () => void;
+};
+
+export type NavbarCategoriesMenuProps = {
+  showMenu: boolean;
+  hideMenu: () => void;
+};
+
+export type FilterMenuMobileProps = {
+  showFilters: boolean;
+  hideFilters: () => void;
+  brands: string[];
+  onSale: (data: boolean) => void;
+  onFilterBrands: (brands: string[]) => void;
+  onClearFilters: () => void;
+};
+
+export type SortMenuProps = {
+  sort: string;
+  handleSort: (sort: string) => void;
+  showMenu: boolean;
+  hideMenu: () => void;
+  popular?: boolean;
 };

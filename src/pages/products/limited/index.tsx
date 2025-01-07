@@ -24,6 +24,8 @@ function LimitedProductsPage() {
     });
   }, [page]);
 
+  const screenWidth = window.screen.width;
+
   function handleNext() {
     if (JSON.parse(page!) < 8) {
       handleLoadOnTop();
@@ -58,10 +60,22 @@ function LimitedProductsPage() {
         </div>
       ) : (
         <>
-          <h2 className="text-lg font-bold mb-6">محصولات | صفحه {page}</h2>
-          <div className="grid gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 mb-8">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-lg font-bold">محصولات | صفحه {page}</h2>
+            <button
+              onClick={handleShowAll}
+              className="text-sm hover:text-blue-500 dark:hover:text-blue-400 transition"
+            >
+              نمایش همه محصولات یکجا
+            </button>
+          </div>
+          <div className="grid gap-2 md:gap-4 lg:gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 mb-8">
             {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
+              <ProductCard
+                key={product.id}
+                product={product}
+                type={screenWidth < 640 ? "mobile" : undefined}
+              />
             ))}
           </div>
           <div className="flex items-center justify-between text-sm">
@@ -75,12 +89,6 @@ function LimitedProductsPage() {
             >
               <IoIosArrowForward />
               بعدی
-            </button>
-            <button
-              onClick={handleShowAll}
-              className="px-4 py-2 hover:text-blue-500 dark:hover:text-blue-400 transition"
-            >
-              نمایش همه محصولات یکجا
             </button>
             <button
               onClick={handleBack}

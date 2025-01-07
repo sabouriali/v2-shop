@@ -27,6 +27,8 @@ function CartPage() {
 
   const navigate = useNavigate();
 
+  const screenWidth = window.screen.width;
+
   function handleContinue() {
     const cartExtras = {
       cartQty,
@@ -46,7 +48,7 @@ function CartPage() {
         hideDeleteMessage={() => setShowDeleteCartAlert(false)}
         onDeleteCart={() => dispatch(clearCart())}
       />
-      <h1 className="text-xl font-bold mb-6">سبد خرید</h1>
+      <h2 className="text-xl font-bold mb-6">سبد خرید</h2>
       {cartQty === 0 ? (
         <div className="absolute right-1/2 translate-x-1/2 top-1/2 -translate-y-1/2 text-center p-12 w-96 shadow-lg rounded-2xl text-gray-400 bg-white dark:bg-slate-700 transition-colors">
           <p className="text-xl mb-4">سبد خرید خالی است</p>
@@ -57,25 +59,36 @@ function CartPage() {
           dir="ltr"
           className="p-4 shadow-lg rounded-2xl bg-white dark:bg-slate-700 transition"
         >
-          <table className="w-full mb-4 border-b">
-            <thead className="border-b">
-              <tr>
-                <th className="py-1 px-2 text-left">عنوان</th>
-                <th className="py-1 px-2 text-center">تعداد</th>
-                <th className="py-1 px-2 text-center">
-                  <p>قابل پرداخت</p>
-                  <p>تخفیف</p>
-                </th>
-                <th className="py-1 px-2 text-right">تغییر</th>
-              </tr>
-            </thead>
-            <tbody className="text-sm">
+          {screenWidth < 640 ? (
+            <div className="border px-2 pt-2 max-h-[18.75rem] overflow-y-scroll rounded-lg mb-4 text-sm">
               {cart.map((item) => (
-                <CartItem key={item.id} {...item} />
+                <CartItem key={item.id} {...item} type="mobile" />
               ))}
-            </tbody>
-          </table>
-          <div dir="rtl" className="border-b mb-4">
+            </div>
+          ) : (
+            <table className="w-full mb-4 border-b">
+              <thead className="border-b">
+                <tr>
+                  <th className="py-1 px-2 text-left">عنوان</th>
+                  <th className="py-1 px-2 text-center">تعداد</th>
+                  <th className="py-1 px-2 text-center">
+                    <p>قابل پرداخت</p>
+                    <p>تخفیف</p>
+                  </th>
+                  <th className="py-1 px-2 text-right">تغییر</th>
+                </tr>
+              </thead>
+              <tbody className="text-sm">
+                {cart.map((item) => (
+                  <CartItem key={item.id} {...item} />
+                ))}
+              </tbody>
+            </table>
+          )}
+          <div
+            dir="rtl"
+            className={`border-b mb-4 ${screenWidth < 640 && "text-sm"}`}
+          >
             <div className="flex items-center gap-1 mb-2 text-green-500">
               <p>سود شما از این خرید:</p>
               <p>{totalDiscount}$</p>

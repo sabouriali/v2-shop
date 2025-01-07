@@ -195,12 +195,14 @@
 // ***بهینه سازی chatgpt***
 import { useEffect, useState, useRef } from "react";
 import { MdFilterAltOff } from "react-icons/md";
+import { FaFilter } from "react-icons/fa";
 
 import { getAllProducts } from "../../utility/api";
 
 import Loading from "../../components/UI/Loading";
 import ProductCard from "../../components/ProductCard";
 import FilterMenu from "../../components/FilterMenu";
+import FilterMenuMobile from "../../components/FilterMenuMobile";
 import SortBar from "../../components/SortBar";
 
 import { type TProduct } from "../../types/productTypes";
@@ -210,6 +212,7 @@ function ProductsPage() {
   const [products, setProducts] = useState<TProduct[]>([]);
   const [sort, setSort] = useState("def");
   const [onSale, setOnSale] = useState<boolean>(true);
+  const [showFilters, setShowFilters] = useState(false);
   const [filterBrands, setFilterBrands] = useState<string[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<TProduct[]>([]);
 
@@ -257,6 +260,8 @@ function ProductsPage() {
     setFilteredProducts(updatedProducts);
   }, [filterBrands, onSale, sort]);
 
+  const screenWidth = window.screen.width;
+
   // مدیریت فیلتر برند
   const handleFilterBrands = (updatedBrands: string[]) => {
     setFilterBrands(updatedBrands);
@@ -293,25 +298,58 @@ function ProductsPage() {
         </div>
       ) : (
         <>
-          <div className="mb-6">
+          <div
+            className={`mb-6 ${
+              screenWidth < 640 && "flex items-center justify-between"
+            }`}
+          >
             <h2 className="text-lg font-bold">همه محصولات</h2>
-            <SortBar sort={sort} handleSort={handleSort} />
+            <SortBar
+              sort={sort}
+              handleSort={handleSort}
+              type={screenWidth < 640 ? "mobile" : undefined}
+            />
+            {screenWidth < 640 && (
+              <button
+                onClick={() => setShowFilters(true)}
+                className="fixed bottom-4 left-4 z-[5] p-4 bg-red-500 text-white rounded-full shadow-md"
+              >
+                <FaFilter />
+              </button>
+            )}
           </div>
-          <div className="flex gap-6">
-            <aside className="sticky top-6 w-1/3 md:w-1/4 lg:w-1/5 h-fit p-4 text-sm bg-white dark:bg-slate-700 shadow rounded-2xl transition">
-              <FilterMenu
+          <div className={screenWidth < 640 ? "" : "flex gap-6"}>
+            {screenWidth < 640 ? (
+              <FilterMenuMobile
+                showFilters={showFilters}
+                hideFilters={() => setShowFilters(false)}
                 brands={products.map((product) =>
                   product.brand.toLocaleLowerCase()
                 )}
-                onSale={handleOnSale}
-                onFilterBrands={handleFilterBrands}
                 onClearFilters={handleClearFilters}
+                onFilterBrands={handleFilterBrands}
+                onSale={handleOnSale}
               />
-            </aside>
-            <div className="w-full grid gap-4 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6">
+            ) : (
+              <aside className="sticky top-6 w-1/3 md:w-1/4 lg:w-1/5 h-fit p-4 text-sm bg-white dark:bg-slate-700 shadow rounded-2xl transition">
+                <FilterMenu
+                  brands={products.map((product) =>
+                    product.brand.toLocaleLowerCase()
+                  )}
+                  onSale={handleOnSale}
+                  onFilterBrands={handleFilterBrands}
+                  onClearFilters={handleClearFilters}
+                />
+              </aside>
+            )}
+            <div className="w-full grid gap-2 lg:gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6">
               {displayedProducts.length > 0 ? (
                 displayedProducts.map((product) => (
-                  <ProductCard key={product.id} product={product} />
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                    type={screenWidth < 640 ? "mobile" : undefined}
+                  />
                 ))
               ) : (
                 <div className="absolute right-1/2 translate-x-1/2 top-1/2 -translate-y-1/2 text-center p-12 w-96 shadow-lg rounded-2xl text-gray-400 bg-white dark:bg-slate-700 transition-colors">

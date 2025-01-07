@@ -64,7 +64,7 @@ function Home() {
         </div>
       </section>
       <section>
-        <h2 className="font-bold mb-4">محصولات پرطرفدار</h2>
+        <h2 className="font-bold mb-4">محصولات پرفروش</h2>
         <div className="pb-10 flex items-center gap-2 overflow-x-scroll overflow-y-clip">
           {isLoading ? (
             <div className="h-96 top-1/2 mx-auto translate-y-1/2">

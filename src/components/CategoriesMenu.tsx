@@ -36,7 +36,7 @@ function CategoriesMenu({ categoriesMenuHover }: CategoriesMenuProps) {
     <div
       className={`absolute z-10 -right-4 w-[11.5rem] shadow-md bg-gray-100 dark:bg-slate-700 transition ${
         categoriesMenuHover
-          ? "opacity-100 visible translate-y-0"
+          ? "opacity-100 visible"
           : "opacity-0 invisible -translate-y-4"
       }`}
     >
