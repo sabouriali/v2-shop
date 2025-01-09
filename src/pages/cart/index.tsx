@@ -60,7 +60,7 @@ function CartPage() {
           className="p-4 shadow-lg rounded-2xl bg-white dark:bg-slate-700 transition"
         >
           {screenWidth < 640 ? (
-            <div className="border px-2 pt-2 max-h-[18.75rem] overflow-y-scroll rounded-lg mb-4 text-sm">
+            <div className="bg-gray-100 dark:bg-slate-800 px-2 pt-2 max-h-[18.25rem] overflow-y-scroll rounded-lg mb-4 text-sm">
               {cart.map((item) => (
                 <CartItem key={item.id} {...item} type="mobile" />
               ))}

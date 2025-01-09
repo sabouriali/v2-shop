@@ -50,7 +50,7 @@ function Search({ showSearch, hideSearch }: SearchProps) {
       >
         <div className="sticky top-0 mb-4">
           <input
-            autoFocus={true}
+            autoFocus
             type="text"
             placeholder="جستجو"
             value={search}

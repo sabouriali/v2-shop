@@ -1,7 +1,7 @@
 import { type ChangeEvent, type FormEvent, useState } from "react";
 import { HiPencil } from "react-icons/hi";
-import { IoMdCheckmarkCircleOutline, IoMdTrash } from "react-icons/io";
 import { IoEye, IoEyeOff } from "react-icons/io5";
+import { IoMdCheckmarkCircleOutline, IoMdTrash } from "react-icons/io";
 
 import { useStoreDispatch } from "../hooks/useStore";
 import { setLogout } from "../redux/slices/loginSlice";
@@ -302,7 +302,7 @@ function EditUser({ user, onLoading, onLoaded, closeEdit }: EditUserProps) {
               type="submit"
               className={`flex items-center gap-1 px-4 py-2 rounded-lg border transition ${
                 isValid
-                  ? "border-[#3498db] text-[#3498db] hover:text-white hover:bg-[#3498db]"
+                  ? "border-blue-500 dark:border-blue-400 text-blue-500 dark:text-blue-400 hover:text-white hover:bg-blue-500 dark:hover:bg-blue-400"
                   : "border-gray-300 bg-gray-300 text-white dark:border-gray-400 dark:bg-gray-400 cursor-not-allowed"
               }`}
             >

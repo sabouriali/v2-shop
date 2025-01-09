@@ -115,15 +115,20 @@ function ProductPage() {
             <div className="md:col-span-5 lg:col-span-4 md:row-span-2 rounded-tl-2xl bg-white">
               <img src={product?.image} alt={product?.title} className="p-4" />
             </div>
-            <div className="md:col-span-7 lg:col-span-8 md:row-span-3 px-4 py-2">
-              <p className="font-bold text-justify">{product?.title}</p>
+            <div className="md:col-span-7 lg:col-span-8 md:row-span-1 px-4 py-2">
+              <p
+                title={product?.title}
+                className="font-bold text-justify line-clamp-2"
+              >
+                {product?.title}
+              </p>
               <p className="text-xs text-gray-400 dark:text-gray-500">
                 {product?.category}
               </p>
               {product?.color && (
-                <p className="text-sm mt-2">{`(${product?.color})`}</p>
+                <p className="text-sm mt-1">({product?.color})</p>
               )}
-              <div className="my-3">
+              <div className="mt-1">
                 <div className="flex items-center gap-8">
                   <p
                     className={
@@ -149,6 +154,8 @@ function ProductPage() {
                   </p>
                 )}
               </div>
+            </div>
+            <div className="md:col-span-7 lg:col-span-8 md:row-span-2 px-4 py-2">
               <p className="text-justify">{product?.description}</p>
             </div>
             <div className="my-4 p-4 md:col-span-5 lg:col-span-4 md:row-span-1">

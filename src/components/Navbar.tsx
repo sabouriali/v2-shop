@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { Link, NavLink, useLocation } from "react-router";
+import { HiOutlineLogin } from "react-icons/hi";
+import { IoIosArrowDown } from "react-icons/io";
+import { FaCaretDown, FaCartShopping } from "react-icons/fa6";
 import {
   BsInfoCircleFill,
   BsList,
   BsPersonFill,
   BsPersonLinesFill,
 } from "react-icons/bs";
-import { FaCaretDown, FaCartShopping } from "react-icons/fa6";
-import { HiOutlineLogin } from "react-icons/hi";
-import { IoIosArrowDown } from "react-icons/io";
 
 import { getCartQty } from "../redux/slices/cartSlice";
 import { useStoreSelector } from "../hooks/useStore";
@@ -42,36 +42,22 @@ function Navbar() {
     });
   }
 
-  function handleAllCatsMouseEnter() {
-    setAllCatsHover(true);
+  function handleAllCatsHover(action: "enter" | "leave") {
+    if (action === "enter") {
+      setAllCatsHover(true);
+    } else setAllCatsHover(false);
   }
 
-  function handleAllCatsMouseLeave() {
-    setAllCatsHover(false);
+  function handleCartHover(action: "enter" | "leave") {
+    if (action === "enter") {
+      if (pathname !== "/cart") setCartHover(true);
+    } else setCartHover(false);
   }
 
-  function handleCartMouseEnter() {
-    if (pathname === "/cart") {
-      setCartHover(false);
-    } else {
-      setCartHover(true);
-    }
-  }
-
-  function handleCartMouseLeave() {
-    setCartHover(false);
-  }
-
-  function handleUserMouseEnter() {
-    if (pathname === `/user/${JSON.parse(user!).id}`) {
-      setUserHover(false);
-    } else {
-      setUserHover(true);
-    }
-  }
-
-  function handleUserMouseLeave() {
-    setUserHover(false);
+  function handleUserHover(action: "enter" | "leave") {
+    if (action === "enter") {
+      if (pathname !== `/user/${JSON.parse(user!).id}`) setUserHover(true);
+    } else setUserHover(false);
   }
 
   return (
@@ -100,8 +86,8 @@ function Navbar() {
       ) : (
         <div className="flex items-center">
           <div
-            onMouseEnter={handleAllCatsMouseEnter}
-            onMouseLeave={handleAllCatsMouseLeave}
+            onMouseEnter={() => handleAllCatsHover("enter")}
+            onMouseLeave={() => handleAllCatsHover("leave")}
             className="relative"
           >
             <button
@@ -126,14 +112,14 @@ function Navbar() {
             }
           >
             <BsInfoCircleFill />
-            درباره ما
+            درباره من
           </NavLink>
           <button
             onClick={handleScrollDown}
             className="flex items-center gap-1 px-4 border-b-4 py-3 border-transparent hover:border-red-500 dark:hover:border-red-400 transition"
           >
             <BsPersonLinesFill />
-            تماس با ما
+            تماس با من
             <FaCaretDown />
           </button>
         </div>
@@ -142,13 +128,13 @@ function Navbar() {
         {isLogin ? (
           <div
             className="relative"
-            onMouseEnter={handleUserMouseEnter}
-            onMouseLeave={handleUserMouseLeave}
+            onMouseEnter={() => handleUserHover("enter")}
+            onMouseLeave={() => handleUserHover("leave")}
           >
             {screenWidth < 640 ? (
               <>
                 <button
-                  onClick={handleUserMouseEnter}
+                  onClick={() => handleUserHover("enter")}
                   className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm border transition ${
                     userHover
                       ? "border-blue-500 dark:border-blue-400 text-white bg-blue-500 dark:bg-blue-400"
@@ -163,7 +149,7 @@ function Navbar() {
                 </button>
                 {userHover && (
                   <div
-                    onClick={() => setUserHover(false)}
+                    onClick={() => handleUserHover("leave")}
                     className="fixed top-0 right-0 w-full h-full z-10"
                   />
                 )}
@@ -186,7 +172,7 @@ function Navbar() {
             )}
             <UserHoverMenu
               showMenu={userHover}
-              hideMenu={() => setUserHover(false)}
+              hideMenu={() => handleUserHover("leave")}
               profileUrl={`/user/${JSON.parse(user!).id}`}
             />
           </div>
@@ -203,9 +189,9 @@ function Navbar() {
         <NavLink
           to="/cart"
           end
-          onMouseEnter={handleCartMouseEnter}
-          onMouseLeave={handleCartMouseLeave}
-          onClick={handleCartMouseLeave}
+          onMouseEnter={() => handleCartHover("enter")}
+          onMouseLeave={() => handleCartHover("leave")}
+          onClick={() => handleCartHover("leave")}
           className={({ isActive }) =>
             `${
               isActive &&

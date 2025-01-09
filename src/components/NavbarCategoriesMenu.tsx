@@ -1,6 +1,7 @@
 import { NavLink } from "react-router";
-import { FaHeadphonesSimple, FaMobile, FaCouch } from "react-icons/fa6";
+import { AiFillProduct } from "react-icons/ai";
 import { IoLaptop, IoGameController, IoTv } from "react-icons/io5";
+import { FaHeadphonesSimple, FaMobile, FaCouch } from "react-icons/fa6";
 
 import { type NavbarCategoriesMenuProps } from "../types/componentTypes";
 
@@ -24,6 +25,7 @@ function NavbarCategoriesMenu({
             } flex items-center gap-1 transition`
           }
         >
+          <AiFillProduct />
           همه محصولات
         </NavLink>
       </div>

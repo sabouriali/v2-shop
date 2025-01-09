@@ -53,6 +53,9 @@ export type FilterMenuProps = {
   onSale: (data: boolean) => void;
   onFilterBrands: (brands: string[]) => void;
   onClearFilters: () => void;
+  type?: string;
+  showFilters?: boolean;
+  hideFilters?: () => void;
 };
 
 export type UserAgreementProps = {
@@ -136,15 +139,6 @@ export type NavbarMenuProps = {
 export type NavbarCategoriesMenuProps = {
   showMenu: boolean;
   hideMenu: () => void;
-};
-
-export type FilterMenuMobileProps = {
-  showFilters: boolean;
-  hideFilters: () => void;
-  brands: string[];
-  onSale: (data: boolean) => void;
-  onFilterBrands: (brands: string[]) => void;
-  onClearFilters: () => void;
 };
 
 export type SortMenuProps = {

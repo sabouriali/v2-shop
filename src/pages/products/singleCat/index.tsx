@@ -9,7 +9,6 @@ import Loading from "../../../components/UI/Loading";
 import ProductCard from "../../../components/ProductCard";
 import SortBar from "../../../components/SortBar";
 import FilterMenu from "../../../components/FilterMenu";
-import FilterMenuMobile from "../../../components/FilterMenuMobile";
 
 import { type TProduct } from "../../../types/productTypes";
 
@@ -17,7 +16,7 @@ function SingleCatPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [products, setProducts] = useState<TProduct[]>([]);
   const [sort, setSort] = useState("def");
-  const [onSale, setOnSale] = useState<boolean>(true);
+  const [onSale, setOnSale] = useState(true);
   const [showFilters, setShowFilters] = useState(false);
   const [filterBrands, setFilterBrands] = useState<string[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<TProduct[]>([]);
@@ -28,6 +27,8 @@ function SingleCatPage() {
     setIsLoading(true);
     getSingleCatProducts(cat!).then((res) => {
       setProducts(res.products);
+      setOnSale(true);
+      setFilterBrands([]);
       setIsLoading(false);
     });
   }, [cat]);
@@ -144,7 +145,8 @@ function SingleCatPage() {
           </div>
           <div className={screenWidth < 640 ? "" : "flex gap-6"}>
             {screenWidth < 640 ? (
-              <FilterMenuMobile
+              <FilterMenu
+                type="mobile"
                 showFilters={showFilters}
                 hideFilters={() => setShowFilters(false)}
                 brands={products.map((product) =>

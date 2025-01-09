@@ -30,7 +30,7 @@ function CheckoutInfo({
     <>
       <Backdrop showBackdrop={showInfo} hideBackdrop={hideInfo} />
       <section
-        className={`fixed z-20 p-4 rounded-2xl w-[90%] sm:w-4/5 md:w-[70%] lg:w-3/5 xl:w-1/2 2xl:w-2/5 max-h-[85vh] overflow-y-scroll top-1/3 right-1/2 -translate-y-1/3 translate-x-1/2 bg-white dark:bg-slate-800 shadow-lg transition ${
+        className={`fixed z-20 p-4 rounded-2xl w-[90%] sm:w-4/5 md:w-[70%] lg:w-3/5 xl:w-1/2 2xl:w-2/5 max-h-[85vh] overflow-y-scroll top-1/2 right-1/2 -translate-y-1/2 translate-x-1/2 bg-white dark:bg-slate-800 shadow-lg transition ${
           showInfo
             ? "opacity-100 visible"
             : "opacity-0 -translate-y-96 invisible"

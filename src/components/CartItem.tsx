@@ -65,17 +65,17 @@ function CartItem({ id, title, price, qty, discount, type }: CartItemProps) {
         product={product}
       />
       {type === "mobile" ? (
-        <div className="p-2 mb-2 border rounded">
+        <div className="pb-2 pr-2 mb-2 bg-white dark:bg-slate-700 rounded transition">
           <Link
             to={`/products/category/${product?.category}/${id}`}
             className="flex items-center gap-1"
           >
-            <img src={product?.image} className="w-10 h-10" />
-            <p className="line-clamp-2 text-justify">
+            <img src={product?.image} className="w-10 h-10 rounded-tl" />
+            <p className="line-clamp-2 text-justify mt-2">
               x{qty} {product?.title}
             </p>
           </Link>
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between ml-2">
             <div className="flex items-center justify-start gap-4">
               <p>{price * qty}$</p>
               {discount && (

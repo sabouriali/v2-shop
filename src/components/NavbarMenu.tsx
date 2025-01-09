@@ -40,7 +40,7 @@ function NavbarMenu({ showNavbarMenu, hideNavbarMenu }: NavbarMenuProps) {
       >
         <button onClick={handleScrollDown} className="flex items-center gap-1 mb-1">
           <BsPersonLinesFill />
-          تماس با ما
+          تماس با من
           <FaCaretDown />
         </button>
         <NavLink
@@ -53,7 +53,7 @@ function NavbarMenu({ showNavbarMenu, hideNavbarMenu }: NavbarMenuProps) {
           }
         >
           <BsInfoCircleFill />
-          درباره ما
+          درباره من
         </NavLink>
         <div className="relative">
           <button

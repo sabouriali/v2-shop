@@ -1,35 +1,33 @@
 import { useState } from "react";
 import { NavLink } from "react-router";
-import { FaCouch, FaHeadphonesSimple, FaMobile } from "react-icons/fa6";
+import { AiFillProduct } from "react-icons/ai";
+import { IoIosArrowBack } from "react-icons/io";
 import { IoGameController, IoLaptop, IoTv } from "react-icons/io5";
+import { FaCouch, FaHeadphonesSimple, FaMobile } from "react-icons/fa6";
 
 import { type CategoriesMenuProps } from "../types/componentTypes";
-import { IoIosArrowBack } from "react-icons/io";
 
 function CategoriesMenu({ categoriesMenuHover }: CategoriesMenuProps) {
   const [mobileHover, setMobileHover] = useState(false);
   const [laptopHOver, setLaptopHover] = useState(false);
   const [appliancesHover, setAppliancesHover] = useState(false);
 
-  function handleMobileMouseEnter() {
-    setMobileHover(true);
-  }
-  function handleMobileMouseLeave() {
-    setMobileHover(false);
-  }
-
-  function handleLaptopMouseEnter() {
-    setLaptopHover(true);
-  }
-  function handleLaptopMouseLeave() {
-    setLaptopHover(false);
+  function handleMobileHover(action: "enter" | "leave") {
+    if (action === "enter") {
+      setMobileHover(true);
+    } else setMobileHover(false);
   }
 
-  function handleAppliancesMouseEnter() {
-    setAppliancesHover(true);
+  function handleLaptopHover(action: "enter" | "leave") {
+    if (action === "enter") {
+      setLaptopHover(true);
+    } else setLaptopHover(false);
   }
-  function handleAppliancesMouseLeave() {
-    setAppliancesHover(false);
+
+  function handleAppliancesHover(action: "enter" | "leave") {
+    if (action === "enter") {
+      setAppliancesHover(true);
+    } else setAppliancesHover(false);
   }
 
   return (
@@ -44,17 +42,20 @@ function CategoriesMenu({ categoriesMenuHover }: CategoriesMenuProps) {
         <NavLink
           to="/products/1"
           className={({ isActive }) =>
-            `${isActive && "text-red-500 dark:text-red-400"} transition`
+            `${
+              isActive && "text-red-500 dark:text-red-400"
+            } flex items-center gap-1 transition`
           }
           end
         >
+          <AiFillProduct />
           همه محصولات
         </NavLink>
       </div>
       <div
         className="relative hover:bg-white dark:hover:bg-slate-900 pr-4 py-2 transition"
-        onMouseEnter={handleMobileMouseEnter}
-        onMouseLeave={handleMobileMouseLeave}
+        onMouseEnter={() => handleMobileHover("enter")}
+        onMouseLeave={() => handleMobileHover("leave")}
       >
         <div className="flex items-center justify-between">
           <button className="flex items-center gap-1">
@@ -89,19 +90,19 @@ function CategoriesMenu({ categoriesMenuHover }: CategoriesMenuProps) {
               } flex items-center gap-1 pr-4 py-2 border-l-2 border-transparent hover:border-red-500 dark:hover:border-red-400 transition`
             }
           >
-            <FaHeadphonesSimple className="ml-1" />
+            <FaHeadphonesSimple />
             هدفون، هندزفری، اسپیکر
           </NavLink>
         </div>
       </div>
       <div
         className="relative hover:bg-white dark:hover:bg-slate-900 pr-4 py-2 transition"
-        onMouseEnter={handleLaptopMouseEnter}
-        onMouseLeave={handleLaptopMouseLeave}
+        onMouseEnter={() => handleLaptopHover("enter")}
+        onMouseLeave={() => handleLaptopHover("leave")}
       >
         <div className="flex items-center justify-between">
-          <button className="flex items-center transition">
-            <IoLaptop className="ml-1" />
+          <button className="flex items-center gap-1 transition">
+            <IoLaptop />
             لپ تاپ
           </button>
           <IoIosArrowBack />
@@ -121,7 +122,7 @@ function CategoriesMenu({ categoriesMenuHover }: CategoriesMenuProps) {
               } flex items-center gap-1 pr-4 py-2 border-l-2 border-transparent hover:border-red-500 dark:hover:border-red-400 transition`
             }
           >
-            <IoLaptop className="ml-1" />
+            <IoLaptop />
             لپ تاپ
           </NavLink>
           <NavLink
@@ -132,19 +133,19 @@ function CategoriesMenu({ categoriesMenuHover }: CategoriesMenuProps) {
               } flex items-center gap-1 pr-4 py-2 border-l-2 border-transparent hover:border-red-500 dark:hover:border-red-400 transition`
             }
           >
-            <IoGameController className="ml-1" />
+            <IoGameController />
             تجهیزات گیمینگ
           </NavLink>
         </div>
       </div>
       <div
         className="relative hover:bg-white dark:hover:bg-slate-900 pr-4 py-2 transition"
-        onMouseEnter={handleAppliancesMouseEnter}
-        onMouseLeave={handleAppliancesMouseLeave}
+        onMouseEnter={() => handleAppliancesHover("enter")}
+        onMouseLeave={() => handleAppliancesHover("leave")}
       >
         <div className="flex items-center justify-between">
-          <button className="flex items-center transition">
-            <IoTv className="ml-1" />
+          <button className="flex items-center gap-1 transition">
+            <IoTv />
             لوازم خانگی
           </button>
           <IoIosArrowBack />
@@ -164,7 +165,7 @@ function CategoriesMenu({ categoriesMenuHover }: CategoriesMenuProps) {
               } flex items-center gap-1 pr-4 py-2 border-l-2 border-transparent hover:border-red-500 dark:hover:border-red-400 transition`
             }
           >
-            <IoTv className="ml-1" />
+            <IoTv />
             تلویزیون
           </NavLink>
           <NavLink
@@ -175,7 +176,7 @@ function CategoriesMenu({ categoriesMenuHover }: CategoriesMenuProps) {
               } flex items-center gap-1 pr-4 py-2 border-l-2 border-transparent hover:border-red-500 dark:hover:border-red-400 transition`
             }
           >
-            <FaCouch className="ml-1" />
+            <FaCouch />
             لوازم خانگی
           </NavLink>
         </div>

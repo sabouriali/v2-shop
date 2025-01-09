@@ -1,3 +1,4 @@
+import { FaCaretUp } from "react-icons/fa6";
 import {
   BsEnvelopeAtFill,
   BsGithub,
@@ -5,11 +6,11 @@ import {
   BsLinkedin,
   BsPhoneFill,
   BsTelegram,
-  BsYoutube,
 } from "react-icons/bs";
-import { FaCaretUp } from "react-icons/fa6";
 
 function Footer() {
+  const screenWidth = window.screen.width;
+
   function handleScrollUp() {
     window.scrollTo({
       top: 0,
@@ -23,55 +24,79 @@ function Footer() {
         <p className="text-3xl text-red-500 dark:text-red-400">مارکت‌لند</p>
         <button
           onClick={handleScrollUp}
-          className="flex items-center text-sm p-2 rounded-lg border hover:border-red-500 dark:hover:border-red-400 hover:bg-red-500 dark:hover:bg-red-400 hover:text-white transition"
+          className="flex items-center gap-1 text-sm p-2 rounded-lg border hover:border-red-500 dark:hover:border-red-400 hover:bg-red-500 dark:hover:bg-red-400 hover:text-white transition"
         >
           بازگشت به بالا
-          <FaCaretUp className="mr-1" />
+          <FaCaretUp />
         </button>
       </div>
-      <div className="grid items-center md:grid-cols-2">
+      <div className="md:grid md:items-center md:grid-cols-2 gap-4">
         <div className="mb-6">
-          <div className="relative border p-4 w-fit rounded-lg">
+          <div className="relative border p-3 rounded-lg">
             <p className="absolute text-xs bg-white dark:bg-slate-700 -top-2 right-2 px-1.5">
-              تماس با ما
+              تماس با من
             </p>
-            <div className="flex items-center flex-wrap gap-5 text-gray-400">
-              <p className="flex items-center hover:text-black dark:hover:text-slate-50 transition">
-                <BsPhoneFill className="ml-1" />
+            <div
+              className={`items-center justify-between flex-wrap gap-4 text-gray-400 ${
+                screenWidth > 392 && "flex"
+              }`}
+            >
+              <a
+                href="tel:09171140965"
+                className="flex items-center gap-1 hover:text-black dark:hover:text-slate-50 transition"
+              >
+                <BsPhoneFill />
                 ۰۹۱۷۱۱۴۰۹۶۵
-              </p>
-              <span className="text-2xl text-gray-300">|</span>
-              <p className="flex items-center hover:text-black dark:hover:text-slate-50 transition">
-                <BsEnvelopeAtFill className="ml-1" />
+              </a>
+              {screenWidth > 392 && (
+                <span className="text-2xl text-gray-300">|</span>
+              )}
+              <a
+                href="mailto:sabouri.ali@outlook.com"
+                className="flex items-center gap-1 hover:text-black dark:hover:text-slate-50 transition"
+              >
+                <BsEnvelopeAtFill />
                 sabouri.ali@outlook.com
-              </p>
+              </a>
             </div>
           </div>
         </div>
         <div className="mb-6">
-          <div className="relative border p-4 w-fit rounded-lg">
+          <div className="relative border p-3 rounded-lg">
             <p className="absolute text-xs bg-white dark:bg-slate-700 -top-2 right-2 px-1.5">
               شبکه‌های اجتماعی
             </p>
-            <div className="flex items-center gap-5 text-gray-400">
-              <a className="hover:text-[#E1306C] transition">
-                <BsInstagram size={32} />
+            <div className="flex items-center justify-between gap-8 text-gray-400">
+              <a
+                href="https://instagram.com/_alisabouri_"
+                target="_blank"
+                className="hover:text-[#E1306C] transition"
+              >
+                <BsInstagram size={24} />
               </a>
               <span className="text-2xl text-gray-300">|</span>
-              <a className="hover:text-[#24A1DE] transition">
-                <BsTelegram size={32} />
+              <a
+                href="https://t.me/ali98sb"
+                target="_blank"
+                className="hover:text-[#24A1DE] transition"
+              >
+                <BsTelegram size={24} />
               </a>
               <span className="text-2xl text-gray-300">|</span>
-              <a className="hover:text-[#0077B5] transition">
-                <BsLinkedin size={32} />
+              <a
+                href="https://linkedin.com/in/ali-sabouri-a35467332"
+                target="_blank"
+                className="hover:text-[#0077B5] transition"
+              >
+                <BsLinkedin size={24} />
               </a>
               <span className="text-2xl text-gray-300">|</span>
-              <a className="hover:text-[#171515] transition">
-                <BsGithub size={32} />
-              </a>
-              <span className="text-2xl text-gray-300">|</span>
-              <a className="hover:text-[#FF0000] transition">
-                <BsYoutube size={32} />
+              <a
+                href="https://github.com/sabouriali"
+                target="_blank"
+                className="hover:text-[#171515] transition"
+              >
+                <BsGithub size={24} />
               </a>
             </div>
           </div>

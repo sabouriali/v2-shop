@@ -32,10 +32,6 @@ function UserPage() {
     });
   }, [id]);
 
-  function handleLogout() {
-    dispatch(setLogout());
-  }
-
   return (
     <>
       {JSON.parse(sessionUser!).id == id ? (
@@ -113,7 +109,7 @@ function UserPage() {
                     />
                   </button>
                   <button
-                    onClick={handleLogout}
+                    onClick={() => dispatch(setLogout())}
                     className="flex items-center gap-1 px-4 py-2 rounded-lg border border-red-500 text-red-500 hover:text-white hover:bg-red-500 dark:border-red-400 dark:text-red-400 dark:hover:bg-red-400 transition"
                   >
                     <HiOutlineLogout />

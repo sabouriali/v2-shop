@@ -15,11 +15,11 @@ import OnSalePage from "../pages/products/onSale";
 import PopularPage from "../pages/products/popular";
 import UserPage from "../pages/user/user";
 import CheckoutPage from "../pages/cart/checkout";
+import SuccessPage from "../pages/cart/checkout/success";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import PrivateRoute from "../components/PrivateRoute";
-import SuccessPage from "../pages/cart/checkout/success";
 
 function Navigation() {
   const theme = useStoreSelector((state) => state.theme.value);

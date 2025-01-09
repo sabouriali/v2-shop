@@ -202,7 +202,6 @@ import { getAllProducts } from "../../utility/api";
 import Loading from "../../components/UI/Loading";
 import ProductCard from "../../components/ProductCard";
 import FilterMenu from "../../components/FilterMenu";
-import FilterMenuMobile from "../../components/FilterMenuMobile";
 import SortBar from "../../components/SortBar";
 
 import { type TProduct } from "../../types/productTypes";
@@ -320,7 +319,8 @@ function ProductsPage() {
           </div>
           <div className={screenWidth < 640 ? "" : "flex gap-6"}>
             {screenWidth < 640 ? (
-              <FilterMenuMobile
+              <FilterMenu
+                type="mobile"
                 showFilters={showFilters}
                 hideFilters={() => setShowFilters(false)}
                 brands={products.map((product) =>
