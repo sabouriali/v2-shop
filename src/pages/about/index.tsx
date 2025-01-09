@@ -1,4 +1,18 @@
+import { useEffect } from "react";
+
 function About() {
+  useEffect(() => {
+    document.title = "مارکت لند | درباره من";
+    handleLoadOnTop();
+  }, []);
+
+  function handleLoadOnTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
+  }
+
   return (
     <>
       <h1 className="text-lg font-bold mb-6">درباره من</h1>

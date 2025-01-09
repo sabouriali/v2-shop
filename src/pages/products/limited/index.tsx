@@ -17,6 +17,8 @@ function LimitedProductsPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    document.title = `مارکت لند | محصولات - صفحه ${page}`;
+    handleLoadOnTop()
     setIsLoading(true);
     getProducts(JSON.parse(page!)).then((res) => {
       setProducts(res.products);
@@ -28,14 +30,12 @@ function LimitedProductsPage() {
 
   function handleNext() {
     if (JSON.parse(page!) < 8) {
-      handleLoadOnTop();
       navigate(`/products/${JSON.parse(page!) + 1}`);
     }
   }
 
   function handleBack() {
     if (JSON.parse(page!) > 1) {
-      handleLoadOnTop();
       navigate(`/products/${JSON.parse(page!) - 1}`);
     }
   }

@@ -8,8 +8,17 @@ function SuccessPage() {
   const dispatch = useStoreDispatch();
 
   useEffect(() => {
+    document.title = "مارکت لند | عملیات موفق";
+    handleLoadOnTop();
     dispatch(clearCart());
   }, []);
+
+  function handleLoadOnTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
+  }
 
   return (
     <div className="absolute right-1/2 translate-x-1/2 top-1/2 -translate-y-1/2 text-center p-12 w-96 shadow-lg rounded-2xl bg-white dark:bg-slate-700 transition-colors">

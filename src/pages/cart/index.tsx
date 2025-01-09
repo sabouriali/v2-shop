@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { MdRemoveShoppingCart } from "react-icons/md";
 import { FaCheck, FaTrashCan } from "react-icons/fa6";
@@ -18,6 +18,11 @@ import DeleteCartAlert from "../../components/DeleteCartAlert";
 function CartPage() {
   const [showDeleteCartAlert, setShowDeleteCartAlert] = useState(false);
 
+  useEffect(() => {
+    document.title = "مارکت لند | سبد خرید";
+    handleLoadOnTop();
+  }, []);
+
   const cart = useStoreSelector((state) => state.cart.items);
   const dispatch = useStoreDispatch();
 
@@ -28,6 +33,13 @@ function CartPage() {
   const navigate = useNavigate();
 
   const screenWidth = window.screen.width;
+
+  function handleLoadOnTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
+  }
 
   function handleContinue() {
     const cartExtras = {

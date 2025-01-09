@@ -19,8 +19,17 @@ function LoginPage() {
   const dispatch = useStoreDispatch();
 
   useEffect(() => {
+    document.title = "مارکت لند | ورود";
+    handleLoadOnTop();
     getAllUsers().then((res) => setUsers(res.users));
   }, []);
+
+  function handleLoadOnTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
+  }
 
   function handleShowPassword() {
     setShowPassword(!showPassword);

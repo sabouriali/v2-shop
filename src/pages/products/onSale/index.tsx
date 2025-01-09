@@ -14,6 +14,7 @@ function OnSalePage() {
   const [sort, setSort] = useState("def");
 
   useEffect(() => {
+    document.title = "مارکت لند | پیشنهاد شگفت‌انگیز";
     handleLoadOnTop();
     setIsLoading(true);
     getAllProducts().then((res) => {

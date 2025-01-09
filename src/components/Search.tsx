@@ -17,6 +17,10 @@ function Search({ showSearch, hideSearch }: SearchProps) {
     getAllProducts().then((res) => setProducts(res.products));
   }, []);
 
+  useEffect(() => {
+    if (!showSearch) setSearch("");
+  }, [showSearch]);
+
   const screenWidth = window.screen.width;
 
   function handleSearch(e: ChangeEvent<HTMLInputElement>) {

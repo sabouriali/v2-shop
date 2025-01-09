@@ -14,6 +14,7 @@ function PopularPage() {
   const [sort, setSort] = useState("def");
 
   useEffect(() => {
+    document.title = "مارکت لند | محصولات پرفروش";
     handleLoadOnTop();
     setIsLoading(true);
     getAllProducts().then((res) => {

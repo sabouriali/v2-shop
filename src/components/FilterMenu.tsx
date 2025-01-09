@@ -43,6 +43,12 @@ function FilterMenu({
     onFilterBrands(updatedBrands);
   }
 
+  function handleClearFilters() {
+    onClearFilters();
+    setOnSaleCheck(false);
+    setSelectedBrands([]);
+  }
+
   return (
     <>
       {type === "mobile" ? (
@@ -100,8 +106,12 @@ function FilterMenu({
             </div>
             <div>
               <button
-                onClick={onClearFilters}
-                className="flex items-center gap-1 justify-center px-3 py-2 rounded-lg w-full border border-red-500 dark:border-red-400 text-red-500 dark:text-red-400 hover:text-white hover:bg-red-500 dark:hover:bg-red-400 transition"
+                onClick={handleClearFilters}
+                className={`flex items-center gap-1 justify-center px-3 py-2 rounded-lg w-full border transition ${
+                  onSaleCheck || selectedBrands.length > 0
+                    ? "border-red-500 dark:border-red-400 text-red-500 dark:text-red-400 hover:text-white hover:bg-red-500 dark:hover:bg-red-400"
+                    : "border-gray-300 bg-gray-300 text-white dark:border-gray-400 dark:bg-gray-400"
+                }`}
               >
                 حذف فیلترها
                 <MdFilterAltOff />
@@ -156,8 +166,12 @@ function FilterMenu({
           </div>
           <div>
             <button
-              onClick={onClearFilters}
-              className="flex items-center gap-1 justify-center px-3 py-2 rounded-lg w-full border border-red-500 dark:border-red-400 text-red-500 dark:text-red-400 hover:text-white hover:bg-red-500 dark:hover:bg-red-400 transition"
+              onClick={handleClearFilters}
+              className={`flex items-center gap-1 justify-center px-3 py-2 rounded-lg w-full border transition ${
+                onSaleCheck || selectedBrands.length > 0
+                  ? "border-red-500 dark:border-red-400 text-red-500 dark:text-red-400 hover:text-white hover:bg-red-500 dark:hover:bg-red-400"
+                  : "border-gray-300 bg-gray-300 text-white dark:border-gray-400 dark:bg-gray-400 cursor-not-allowed"
+              }`}
             >
               حذف فیلترها
               <MdFilterAltOff />

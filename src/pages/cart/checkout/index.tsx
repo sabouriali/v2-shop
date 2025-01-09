@@ -21,12 +21,21 @@ function CheckoutPage() {
   const sessionAddress = sessionStorage.getItem("address");
 
   useEffect(() => {
+    document.title = "مارکت لند | ثبت سفارش";
+    handleLoadOnTop();
     setIsLoading(true);
     getSingleUser(JSON.parse(sessionUser!).id).then((res) => {
       setUser(res.user);
       setIsLoading(false);
     });
   }, [sessionUser]);
+
+  function handleLoadOnTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
+  }
 
   const phone = sessionAddress ? JSON.parse(sessionAddress).phone : user?.phone;
   const city = sessionAddress

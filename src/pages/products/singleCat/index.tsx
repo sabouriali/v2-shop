@@ -24,6 +24,8 @@ function SingleCatPage() {
   const { cat } = useParams();
 
   useEffect(() => {
+    document.title = `مارکت لند | ${handleCat()}`;
+    handleLoadOnTop();
     setIsLoading(true);
     getSingleCatProducts(cat!).then((res) => {
       setProducts(res.products);
@@ -35,6 +37,8 @@ function SingleCatPage() {
 
   // اعمال فیلترها و مرتب‌سازی
   useEffect(() => {
+    handleLoadOnTop();
+
     let updatedProducts = [...products];
 
     // فیلتر برند
@@ -114,6 +118,13 @@ function SingleCatPage() {
     filteredProducts.length > 0 || filterBrands.length > 0
       ? filteredProducts
       : products;
+
+  function handleLoadOnTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
+  }
 
   return (
     <>

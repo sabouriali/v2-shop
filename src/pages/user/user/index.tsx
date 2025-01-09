@@ -25,12 +25,21 @@ function UserPage() {
   const sessionUser = sessionStorage.getItem("user");
 
   useEffect(() => {
+    document.title = "مارکت لند | حساب کاربری";
+    handleLoadOnTop();
     setIsLoading(true);
     getSingleUser(id!).then((res) => {
       setUser(res.user);
       setIsLoading(false);
     });
   }, [id]);
+
+  function handleLoadOnTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
+  }
 
   return (
     <>

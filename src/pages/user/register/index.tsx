@@ -1,4 +1,4 @@
-import { type ChangeEvent, type FormEvent, useState } from "react";
+import { type ChangeEvent, type FormEvent, useEffect, useState } from "react";
 import { IoEye, IoEyeOff, IoPersonAdd } from "react-icons/io5";
 
 import { addUser } from "../../../utility/api";
@@ -23,6 +23,11 @@ function RegisterPage() {
   const [zipcode, setZipcode] = useState("");
   const [agree, setAgree] = useState(false);
   const [isValid, setIsValid] = useState(false);
+
+  useEffect(() => {
+    document.title = "مارکت لند | ثبت نام";
+    handleLoadOnTop();
+  }, []);
 
   function handleLoadOnTop() {
     window.scrollTo({

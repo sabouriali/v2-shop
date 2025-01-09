@@ -14,6 +14,7 @@ function Home() {
   const [products, setProducts] = useState<TProduct[]>([]);
 
   useEffect(() => {
+    document.title = "مارکت لند | صفحه اصلی";
     handleLoadOnTop();
     setIsLoading(true);
     getAllProducts().then((res) => {

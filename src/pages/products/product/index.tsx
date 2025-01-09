@@ -33,6 +33,7 @@ function ProductPage() {
     handleLoadOnTop();
     setIsLoading(true);
     getSingleProduct(id!).then((res) => {
+      document.title = `مارکت لند | ${res.product.title}`;
       setProduct(res.product);
       setIsLoading(false);
     });
