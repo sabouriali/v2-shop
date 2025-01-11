@@ -1,3 +1,5 @@
+import { HiMiniReceiptPercent } from "react-icons/hi2";
+
 import { type CheckoutCartItemProps } from "../types/componentTypes";
 
 function CheckoutCartItem({
@@ -13,10 +15,10 @@ function CheckoutCartItem({
       </p>
       <div className="flex items-center gap-4">
         <p>{price * qty}$</p>
-        {discount&&<span>/</span>}
+        {discount && <span>/</span>}
         {discount && (
           <div className="flex items-center gap-1 text-green-500">
-            <p>تخفیف:</p>
+            <HiMiniReceiptPercent />
             <p>{discount * qty}$</p>
           </div>
         )}

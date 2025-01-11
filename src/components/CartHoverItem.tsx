@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { HiMiniReceiptPercent } from "react-icons/hi2";
 
 import { getSingleProduct } from "../utility/api";
 
@@ -37,11 +38,9 @@ function CartHoverItem({ id, price, qty }: CartHoverItemProps) {
             {product?.discount ? (
               <>
                 <p>{price * qty}$</p>
-                <div className="flex items-center gap-1 text-xs">
-                  <p>تخفیف:</p>
-                  <p className="text-red-500 dark:text-red-400">
-                    {(product.price - price) * qty}$
-                  </p>
+                <div className="flex items-center gap-1 text-xs text-red-500 dark:text-red-400">
+                  <HiMiniReceiptPercent />
+                  <p>{(product.price - price) * qty}$</p>
                 </div>
               </>
             ) : (

@@ -2,7 +2,7 @@ import { Link } from "react-router";
 
 import { type ProductCardProps } from "../types/componentTypes";
 
-function ProductCard({ product, onCloseSearch, type }: ProductCardProps) {
+function ProductCard({ product, onCloseSearch, type, homePage }: ProductCardProps) {
   return (
     <>
       {type === "mobile" ? (
@@ -53,13 +53,13 @@ function ProductCard({ product, onCloseSearch, type }: ProductCardProps) {
         <Link
           to={`/products/category/${product.category}/${product.id}`}
           onClick={onCloseSearch}
-          className="grid grid-rows-4 rounded-2xl pb-4 min-w-56 h-96 bg-white shadow-md hover:shadow-xl dark:bg-slate-700 dark:hover:bg-slate-900 transition"
+          className={`grid grid-rows-4 rounded-2xl pb-4 bg-white shadow hover:shadow-lg dark:bg-slate-700 dark:hover:bg-slate-900 transition ${homePage ? 'h-[19rem] w-44' : 'min-w-56 h-96'}`}
         >
           <div className="row-span-3 bg-white rounded-t-2xl mb-2 content-center">
             <img
               src={product.image}
               alt={product.title}
-              className="p-4 max-h-full mx-auto"
+              className="p-2 max-h-full mx-auto"
             />
           </div>
           <div className="row-span-1 text-sm px-4">

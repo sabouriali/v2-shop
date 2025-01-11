@@ -78,7 +78,9 @@ function CheckoutInfo({
             پرداخت
           </h3>
           <div className="flex items-center gap-1 text-green-500">
-            <p className="text-gray-500 dark:text-gray-400">سود شما:</p>
+            <p className="text-gray-500 dark:text-gray-400">
+              سود شما:
+            </p>
             <p>{JSON.parse(sessionCart!).totalDiscount}$</p>
           </div>
           <div className="flex items-center gap-1">

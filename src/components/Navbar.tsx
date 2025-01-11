@@ -201,7 +201,7 @@ function Navbar() {
         >
           <FaCartShopping size={20} />
           {cartQty > 0 && (
-            <span className="absolute -right-1 -bottom-1 text-white text-sm text-center w-5 h-5 rounded-full bg-red-500 dark:bg-red-400">
+            <span className="absolute -right-1 -bottom-1 text-white text-xs text-center content-center w-5 h-5 rounded-full bg-red-500 dark:bg-red-400">
               {cartQty}
             </span>
           )}

@@ -47,7 +47,11 @@ function FilterMenu({
     onClearFilters();
     setOnSaleCheck(false);
     setSelectedBrands([]);
+    setShowBrand(false);
+    if (type === "mobile") hideFilters!();
   }
+
+  const filters = selectedBrands.length + (onSaleCheck ? 1 : 0);
 
   return (
     <>
@@ -61,10 +65,17 @@ function FilterMenu({
                 : "opacity-0 invisible translate-y-96"
             }`}
           >
-            <h3 className="flex items-center gap-1 text-lg font-bold mb-4">
-              <FaFilter />
-              فیلتر
-            </h3>
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="flex items-center gap-1 text-lg font-bold">
+                <FaFilter />
+                فیلتر
+              </h3>
+              {filters !== 0 && (
+                <span className="w-5 h-5 text-xs text-center content-center rounded-full bg-red-500 dark:bg-red-400 text-white">
+                  {filters}
+                </span>
+              )}
+            </div>
             <div className="flex items-center justify-between mb-2">
               <label htmlFor="onSale" className="cursor-pointer">
                 پیشنهاد ویژه
@@ -121,10 +132,17 @@ function FilterMenu({
         </>
       ) : (
         <div className="max-h-[90vh]">
-          <h3 className="flex items-center gap-1 text-lg font-bold mb-4">
-            <FaFilter />
-            فیلتر
-          </h3>
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="flex items-center gap-1 text-lg font-bold">
+              <FaFilter />
+              فیلتر
+            </h3>
+            {filters !== 0 && (
+              <span className="w-5 h-5 text-xs text-center content-center rounded-full bg-red-500 dark:bg-red-400 text-white">
+                {filters}
+              </span>
+            )}
+          </div>
           <div className="flex items-center justify-between mb-2">
             <label htmlFor="onSale" className="cursor-pointer">
               پیشنهاد ویژه
@@ -173,8 +191,8 @@ function FilterMenu({
                   : "border-gray-300 bg-gray-300 text-white dark:border-gray-400 dark:bg-gray-400 cursor-not-allowed"
               }`}
             >
-              حذف فیلترها
               <MdFilterAltOff />
+              حذف فیلترها
             </button>
           </div>
         </div>

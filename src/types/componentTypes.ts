@@ -15,6 +15,7 @@ export type ProductCardProps = {
   product: TProduct;
   type?: string;
   onCloseSearch?: () => void;
+  homePage?: boolean;
 };
 
 export type CategoriesMenuProps = {

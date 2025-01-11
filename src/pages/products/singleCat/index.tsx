@@ -126,6 +126,8 @@ function SingleCatPage() {
     });
   }
 
+  const filters = filterBrands.length + (onSale ? 0 : 1);
+
   return (
     <>
       {isLoading ? (
@@ -148,7 +150,9 @@ function SingleCatPage() {
             {screenWidth < 640 && (
               <button
                 onClick={() => setShowFilters(true)}
-                className="fixed bottom-4 left-4 z-[5] p-4 bg-red-500 text-white rounded-full shadow-md"
+                className={`fixed bottom-4 left-4 z-[5] p-4 text-white rounded-full shadow-md ${
+                  filters === 0 ? "bg-gray-500" : "bg-red-500"
+                }`}
               >
                 <FaFilter />
               </button>
