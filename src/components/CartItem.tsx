@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
+import { HiMiniReceiptPercent } from "react-icons/hi2";
 import { FaMinus, FaPlus, FaTrashCan } from "react-icons/fa6";
 
 import { useStoreDispatch } from "../hooks/useStore";
@@ -81,7 +82,10 @@ function CartItem({ id, title, price, qty, discount, type }: CartItemProps) {
               {discount && (
                 <>
                   <span>/</span>
-                  <p className="text-green-500">{discount * qty}$</p>
+                  <p className="flex items-center gap-1 text-green-500">
+                    <HiMiniReceiptPercent />
+                    {discount * qty}$
+                  </p>
                 </>
               )}
             </div>
