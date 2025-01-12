@@ -141,7 +141,7 @@ function CartItem({ id, title, price, qty, discount, type }: CartItemProps) {
                     onClick={handleRemoveFromCart}
                     className={`p-2 border rounded-lg transition ${
                       qty === 1
-                        ? "border-transparent text-gray-300 dark:text-gray-500 hover:text-red-500 dark:hover:text-red-400"
+                        ? "border-transparent text-gray-500 dark:text-gray-300 hover:text-red-500 dark:hover:text-red-400"
                         : "border-blue-500 dark:border-blue-400 text-blue-500 dark:text-blue-400 hover:text-white hover:bg-blue-500 dark:hover:bg-blue-400"
                     }`}
                   >

@@ -1,4 +1,9 @@
 import { useNavigate } from "react-router";
+import { IoReceipt } from "react-icons/io5";
+import { MdPayments } from "react-icons/md";
+import { FaShoppingBasket } from "react-icons/fa";
+import { RiUserReceivedFill } from "react-icons/ri";
+import { BsCreditCard2BackFill } from "react-icons/bs";
 
 import { useStoreDispatch, useStoreSelector } from "../hooks/useStore";
 import { setPayed } from "../redux/slices/cartSlice";
@@ -36,9 +41,13 @@ function CheckoutInfo({
             : "opacity-0 -translate-y-96 invisible"
         }`}
       >
-        <h2 className="text-lg font-bold mb-6">فاکتور نهایی</h2>
+        <h2 className="flex items-center gap-1 text-lg font-bold mb-6">
+          <IoReceipt />
+          فاکتور نهایی
+        </h2>
         <div className="relative border p-4 mb-6 rounded-lg">
-          <h3 className="absolute -top-3 right-2 text-sm px-1.5 bg-white dark:bg-slate-800 transition">
+          <h3 className="absolute -top-3 right-2 flex items-center gap-1 text-sm px-1.5 bg-white dark:bg-slate-800 transition">
+            <RiUserReceivedFill />
             مشخصات گیرنده
           </h3>
           <div className="flex items-center gap-1">
@@ -64,7 +73,8 @@ function CheckoutInfo({
           </div>
         </div>
         <div className="relative border p-4 pb-0 mb-6 rounded-lg">
-          <h3 className="absolute -top-3 right-2 text-sm px-1.5 bg-white dark:bg-slate-800 transition">
+          <h3 className="absolute -top-3 right-2 flex items-center gap-1 text-sm px-1.5 bg-white dark:bg-slate-800 transition">
+            <FaShoppingBasket />
             سبد خرید
           </h3>
           <div>
@@ -74,13 +84,12 @@ function CheckoutInfo({
           </div>
         </div>
         <div className="relative border p-4 mb-4 rounded-lg">
-          <h3 className="absolute -top-3 right-2 text-sm px-1.5 bg-white dark:bg-slate-800 transition">
+          <h3 className="absolute -top-3 right-2 flex items-center gap-1 text-sm px-1.5 bg-white dark:bg-slate-800 transition">
+            <MdPayments />
             پرداخت
           </h3>
           <div className="flex items-center gap-1 text-green-500">
-            <p className="text-gray-500 dark:text-gray-400">
-              سود شما:
-            </p>
+            <p className="text-gray-500 dark:text-gray-400">سود شما:</p>
             <p>{JSON.parse(sessionCart!).totalDiscount}$</p>
           </div>
           <div className="flex items-center gap-1">
@@ -91,8 +100,9 @@ function CheckoutInfo({
         <div>
           <button
             onClick={handlePay}
-            className="px-4 py-2 rounded-lg border border-blue-500 dark:border-blue-400 text-blue-500 dark:text-blue-400 hover:text-white hover:bg-blue-500 dark:hover:bg-blue-400 transition"
+            className="flex items-center gap-1 px-4 py-2 rounded-lg border border-blue-500 dark:border-blue-400 text-blue-500 dark:text-blue-400 hover:text-white hover:bg-blue-500 dark:hover:bg-blue-400 transition"
           >
+            <BsCreditCard2BackFill />
             پرداخت
           </button>
         </div>

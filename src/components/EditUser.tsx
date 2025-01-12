@@ -1,4 +1,4 @@
-import { type ChangeEvent, type FormEvent, useState } from "react";
+import { type ChangeEvent, type FormEvent, useEffect, useState } from "react";
 import { HiPencil } from "react-icons/hi";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 import { IoMdCheckmarkCircleOutline, IoMdTrash } from "react-icons/io";
@@ -26,7 +26,78 @@ function EditUser({ user, onLoading, onLoaded, closeEdit }: EditUserProps) {
   const [street, setStreet] = useState(user.address.street);
   const [number, setNumber] = useState(user.address.number);
   const [zipcode, setZipcode] = useState(user.address.zipcode);
+  const [firstnameIsValid, setFirstnameIsValid] = useState(false);
+  const [lastnameIsValid, setLastnameIsValid] = useState(false);
+  const [usernameIsValid, setUsernameIsValid] = useState(false);
+  const [emailIsValid, setEmailIsValid] = useState(false);
+  const [passwordIsValid, setPasswordIsValid] = useState(false);
+  const [password2IsValid, setPassword2IsValid] = useState(false);
+  const [phoneIsValid, setPhoneIsValid] = useState(false);
+  const [cityIsValid, setCityIsValid] = useState(false);
+  const [streetIsValid, setStreetIsValid] = useState(false);
+  const [numberIsValid, setNumberIsValid] = useState(false);
+  const [zipcodeIsValid, setZipcodeIsValid] = useState(false);
   const [isValid, setIsValid] = useState(false);
+
+  useEffect(() => {
+    handleFirstnameValidation();
+  }, [firstname]);
+
+  useEffect(() => {
+    handleLastnameValidation();
+  }, [lastname]);
+
+  useEffect(() => {
+    handleUsernameValidation();
+  }, [username]);
+
+  useEffect(() => {
+    handleEmailValidation();
+  }, [email]);
+
+  useEffect(() => {
+    handlePasswordValidation();
+  }, [password]);
+
+  useEffect(() => {
+    handlePassword2Validation();
+  }, [password, password2]);
+
+  useEffect(() => {
+    handlePhoneValidation();
+  }, [phone]);
+
+  useEffect(() => {
+    handleCityValidation();
+  }, [city]);
+
+  useEffect(() => {
+    handleStreetValidation();
+  }, [street]);
+
+  useEffect(() => {
+    handleNumberValidation();
+  }, [number]);
+
+  useEffect(() => {
+    handleZipcodeValidation();
+  }, [zipcode]);
+
+  useEffect(() => {
+    handleValidation();
+  }, [
+    firstnameIsValid,
+    lastnameIsValid,
+    usernameIsValid,
+    emailIsValid,
+    passwordIsValid,
+    password2IsValid,
+    phoneIsValid,
+    cityIsValid,
+    streetIsValid,
+    numberIsValid,
+    zipcodeIsValid,
+  ]);
 
   const dispatch = useStoreDispatch();
 
@@ -51,74 +122,106 @@ function EditUser({ user, onLoading, onLoaded, closeEdit }: EditUserProps) {
 
   function handleValidation() {
     setIsValid(
-      firstname.trim() !== "" &&
-        lastname.trim() !== "" &&
-        username.trim() !== "" &&
-        email.trim() !== "" &&
-        password.trim() !== "" &&
-        password2.trim() !== "" &&
-        phone.trim() !== "" &&
-        city.trim() !== "" &&
-        street.trim() !== "" &&
-        number.trim() !== "" &&
-        zipcode.trim() !== "" &&
-        password === password2
+      firstnameIsValid &&
+        lastnameIsValid &&
+        emailIsValid &&
+        password2IsValid &&
+        phoneIsValid &&
+        cityIsValid &&
+        streetIsValid &&
+        numberIsValid &&
+        zipcodeIsValid
     );
+  }
+
+  function handleFirstnameValidation() {
+    setFirstnameIsValid(firstname.trim().length >= 3);
+  }
+
+  function handleLastnameValidation() {
+    setLastnameIsValid(lastname.trim().length >= 3);
+  }
+
+  function handleUsernameValidation() {
+    setUsernameIsValid(username.trim().length >= 3);
+  }
+
+  function handleEmailValidation() {
+    setEmailIsValid(email.trim().length >= 3);
+  }
+
+  function handlePasswordValidation() {
+    setPasswordIsValid(password.trim().length >= 3);
+  }
+
+  function handlePassword2Validation() {
+    setPassword2IsValid(
+      password2.trim().length >= 3 && password.trim() === password2.trim()
+    );
+  }
+
+  function handlePhoneValidation() {
+    setPhoneIsValid(phone.trim().length >= 3);
+  }
+
+  function handleCityValidation() {
+    setCityIsValid(city.trim().length >= 3);
+  }
+
+  function handleStreetValidation() {
+    setStreetIsValid(street.trim().length >= 3);
+  }
+
+  function handleNumberValidation() {
+    setNumberIsValid(number.trim().length >= 3);
+  }
+
+  function handleZipcodeValidation() {
+    setZipcodeIsValid(zipcode.trim().length >= 3);
   }
 
   function handleFirstnameChange(e: ChangeEvent<HTMLInputElement>) {
     setFirstname(e.target.value);
-    handleValidation();
   }
 
   function handleLastnameChange(e: ChangeEvent<HTMLInputElement>) {
     setLastname(e.target.value);
-    handleValidation();
   }
 
   function handleUsernameChange(e: ChangeEvent<HTMLInputElement>) {
     setUsername(e.target.value);
-    handleValidation();
   }
 
   function handleEmailChange(e: ChangeEvent<HTMLInputElement>) {
     setEmail(e.target.value);
-    handleValidation();
   }
 
   function handlePasswordChange(e: ChangeEvent<HTMLInputElement>) {
     setPassword(e.target.value);
-    handleValidation();
   }
 
   function handlePassword2Change(e: ChangeEvent<HTMLInputElement>) {
     setPassword2(e.target.value);
-    handleValidation();
   }
 
   function handlePhoneChange(e: ChangeEvent<HTMLInputElement>) {
     setPhone(e.target.value);
-    handleValidation();
   }
 
   function handleCityChange(e: ChangeEvent<HTMLInputElement>) {
     setCity(e.target.value);
-    handleValidation();
   }
 
   function handleStreetChange(e: ChangeEvent<HTMLInputElement>) {
     setStreet(e.target.value);
-    handleValidation();
   }
 
   function handleNumberChange(e: ChangeEvent<HTMLInputElement>) {
     setNumber(e.target.value);
-    handleValidation();
   }
 
   function handleZipcodeChange(e: ChangeEvent<HTMLInputElement>) {
     setZipcode(e.target.value);
-    handleValidation();
   }
 
   function handleSubmit(e: FormEvent) {
@@ -192,7 +295,7 @@ function EditUser({ user, onLoading, onLoaded, closeEdit }: EditUserProps) {
                   value={firstname}
                   onChange={handleFirstnameChange}
                   placeholder="نام"
-                  className="bg-slate-100 dark:bg-slate-800 px-3 py-2 rounded-lg w-full outline-none transition"
+                  className="bg-slate-100 dark:bg-slate-800 px-3 py-2 rounded-lg w-full outline-none border border-transparent focus:border-blue-400 transition"
                 />
               </div>
               <div className="mb-4">
@@ -201,7 +304,7 @@ function EditUser({ user, onLoading, onLoaded, closeEdit }: EditUserProps) {
                   value={lastname}
                   onChange={handleLastnameChange}
                   placeholder="نام خانوادگی"
-                  className="bg-slate-100 dark:bg-slate-800 px-3 py-2 rounded-lg w-full outline-none transition"
+                  className="bg-slate-100 dark:bg-slate-800 px-3 py-2 rounded-lg w-full outline-none border border-transparent focus:border-blue-400 transition"
                 />
               </div>
               <div className="mb-4">
@@ -210,7 +313,7 @@ function EditUser({ user, onLoading, onLoaded, closeEdit }: EditUserProps) {
                   value={username}
                   onChange={handleUsernameChange}
                   placeholder="نام کاربری"
-                  className="bg-slate-100 dark:bg-slate-800 px-3 py-2 rounded-lg w-full outline-none transition"
+                  className="bg-slate-100 dark:bg-slate-800 px-3 py-2 rounded-lg w-full outline-none border border-transparent focus:border-blue-400 transition"
                 />
               </div>
               <div className="mb-4">
@@ -219,7 +322,7 @@ function EditUser({ user, onLoading, onLoaded, closeEdit }: EditUserProps) {
                   value={email}
                   onChange={handleEmailChange}
                   placeholder="ایمیل"
-                  className="bg-slate-100 dark:bg-slate-800 px-3 py-2 rounded-lg w-full outline-none transition"
+                  className="bg-slate-100 dark:bg-slate-800 px-3 py-2 rounded-lg w-full outline-none border border-transparent focus:border-blue-400 transition"
                 />
               </div>
               <div className="relative mb-4">
@@ -228,7 +331,7 @@ function EditUser({ user, onLoading, onLoaded, closeEdit }: EditUserProps) {
                   value={password}
                   onChange={handlePasswordChange}
                   placeholder="پسورد"
-                  className="bg-slate-100 dark:bg-slate-800 px-3 py-2 rounded-lg w-full outline-none transition"
+                  className="bg-slate-100 dark:bg-slate-800 px-3 py-2 rounded-lg w-full outline-none border border-transparent focus:border-blue-400 transition"
                 />
                 <button
                   type="button"
@@ -244,7 +347,7 @@ function EditUser({ user, onLoading, onLoaded, closeEdit }: EditUserProps) {
                   value={password2}
                   onChange={handlePassword2Change}
                   placeholder="تکرار پسورد"
-                  className="bg-slate-100 dark:bg-slate-800 px-3 py-2 rounded-lg w-full outline-none transition"
+                  className="bg-slate-100 dark:bg-slate-800 px-3 py-2 rounded-lg w-full outline-none border border-transparent focus:border-blue-400 transition"
                 />
               </div>
             </div>
@@ -256,7 +359,7 @@ function EditUser({ user, onLoading, onLoaded, closeEdit }: EditUserProps) {
                   value={phone}
                   onChange={handlePhoneChange}
                   placeholder="شماره تماس"
-                  className="bg-slate-100 dark:bg-slate-800 px-3 py-2 rounded-lg w-full outline-none transition"
+                  className="bg-slate-100 dark:bg-slate-800 px-3 py-2 rounded-lg w-full outline-none border border-transparent focus:border-blue-400 transition"
                 />
               </div>
               <div className="mb-4">
@@ -265,7 +368,7 @@ function EditUser({ user, onLoading, onLoaded, closeEdit }: EditUserProps) {
                   value={city}
                   onChange={handleCityChange}
                   placeholder="شهر"
-                  className="bg-slate-100 dark:bg-slate-800 px-3 py-2 rounded-lg w-full outline-none transition"
+                  className="bg-slate-100 dark:bg-slate-800 px-3 py-2 rounded-lg w-full outline-none border border-transparent focus:border-blue-400 transition"
                 />
               </div>
               <div className="mb-4">
@@ -274,7 +377,7 @@ function EditUser({ user, onLoading, onLoaded, closeEdit }: EditUserProps) {
                   value={street}
                   onChange={handleStreetChange}
                   placeholder="آدرس"
-                  className="bg-slate-100 dark:bg-slate-800 px-3 py-2 rounded-lg w-full outline-none transition"
+                  className="bg-slate-100 dark:bg-slate-800 px-3 py-2 rounded-lg w-full outline-none border border-transparent focus:border-blue-400 transition"
                 />
               </div>
               <div className="mb-4">
@@ -283,7 +386,7 @@ function EditUser({ user, onLoading, onLoaded, closeEdit }: EditUserProps) {
                   value={number}
                   onChange={handleNumberChange}
                   placeholder="پلاک"
-                  className="bg-slate-100 dark:bg-slate-800 px-3 py-2 rounded-lg w-full outline-none transition"
+                  className="bg-slate-100 dark:bg-slate-800 px-3 py-2 rounded-lg w-full outline-none border border-transparent focus:border-blue-400 transition"
                 />
               </div>
               <div className="mb-4">
@@ -292,7 +395,7 @@ function EditUser({ user, onLoading, onLoaded, closeEdit }: EditUserProps) {
                   value={zipcode}
                   onChange={handleZipcodeChange}
                   placeholder="کد پستی"
-                  className="bg-slate-100 dark:bg-slate-800 px-3 py-2 rounded-lg w-full outline-none transition"
+                  className="bg-slate-100 dark:bg-slate-800 px-3 py-2 rounded-lg w-full outline-none border border-transparent focus:border-blue-400 transition"
                 />
               </div>
             </div>
@@ -312,7 +415,7 @@ function EditUser({ user, onLoading, onLoaded, closeEdit }: EditUserProps) {
             <button
               type="button"
               onClick={handleShowDeleteMessage}
-              className="flex items-center gap-1 text-sm px-4 py-2 rounded-lg text-gray-300 dark:text-gray-500 hover:text-red-500 dark:hover:text-red-400 transition"
+              className="flex items-center gap-1 text-sm px-4 py-2 rounded-lg text-gray-500 dark:text-gray-300 hover:text-red-500 dark:hover:text-red-400 transition"
             >
               <IoMdTrash />
               حذف حساب کاربری

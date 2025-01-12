@@ -113,7 +113,7 @@ function CartPage() {
           <div className="flex items-center justify-between">
             <button
               onClick={() => setShowDeleteCartAlert(true)}
-              className="flex items-center gap-1 text-sm px-4 py-2 text-gray-300 dark:text-gray-500 hover:text-red-500 dark:hover:text-red-400 transition"
+              className="flex items-center gap-1 text-sm px-4 py-2 text-gray-500 dark:text-gray-300 hover:text-red-500 dark:hover:text-red-400 transition"
             >
               حذف سفارش
               <FaTrashCan />

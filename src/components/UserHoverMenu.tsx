@@ -14,6 +14,7 @@ function UserHoverMenu({ showMenu, hideMenu, profileUrl }: UserHoverMenuProps) {
 
   function handleLogout() {
     dispatch(setLogout());
+    hideMenu();
   }
 
   return (

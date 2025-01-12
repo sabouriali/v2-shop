@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Navigate, useParams } from "react-router";
+import { FaAddressCard } from "react-icons/fa6";
 import { HiOutlineLogout, HiPencil } from "react-icons/hi";
-import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowDown, IoMdPerson } from "react-icons/io";
 
 import { useStoreDispatch } from "../../../hooks/useStore";
 import { setLogout } from "../../../redux/slices/loginSlice";
@@ -56,7 +57,8 @@ function UserPage() {
               </div>
               <div className="p-4 rounded-2xl shadow-md bg-white dark:bg-slate-700 transition">
                 <section className="relative border p-4 mb-6 rounded-lg">
-                  <h3 className="absolute -top-3 right-2 text-sm px-1.5 bg-white dark:bg-slate-700 transition">
+                  <h3 className="absolute -top-3 right-2 flex items-center gap-1 text-sm px-1.5 bg-white dark:bg-slate-700 transition">
+                    <IoMdPerson />
                     مشخصات فردی
                   </h3>
                   <div className="flex items-center gap-1 mb-2">
@@ -73,7 +75,8 @@ function UserPage() {
                   </div>
                 </section>
                 <section className="relative border p-4 mb-6 rounded-lg">
-                  <h3 className="absolute -top-3 right-2 text-sm px-1.5 bg-white dark:bg-slate-700 transition">
+                  <h3 className="absolute -top-3 right-2 flex items-center gap-1 text-sm px-1.5 bg-white dark:bg-slate-700 transition">
+                    <FaAddressCard />
                     آدرس و تماس
                   </h3>
                   <div className="flex items-center gap-1 mb-2">

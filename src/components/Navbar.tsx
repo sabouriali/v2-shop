@@ -2,13 +2,9 @@ import { useState } from "react";
 import { Link, NavLink, useLocation } from "react-router";
 import { HiOutlineLogin } from "react-icons/hi";
 import { IoIosArrowDown } from "react-icons/io";
+import { IoPersonCircleSharp } from "react-icons/io5";
 import { FaCaretDown, FaCartShopping } from "react-icons/fa6";
-import {
-  BsInfoCircleFill,
-  BsList,
-  BsPersonFill,
-  BsPersonLinesFill,
-} from "react-icons/bs";
+import { BsInfoCircleFill, BsList, BsPersonLinesFill } from "react-icons/bs";
 
 import { getCartQty } from "../redux/slices/cartSlice";
 import { useStoreSelector } from "../hooks/useStore";
@@ -141,7 +137,7 @@ function Navbar() {
                       : "hover:border-blue-500 dark:hover:border-blue-400 hover:bg-blue-500 dark:hover:bg-blue-400 hover:text-white"
                   }`}
                 >
-                  <BsPersonFill />
+                  <IoPersonCircleSharp size={22} />
                   {JSON.parse(user!).name}
                   {pathname !== `/user/${JSON.parse(user!).id}` && (
                     <IoIosArrowDown />
@@ -163,7 +159,7 @@ function Navbar() {
                     : "hover:border-blue-500 dark:hover:border-blue-400 hover:bg-blue-500 dark:hover:bg-blue-400 hover:text-white"
                 }`}
               >
-                <BsPersonFill />
+                <IoPersonCircleSharp size={22} />
                 {JSON.parse(user!).name}
                 {pathname !== `/user/${JSON.parse(user!).id}` && (
                   <IoIosArrowDown />

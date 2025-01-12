@@ -74,7 +74,7 @@ function Search({ showSearch, hideSearch }: SearchProps) {
                 : "top-1/3 -translate-y-1/3"
             }`}
           >
-            <p className="text-xl mb-4">دنبال جی می‌گردی؟</p>
+            <p className="text-xl mb-4">دنبال چی می‌گردی؟</p>
             <BsSearch size={46} className="mx-auto" />
           </div>
         ) : (

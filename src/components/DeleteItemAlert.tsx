@@ -1,4 +1,4 @@
-import { FaTrashCan } from "react-icons/fa6";
+import { FaTrashCan, FaX } from "react-icons/fa6";
 
 import Backdrop from "./UI/Backdrop";
 
@@ -30,16 +30,17 @@ function DeleteItemAlert({
         <div className="flex items-center justify-between">
           <button
             onClick={deleteProduct}
-            className="flex items-center gap-1 text-sm px-3 py-2 text-gray-300 dark:text-gray-500 hover:text-red-500 dark:hover:text-red-400 transition"
+            className="flex items-center gap-1 text-sm px-3 py-2 text-gray-500 dark:text-gray-300 hover:text-red-500 dark:hover:text-red-400 transition"
           >
             حذف
             <FaTrashCan />
           </button>
           <button
             onClick={closeAlert}
-            className="px-3 py-2 border rounded-lg border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500 dark:border-blue-400 dark:text-blue-400 dark:hover:bg-blue-400 transition"
+            className="flex items-center gap-1 px-4 py-2 border rounded-lg border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500 dark:border-blue-400 dark:text-blue-400 dark:hover:bg-blue-400 transition"
           >
             انصراف
+            <FaX />
           </button>
         </div>
       </div>

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { HiPencil } from "react-icons/hi";
-import { IoIosArrowDown } from "react-icons/io";
 import { FaCheck } from "react-icons/fa6";
+import { HiPencil } from "react-icons/hi";
+import { BsSendFill } from "react-icons/bs";
+import { IoIosArrowDown } from "react-icons/io";
 
 import { getSingleUser } from "../../../utility/api";
 
@@ -78,24 +79,23 @@ function CheckoutPage() {
           <h2 className="text-lg font-bold mb-6">انتخاب آدرس</h2>
           <div className="p-4 rounded-2xl shadow-md bg-white dark:bg-slate-700 transition">
             <section className="relative border p-4 mb-6 rounded-lg">
-              <h3 className="absolute -top-3 right-2 text-sm px-1.5 bg-white dark:bg-slate-700 transition">
+              <h3 className="absolute -top-3 right-2 flex items-center gap-1 text-sm px-1.5 bg-white dark:bg-slate-700 transition">
+                <BsSendFill />
                 ارسال به
               </h3>
-              <div className="flex items-center justify-between flex-wrap">
-                <div className="flex items-center gap-1">
-                  <p>آدرس:</p>
-                  <p className="text-gray-500 dark:text-gray-400">
-                    {city} - {street} - {number}
-                  </p>
-                </div>
-                <div className="flex items-center gap-1">
-                  <p>کد پستی:</p>
-                  <p className="text-gray-500 dark:text-gray-400">{zipcode}</p>
-                </div>
-                <div className="flex items-center gap-1">
-                  <p>شماره تماس:</p>
-                  <p className="text-gray-500 dark:text-gray-400">{phone}</p>
-                </div>
+              <div className="flex items-center gap-1 mb-2">
+                <p>آدرس:</p>
+                <p className="text-gray-500 dark:text-gray-400">
+                  {city} - {street} - {number}
+                </p>
+              </div>
+              <div className="flex items-center gap-1 mb-2">
+                <p>کد پستی:</p>
+                <p className="text-gray-500 dark:text-gray-400">{zipcode}</p>
+              </div>
+              <div className="flex items-center gap-1">
+                <p>شماره تماس:</p>
+                <p className="text-gray-500 dark:text-gray-400">{phone}</p>
               </div>
             </section>
             <div className="flex items-center justify-between">
