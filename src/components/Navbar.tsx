@@ -76,7 +76,7 @@ function Navbar() {
           </button>
           <NavbarMenu
             showNavbarMenu={showNavbarMenu}
-            hideNavbarMenu={() => handleAllCatsHover('leave')}
+            hideNavbarMenu={() => setShowNavbarMenu(false)}
           />
         </div>
       ) : (
