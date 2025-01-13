@@ -112,9 +112,9 @@ function CartItem({ id, title, price, qty, discount, type }: CartItemProps) {
       ) : (
         <tr>
           {isLoading ? (
-            <div className="p-4">
+            <td className="p-4">
               <Loading />
-            </div>
+            </td>
           ) : (
             <>
               <td className="text-left p-2">

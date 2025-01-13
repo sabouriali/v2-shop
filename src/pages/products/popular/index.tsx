@@ -53,7 +53,7 @@ function PopularPage() {
   return (
     <>
       {isLoading ? (
-        <div className="absolute content-center top-1/2 right-1/2 -translate-y-1/2 translate-x-1/2 w-full h-full cursor-wait">
+        <div className="absolute content-center top-1/2 right-1/2 -translate-y-1/2 translate-x-1/2">
           <Loading />
         </div>
       ) : (

@@ -9,11 +9,8 @@ import { getAllUsers } from "../../../utility/api";
 
 import Loading from "../../../components/UI/Loading";
 
-import { type User } from "../../../types/userTypes";
-
 function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
-  const [users, setUsers] = useState<User[]>([]);
   const [showPassword, setShowPassword] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -26,11 +23,6 @@ function LoginPage() {
   useEffect(() => {
     document.title = "مارکت لند | ورود";
     handleLoadOnTop();
-    setIsLoading(true);
-    getAllUsers().then((res) => {
-      setUsers(res.users);
-      setIsLoading(false);
-    });
   }, []);
 
   useEffect(() => {
@@ -79,24 +71,35 @@ function LoginPage() {
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
 
-    const user = users.find(
-      (user) =>
-        user.username === username.trim() && user.password === password.trim()
-    );
-
     if (isValid) {
-      if (user) {
-        dispatch(setLogin({ id: user.id, name: user.name.firstname }));
-      } else {
-        alert("نام کاربری یا پسورد اشتباه است");
-      }
+      setIsLoading(true);
+      getAllUsers()
+        .then((res) => {
+          setIsLoading(false);
+
+          const user = res.users.find(
+            (user) =>
+              user.username === username.trim() &&
+              user.password === password.trim()
+          );
+
+          if (user) {
+            dispatch(setLogin({ id: user.id, name: user.name.firstname }));
+          } else {
+            alert("نام کاربری یا پسورد اشتباه است");
+          }
+        })
+        .catch((err) => {
+          setIsLoading(false);
+          throw alert(err.message);
+        });
     }
   }
 
   return (
     <>
       {isLoading ? (
-        <div className="absolute content-center top-1/2 right-1/2 -translate-y-1/2 translate-x-1/2 w-full h-full cursor-wait">
+        <div className="absolute content-center top-1/2 right-1/2 -translate-y-1/2 translate-x-1/2">
           <Loading />
         </div>
       ) : (
@@ -157,7 +160,7 @@ function LoginPage() {
                 type="submit"
                 className={`flex items-center gap-1 px-3 py-2 rounded-lg border transition ${
                   isValid
-                    ? "border-[#3498db] text-[#3498db] hover:text-white hover:bg-[#3498db]"
+                    ? "border-blue-500 dark:border-blue-400 text-blue-500 dark:text-blue-400 hover:text-white hover:bg-blue-500 dark:hover:bg-blue-400"
                     : "border-gray-300 bg-gray-300 text-white dark:border-gray-400 dark:bg-gray-400 cursor-not-allowed"
                 }`}
               >

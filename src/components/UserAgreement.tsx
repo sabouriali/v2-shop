@@ -1,3 +1,5 @@
+import { IoMdCheckmarkCircleOutline } from "react-icons/io";
+
 import Backdrop from "./UI/Backdrop";
 
 import { type UserAgreementProps } from "../types/componentTypes";
@@ -68,12 +70,13 @@ function UserAgreement({
                 ? "شما شرایط و قوانین را پذیرفته‌اید"
                 : "پذیرش شرایط و قوانین"
             }
-            className={`px-4 py-2 rounded-lg border transition ${
+            className={`flex items-center gap-1 px-4 py-2 rounded-lg border transition ${
               agree
                 ? "cursor-not-allowed border-gray-300 bg-gray-300 text-white dark:border-gray-400 dark:bg-gray-400"
                 : "border-blue-500 dark:border-blue-400 text-blue-500 dark:text-blue-400 hover:text-white hover:bg-blue-500 dark:hover:bg-blue-400"
             }`}
           >
+            <IoMdCheckmarkCircleOutline />
             می‌پذیرم
           </button>
         </div>

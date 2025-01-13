@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { HiOutlineLogout } from "react-icons/hi";
 import { BsPersonFill } from "react-icons/bs";
 
@@ -10,11 +10,14 @@ import { type UserHoverMenuProps } from "../types/componentTypes";
 function UserHoverMenu({ showMenu, hideMenu, profileUrl }: UserHoverMenuProps) {
   const dispatch = useStoreDispatch();
 
+  const navigate = useNavigate();
+
   const screenWidth = window.screen.width;
 
   function handleLogout() {
     dispatch(setLogout());
     hideMenu();
+    navigate("/user/login");
   }
 
   return (
