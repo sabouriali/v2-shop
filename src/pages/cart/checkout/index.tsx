@@ -25,10 +25,15 @@ function CheckoutPage() {
     document.title = "مارکت لند | ثبت سفارش";
     handleLoadOnTop();
     setIsLoading(true);
-    getSingleUser(JSON.parse(sessionUser!).id).then((res) => {
-      setUser(res.user);
-      setIsLoading(false);
-    });
+    getSingleUser(JSON.parse(sessionUser!).id)
+      .then((res) => {
+        setUser(res.user);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        throw alert(err.message);
+      });
   }, [sessionUser]);
 
   function handleLoadOnTop() {
@@ -65,7 +70,7 @@ function CheckoutPage() {
   return (
     <>
       {isLoading ? (
-        <div className="absolute content-center top-1/2 right-1/2 -translate-y-1/2 translate-x-1/2">
+        <div className="absolute content-center top-1/3 right-1/2 -translate-y-1/3 translate-x-1/2">
           <Loading />
         </div>
       ) : (

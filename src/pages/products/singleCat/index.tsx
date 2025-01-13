@@ -27,12 +27,17 @@ function SingleCatPage() {
     document.title = `مارکت لند | ${handleCat()}`;
     handleLoadOnTop();
     setIsLoading(true);
-    getSingleCatProducts(cat!).then((res) => {
-      setProducts(res.products);
-      setOnSale(true);
-      setFilterBrands([]);
-      setIsLoading(false);
-    });
+    getSingleCatProducts(cat!)
+      .then((res) => {
+        setProducts(res.products);
+        setOnSale(true);
+        setFilterBrands([]);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        throw alert(err.message);
+      });
   }, [cat]);
 
   // اعمال فیلترها و مرتب‌سازی
@@ -131,7 +136,7 @@ function SingleCatPage() {
   return (
     <>
       {isLoading ? (
-        <div className="absolute content-center top-1/2 right-1/2 -translate-y-1/2 translate-x-1/2">
+        <div className="absolute content-center top-1/3 right-1/2 -translate-y-1/3 translate-x-1/2">
           <Loading />
         </div>
       ) : (
@@ -193,7 +198,7 @@ function SingleCatPage() {
                   />
                 ))
               ) : (
-                <div className="absolute right-1/2 translate-x-1/2 top-1/2 -translate-y-1/2 text-center p-12 w-96 shadow-lg rounded-2xl text-gray-400 bg-white dark:bg-slate-700 transition-colors">
+                <div className="absolute right-1/2 translate-x-1/2 top-1/4 -translate-y-1/4 text-center p-12 w-96 shadow-lg rounded-2xl text-gray-400 bg-white dark:bg-slate-700 transition-colors">
                   <p className="text-xl mb-4">محصولی برای نمایش وجود ندارد</p>
                   <MdFilterAltOff size={46} className="mx-auto" />
                 </div>

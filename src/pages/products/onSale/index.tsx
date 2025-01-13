@@ -17,10 +17,15 @@ function OnSalePage() {
     document.title = "مارکت لند | پیشنهاد شگفت‌انگیز";
     handleLoadOnTop();
     setIsLoading(true);
-    getAllProducts().then((res) => {
-      setProducts(res.products.filter((product) => product.onSale));
-      setIsLoading(false);
-    });
+    getAllProducts()
+      .then((res) => {
+        setProducts(res.products.filter((product) => product.onSale));
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        throw alert(err.message);
+      });
   }, []);
 
   useEffect(() => {
@@ -59,7 +64,7 @@ function OnSalePage() {
   return (
     <>
       {isLoading ? (
-        <div className="absolute content-center top-1/2 right-1/2 -translate-y-1/2 translate-x-1/2">
+        <div className="absolute content-center top-1/3 right-1/2 -translate-y-1/3 translate-x-1/2">
           <Loading />
         </div>
       ) : (

@@ -76,7 +76,7 @@ function Navbar() {
           </button>
           <NavbarMenu
             showNavbarMenu={showNavbarMenu}
-            hideNavbarMenu={() => setShowNavbarMenu(false)}
+            hideNavbarMenu={() => handleAllCatsHover('leave')}
           />
         </div>
       ) : (
@@ -97,7 +97,10 @@ function Navbar() {
               <BsList />
               دسته‌بندی محصولات
             </button>
-            <CategoriesMenu categoriesMenuHover={allCatsHover} />
+            <CategoriesMenu
+              categoriesMenuHover={allCatsHover}
+              closeMenu={() => setAllCatsHover(false)}
+            />
           </div>
           <NavLink
             to="/about"

@@ -87,6 +87,8 @@ function LoginPage() {
             dispatch(setLogin({ id: user.id, name: user.name.firstname }));
           } else {
             alert("نام کاربری یا پسورد اشتباه است");
+            setUsernameIsValid(false);
+            setPasswordIsValid(false);
           }
         })
         .catch((err) => {
@@ -99,7 +101,7 @@ function LoginPage() {
   return (
     <>
       {isLoading ? (
-        <div className="absolute content-center top-1/2 right-1/2 -translate-y-1/2 translate-x-1/2">
+        <div className="absolute content-center top-1/3 right-1/2 -translate-y-1/3 translate-x-1/2">
           <Loading />
         </div>
       ) : (
@@ -112,7 +114,7 @@ function LoginPage() {
             <span className="text-xl">|</span>
             <Link
               to="../register"
-              className="flex items-center gap-1 text-sm hover:text-[#3498db] transition"
+              className="flex items-center gap-1 text-sm hover:text-blue-500 dark:hover:text-blue-400 transition"
             >
               <IoPersonAdd />
               ثبت نام
@@ -155,7 +157,7 @@ function LoginPage() {
                 {showPassword ? <IoEyeOff /> : <IoEye />}
               </button>
             </div>
-            <div>
+            <div className="flex items-center justify-between">
               <button
                 type="submit"
                 className={`flex items-center gap-1 px-3 py-2 rounded-lg border transition ${
@@ -167,6 +169,13 @@ function LoginPage() {
                 <IoLogIn className="rotate-180" />
                 ورود
               </button>
+              <a
+                href="https://fakestoreapi.in/api/users"
+                target="_blank"
+                className="text-sm text-gray-500 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-500 transition"
+              >
+                یوزرهای ارائه شده توسط api
+              </a>
             </div>
           </form>
         </section>

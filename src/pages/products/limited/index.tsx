@@ -18,12 +18,17 @@ function LimitedProductsPage() {
 
   useEffect(() => {
     document.title = `مارکت لند | محصولات - صفحه ${page}`;
-    handleLoadOnTop()
+    handleLoadOnTop();
     setIsLoading(true);
-    getProducts(JSON.parse(page!)).then((res) => {
-      setProducts(res.products);
-      setIsLoading(false);
-    });
+    getProducts(JSON.parse(page!))
+      .then((res) => {
+        setProducts(res.products);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        throw alert(err.message);
+      });
   }, [page]);
 
   const screenWidth = window.screen.width;
@@ -55,7 +60,7 @@ function LimitedProductsPage() {
   return (
     <>
       {isLoading ? (
-        <div className="absolute content-center top-1/2 right-1/2 -translate-y-1/2 translate-x-1/2">
+        <div className="absolute content-center top-1/3 right-1/2 -translate-y-1/3 translate-x-1/2">
           <Loading />
         </div>
       ) : (

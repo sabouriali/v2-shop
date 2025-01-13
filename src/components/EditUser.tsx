@@ -251,9 +251,9 @@ function EditUser({ user, onLoading, onLoaded, closeEdit }: EditUserProps) {
           onLoaded();
           alert("Updated");
         })
-        .catch(() => {
+        .catch((err) => {
           onLoaded();
-          alert("Didn't Update");
+          throw alert(err.message);
         });
     }
   }

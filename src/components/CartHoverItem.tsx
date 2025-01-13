@@ -14,10 +14,15 @@ function CartHoverItem({ id, price, qty }: CartHoverItemProps) {
 
   useEffect(() => {
     setIsLoading(true);
-    getSingleProduct(id).then((res) => {
-      setProduct(res.product);
-      setIsLoading(false);
-    });
+    getSingleProduct(id)
+      .then((res) => {
+        setProduct(res.product);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        throw alert(err.message);
+      });
   }, [id]);
 
   return (

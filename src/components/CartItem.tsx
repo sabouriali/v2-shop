@@ -17,14 +17,19 @@ import { type TProduct } from "../types/productTypes";
 function CartItem({ id, title, price, qty, discount, type }: CartItemProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [product, setProduct] = useState<TProduct>();
-  const [alert, setAlert] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
-    getSingleProduct(id).then((res) => {
-      setProduct(res.product);
-      setIsLoading(false);
-    });
+    getSingleProduct(id)
+      .then((res) => {
+        setProduct(res.product);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        throw alert(err.message);
+      });
   }, [id]);
 
   const dispatch = useStoreDispatch();
@@ -42,7 +47,7 @@ function CartItem({ id, title, price, qty, discount, type }: CartItemProps) {
 
   function handleRemoveFromCart() {
     if (qty === 1) {
-      setAlert(true);
+      setShowAlert(true);
       return;
     }
 
@@ -50,7 +55,7 @@ function CartItem({ id, title, price, qty, discount, type }: CartItemProps) {
   }
 
   function handleCloseAlert() {
-    setAlert(false);
+    setShowAlert(false);
   }
 
   function handleDeleteFromCart() {
@@ -60,7 +65,7 @@ function CartItem({ id, title, price, qty, discount, type }: CartItemProps) {
   return (
     <>
       <DeleteItemAlert
-        showAlert={alert}
+        showAlert={showAlert}
         closeAlert={handleCloseAlert}
         deleteProduct={handleDeleteFromCart}
         product={product}

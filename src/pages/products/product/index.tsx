@@ -32,11 +32,16 @@ function ProductPage() {
   useEffect(() => {
     handleLoadOnTop();
     setIsLoading(true);
-    getSingleProduct(id!).then((res) => {
-      document.title = `مارکت لند | ${res.product.title}`;
-      setProduct(res.product);
-      setIsLoading(false);
-    });
+    getSingleProduct(id!)
+      .then((res) => {
+        document.title = `مارکت لند | ${res.product.title}`;
+        setProduct(res.product);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        throw alert(err.message);
+      });
   }, [id]);
 
   function computePrice() {
@@ -80,7 +85,7 @@ function ProductPage() {
   return (
     <>
       {isLoading ? (
-        <div className="absolute content-center top-1/2 right-1/2 -translate-y-1/2 translate-x-1/2">
+        <div className="absolute content-center top-1/3 right-1/2 -translate-y-1/3 translate-x-1/2">
           <Loading />
         </div>
       ) : (

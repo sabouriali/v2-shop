@@ -38,7 +38,7 @@ function Navigation() {
   return (
     <BrowserRouter>
       <Header />
-      <main className="container px-4 mx-auto min-h-screen my-12">
+      <main className="relative container px-4 mx-auto min-h-screen my-12">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />

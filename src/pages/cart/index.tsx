@@ -62,7 +62,7 @@ function CartPage() {
       />
       <h2 className="text-xl font-bold mb-6">سبد خرید</h2>
       {cartQty === 0 ? (
-        <div className="absolute right-1/2 translate-x-1/2 top-1/2 -translate-y-1/2 text-center p-12 w-96 shadow-lg rounded-2xl text-gray-400 bg-white dark:bg-slate-700 transition-colors">
+        <div className="absolute right-1/2 translate-x-1/2 text-center p-12 w-96 shadow-lg rounded-2xl text-gray-400 bg-white dark:bg-slate-700 transition-colors">
           <p className="text-xl mb-4">سبد خرید خالی است</p>
           <MdRemoveShoppingCart size={46} className="mx-auto" />
         </div>

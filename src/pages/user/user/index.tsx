@@ -29,10 +29,15 @@ function UserPage() {
     document.title = "مارکت لند | حساب کاربری";
     handleLoadOnTop();
     setIsLoading(true);
-    getSingleUser(id!).then((res) => {
-      setUser(res.user);
-      setIsLoading(false);
-    });
+    getSingleUser(id!)
+      .then((res) => {
+        setUser(res.user);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        throw alert(err.message);
+      });
   }, [id]);
 
   function handleLoadOnTop() {
@@ -47,7 +52,7 @@ function UserPage() {
       {JSON.parse(sessionUser!).id == id ? (
         <>
           {isLoading ? (
-            <div className="absolute content-center top-1/2 right-1/2 -translate-y-1/2 translate-x-1/2">
+            <div className="absolute content-center top-1/3 right-1/2 -translate-y-1/3 translate-x-1/2">
               <Loading />
             </div>
           ) : (

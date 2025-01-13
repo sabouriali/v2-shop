@@ -23,10 +23,6 @@ function About() {
         یادگیری مداوم و توسعه مهارت ‌های فنی، به دنبال فرصت‌های حرفه‌ای برای
         ورود به بازار کار و ایجاد وب ‌سایت‌های تعاملی و کاربرپسند هستم.
       </p>
-      <p className="text-justify mb-2">
-        کارشناسیمو سال ۱۴۰۱ از دانشگاه علوم پزشکی شیراز گرفتم و با معدل ۱۷.۱۶
-        فارغ‌التحصیل شدم.
-      </p>
       <article className="mt-6">
         <h3 className="text-base font-bold mb-4">پروژه‌ها</h3>
         <div className="grid gap-4 md:grid-cols-2">
@@ -54,7 +50,7 @@ function About() {
                 توسعه داده شده با استفاده از React و TypeScript
               </p>
               <p className="mb-1">پیاده‌سازی استایل به کمک TailwindCSS</p>
-              <p className="mb-1">پیاده‌سازی بک‌اند به کمک fakestoreapi.com</p>
+              <p className="mb-1">استفاده از apiهای fakestoreapi.com</p>
               <p className="mb-1">مدیریت state با استفاده از Redux Toolkit</p>
             </div>
           </section>

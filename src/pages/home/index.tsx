@@ -19,10 +19,15 @@ function Home() {
     document.title = "مارکت لند | صفحه اصلی";
     handleLoadOnTop();
     setIsLoading(true);
-    getAllProducts().then((res) => {
-      setProducts(res.products);
-      setIsLoading(false);
-    });
+    getAllProducts()
+      .then((res) => {
+        setProducts(res.products);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        throw alert(err.message);
+      });
   }, []);
 
   const navigate = useNavigate();

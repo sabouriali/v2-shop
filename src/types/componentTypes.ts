@@ -20,6 +20,7 @@ export type ProductCardProps = {
 
 export type CategoriesMenuProps = {
   categoriesMenuHover: boolean;
+  closeMenu: () => void;
 };
 
 export type CartHoverItemProps = {
@@ -148,4 +149,9 @@ export type SortMenuProps = {
   showMenu: boolean;
   hideMenu: () => void;
   popular?: boolean;
+};
+
+export type RegisterAlertProps = {
+  showMessage: boolean;
+  hideMessage: () => void;
 };

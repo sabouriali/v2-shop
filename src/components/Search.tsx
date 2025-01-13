@@ -14,7 +14,11 @@ function Search({ showSearch, hideSearch }: SearchProps) {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    getAllProducts().then((res) => setProducts(res.products));
+    getAllProducts()
+      .then((res) => setProducts(res.products))
+      .catch((err) => {
+        throw alert(err.message);
+      });
   }, []);
 
   useEffect(() => {

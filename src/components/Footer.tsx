@@ -53,7 +53,7 @@ function Footer() {
               )}
               <a
                 href="mailto:sabouri.ali@outlook.com"
-                className="flex items-center gap-1 hover:text-black dark:hover:text-slate-50 transition"
+                className="flex flex-row-reverse sm:flex-row items-center gap-1 hover:text-black dark:hover:text-slate-50 transition"
               >
                 sabouri.ali@outlook.com
                 <BsEnvelopeAtFill />

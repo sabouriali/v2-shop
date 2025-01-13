@@ -1,4 +1,4 @@
-import { IoMdCheckmarkCircleOutline } from "react-icons/io";
+import { IoMdCheckboxOutline } from "react-icons/io";
 
 import Backdrop from "./UI/Backdrop";
 
@@ -76,7 +76,7 @@ function UserAgreement({
                 : "border-blue-500 dark:border-blue-400 text-blue-500 dark:text-blue-400 hover:text-white hover:bg-blue-500 dark:hover:bg-blue-400"
             }`}
           >
-            <IoMdCheckmarkCircleOutline />
+            <IoMdCheckboxOutline />
             می‌پذیرم
           </button>
         </div>

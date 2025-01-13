@@ -1,16 +1,32 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router";
 import { AiFillProduct } from "react-icons/ai";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoGameController, IoLaptop, IoTv } from "react-icons/io5";
-import { FaCouch, FaHeadphonesSimple, FaMobile } from "react-icons/fa6";
+import {
+  FaComputer,
+  FaCouch,
+  FaHeadphonesSimple,
+  FaMobile,
+} from "react-icons/fa6";
 
 import { type CategoriesMenuProps } from "../types/componentTypes";
 
-function CategoriesMenu({ categoriesMenuHover }: CategoriesMenuProps) {
+function CategoriesMenu({
+  categoriesMenuHover,
+  closeMenu,
+}: CategoriesMenuProps) {
   const [mobileHover, setMobileHover] = useState(false);
   const [laptopHOver, setLaptopHover] = useState(false);
   const [appliancesHover, setAppliancesHover] = useState(false);
+
+  useEffect(() => {
+    if (!categoriesMenuHover) {
+      setMobileHover(false);
+      setLaptopHover(false);
+      setAppliancesHover(false);
+    }
+  }, [categoriesMenuHover]);
 
   function handleMobileHover(action: "enter" | "leave") {
     if (action === "enter") {
@@ -41,6 +57,7 @@ function CategoriesMenu({ categoriesMenuHover }: CategoriesMenuProps) {
       <div className="hover:bg-white dark:hover:bg-slate-900 pr-4 py-2 transition">
         <NavLink
           to="/products/1"
+          onClick={closeMenu}
           className={({ isActive }) =>
             `${
               isActive && "text-red-500 dark:text-red-400"
@@ -73,6 +90,7 @@ function CategoriesMenu({ categoriesMenuHover }: CategoriesMenuProps) {
         >
           <NavLink
             to="/products/category/mobile"
+            onClick={closeMenu}
             className={({ isActive }) =>
               `${
                 isActive && "text-red-500 dark:text-red-400"
@@ -84,6 +102,7 @@ function CategoriesMenu({ categoriesMenuHover }: CategoriesMenuProps) {
           </NavLink>
           <NavLink
             to="/products/category/audio"
+            onClick={closeMenu}
             className={({ isActive }) =>
               `${
                 isActive && "text-red-500 dark:text-red-400"
@@ -102,8 +121,8 @@ function CategoriesMenu({ categoriesMenuHover }: CategoriesMenuProps) {
       >
         <div className="flex items-center justify-between">
           <button className="flex items-center gap-1 transition">
-            <IoLaptop />
-            لپ تاپ
+            <FaComputer />
+            کامپیوتر و سرگرمی
           </button>
           <IoIosArrowBack />
         </div>
@@ -116,6 +135,7 @@ function CategoriesMenu({ categoriesMenuHover }: CategoriesMenuProps) {
         >
           <NavLink
             to="/products/category/laptop"
+            onClick={closeMenu}
             className={({ isActive }) =>
               `${
                 isActive && "text-red-500 dark:text-red-400"
@@ -127,6 +147,7 @@ function CategoriesMenu({ categoriesMenuHover }: CategoriesMenuProps) {
           </NavLink>
           <NavLink
             to="/products/category/gaming"
+            onClick={closeMenu}
             className={({ isActive }) =>
               `${
                 isActive && "text-red-500 dark:text-red-400"
@@ -159,6 +180,7 @@ function CategoriesMenu({ categoriesMenuHover }: CategoriesMenuProps) {
         >
           <NavLink
             to="/products/category/tv"
+            onClick={closeMenu}
             className={({ isActive }) =>
               `${
                 isActive && "text-red-500 dark:text-red-400"
@@ -170,6 +192,7 @@ function CategoriesMenu({ categoriesMenuHover }: CategoriesMenuProps) {
           </NavLink>
           <NavLink
             to="/products/category/appliances"
+            onClick={closeMenu}
             className={({ isActive }) =>
               `${
                 isActive && "text-red-500 dark:text-red-400"
