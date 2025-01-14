@@ -1,7 +1,8 @@
+import { IoMdCheckmarkCircleOutline } from "react-icons/io";
+
 import Backdrop from "./UI/Backdrop";
 
 import { type RegisterAlertProps } from "../types/componentTypes";
-import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 
 function RegisterAlert({ showMessage, hideMessage }: RegisterAlertProps) {
   return (
@@ -15,7 +16,7 @@ function RegisterAlert({ showMessage, hideMessage }: RegisterAlertProps) {
         }`}
       >
         <h3 className="text-lg font-bold mb-4">لطفا در نظر داشته باشید</h3>
-        <p className="mb-4">
+        <p className="text-justify mb-4">
           با توجه به اینکه در سایت از فیک api استفاده شده، شما پس از ثبت نام
           قادر به ورود با اطلاعاتی که با آن ثبت نام کرده‌اید نیستید.
           <br />
